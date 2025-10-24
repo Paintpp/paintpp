@@ -1,4 +1,4 @@
-package com.purkynka.paintpp.paintpp;
+package com.purkynka.paintpp;
 
 import javafx.application.Application;
 import javafx.scene.Scene;
