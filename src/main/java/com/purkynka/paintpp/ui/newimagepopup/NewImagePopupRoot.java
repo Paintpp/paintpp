@@ -1,5 +1,7 @@
 package com.purkynka.paintpp.ui.newimagepopup;
 
+import com.purkynka.paintpp.logic.image.imageprovider.NewImageProvider;
+import com.purkynka.paintpp.ui.primarystage.mainview.imageviewer.ImageViewer;
 import com.purkynka.paintpp.ui.shared.form.ColorInput;
 import com.purkynka.paintpp.ui.shared.form.SizeInput;
 import com.purkynka.paintpp.ui.shared.popup.PopupRoot;
@@ -29,6 +31,8 @@ public class NewImagePopupRoot extends PopupRoot {
     protected void onSubmit() {
         var imageSize = sizeInput.getSize();
         var fillColor = fillColorInput.getColor();
+
+        ImageViewer.CURRENT_IMAGE_PROVIDER = new NewImageProvider(imageSize, fillColor);
 
         popupStage.close();
     }
