@@ -11,7 +11,7 @@ public class Paintpp extends Application {
     @Override
     public void start(Stage stage) {
         Application.setUserAgentStylesheet(new CupertinoDark().getUserAgentStylesheet());
-        
+
         var primaryStage = new PrimaryStage(stage);
         primaryStage.show();
     }
