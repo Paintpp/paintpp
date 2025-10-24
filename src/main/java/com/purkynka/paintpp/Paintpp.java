@@ -1,16 +1,15 @@
 package com.purkynka.paintpp;
 
+import com.purkynka.paintpp.ui.primarystage.PrimaryStage;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-public class HelloApplication extends Application {
+public class Paintpp extends Application {
     @Override
     public void start(Stage stage) {
-        Scene scene = new Scene(new VBox(), 320, 240);
-        stage.setTitle("Hello!");
-        stage.setScene(scene);
-        stage.show();
+        var primaryStage = new PrimaryStage(stage);
+        primaryStage.show();
     }
 }
