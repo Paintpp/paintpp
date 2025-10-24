@@ -1,5 +1,6 @@
 package com.purkynka.paintpp.ui.primarystage.menubar;
 
+import com.purkynka.paintpp.ui.newimagepopup.NewImagePopup;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.SeparatorMenuItem;
@@ -18,6 +19,8 @@ public class FileMenu extends Menu {
         super("File");
 
         newImageItem = new MenuItem("New Image");
+        newImageItem.setOnAction(_ -> new NewImagePopup());
+
         loadImageItem = new MenuItem("Load Image");
         generateImageItem = new MenuItem("Generate Image");
 
