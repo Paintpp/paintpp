@@ -1,6 +1,7 @@
 package com.purkynka.paintpp.ui.primarystage.menubar;
 
 import com.purkynka.paintpp.logic.image.imageprovider.LoadedImageProvider;
+import com.purkynka.paintpp.ui.generateimagepopup.GenerateImagePopup;
 import com.purkynka.paintpp.ui.newimagepopup.NewImagePopup;
 import com.purkynka.paintpp.ui.primarystage.PrimaryStage;
 import com.purkynka.paintpp.ui.primarystage.mainview.imageviewer.ImageViewer;
@@ -33,6 +34,7 @@ public class FileMenu extends Menu {
         loadImageItem.setOnAction(_ -> loadImage());
 
         generateImageItem = new MenuItem("Generate Image");
+        generateImageItem.setOnAction(_ -> new GenerateImagePopup());
 
         saveItem = new MenuItem("Save");
         saveAsItem = new MenuItem("Save As");
