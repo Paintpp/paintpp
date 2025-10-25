@@ -33,7 +33,7 @@ public class GenerateImagePopupRoot extends PopupRoot {
         var imageSize = sizeInput.getSize();
         var generationType = generationTypeInput.getValue();
 
-        ImageViewer.CURRENT_IMAGE_PROVIDER = new GeneratedImageProvider(imageSize, generationType);
+        ImageViewer.IMAGE_PROVIDER_CHANGED.send(new GeneratedImageProvider(imageSize, generationType));
 
         popupStage.close();
     }

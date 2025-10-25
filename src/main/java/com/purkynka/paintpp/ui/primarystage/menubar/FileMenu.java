@@ -66,6 +66,6 @@ public class FileMenu extends Menu {
         var file = fileChooser.showOpenDialog(PrimaryStage.PRIMARY_STAGE);
         if (file == null) return;
 
-        ImageViewer.CURRENT_IMAGE_PROVIDER = new LoadedImageProvider(file);
+        ImageViewer.IMAGE_PROVIDER_CHANGED.send(new LoadedImageProvider(file));
     }
 }

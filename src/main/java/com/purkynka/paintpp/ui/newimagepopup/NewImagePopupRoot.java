@@ -32,7 +32,7 @@ public class NewImagePopupRoot extends PopupRoot {
         var imageSize = sizeInput.getSize();
         var fillColor = fillColorInput.getColor();
 
-        ImageViewer.CURRENT_IMAGE_PROVIDER = new NewImageProvider(imageSize, fillColor);
+        ImageViewer.IMAGE_PROVIDER_CHANGED.send(new NewImageProvider(imageSize, fillColor));
 
         popupStage.close();
     }
