@@ -1,6 +1,8 @@
 package com.purkynka.paintpp.ui.generateimagepopup;
 
 import com.purkynka.paintpp.logic.image.ImageGenerationType;
+import com.purkynka.paintpp.logic.image.imageprovider.GeneratedImageProvider;
+import com.purkynka.paintpp.ui.primarystage.mainview.imageviewer.ImageViewer;
 import com.purkynka.paintpp.ui.shared.form.ChoiceInput;
 import com.purkynka.paintpp.ui.shared.form.SizeInput;
 import com.purkynka.paintpp.ui.shared.popup.PopupRoot;
@@ -30,6 +32,8 @@ public class GenerateImagePopupRoot extends PopupRoot {
     protected void onSubmit() {
         var imageSize = sizeInput.getSize();
         var generationType = generationTypeInput.getValue();
+
+        ImageViewer.CURRENT_IMAGE_PROVIDER = new GeneratedImageProvider(imageSize, generationType);
 
         popupStage.close();
     }

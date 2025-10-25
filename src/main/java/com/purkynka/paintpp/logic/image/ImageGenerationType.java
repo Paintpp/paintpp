@@ -1,9 +1,7 @@
 package com.purkynka.paintpp.logic.image;
 
 public enum ImageGenerationType {
-    Position("Position"),
-    Sin("Sin"),
-    CosTanTest("Cos Tan Test");
+    Position("Position");
 
     private final String stringForm;
 
