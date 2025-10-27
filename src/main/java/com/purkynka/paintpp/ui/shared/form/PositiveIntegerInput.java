@@ -9,7 +9,7 @@ import javafx.scene.control.TextField;
  * Sets up a {@link PositiveIntegerTextFormatter} for the {@link TextField}.
  */
 public class PositiveIntegerInput extends TextField {
-    private PositiveIntegerTextFormatter textFormatter;
+    private final PositiveIntegerTextFormatter textFormatter;
 
     /**
      * Constructs a new {@link PositiveIntegerInput}.

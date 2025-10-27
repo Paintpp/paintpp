@@ -9,8 +9,8 @@ import javafx.scene.paint.Color;
  * Form element containing a {@link Label} and {@link ColorPicker}.
  */
 public class ColorInput {
-    private Label label;
-    private ColorPicker colorPicker;
+    private final Label label;
+    private final ColorPicker colorPicker;
 
     /**
      * Constructs a new {@link ColorInput} inside the provided {@link GridPane}, labeled as the

@@ -8,7 +8,7 @@ import java.util.function.Consumer;
  * @param <T> The type of the value sent in the event
  */
 public class ConsumerEventHandler<T> {
-    private ArrayList<Consumer<T>> listeners = new ArrayList<>();
+    private final ArrayList<Consumer<T>> listeners = new ArrayList<>();
 
     /**
      * Adds an event listener to this event.

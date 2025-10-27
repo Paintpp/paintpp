@@ -15,8 +15,8 @@ import javafx.scene.paint.Color;
 public class GeneratedImageProvider implements IImageProvider {
     private static final int MANDELBROT_ITERATIONS = 1000;
 
-    private ImageSize imageSize;
-    private Image image;
+    private final ImageSize imageSize;
+    private final Image image;
 
     /**
      * Constructs a {@link GeneratedImageProvider}, creating an {@link Image} based on the provided
@@ -107,7 +107,7 @@ public class GeneratedImageProvider implements IImageProvider {
      * Generates an {@link Image} where each pixel's:
      * <ul>
      * <li>{@code R} channel is the progress along the {@code X} axis.</li>
-     * <li>{@code G} channel is the progress along the {@code Y} axis.</li>@link File}
+     * <li>{@code G} channel is the progress along the {@code Y} axis.</li>
      * <li>{@code B} channel is the average of the two.</li>
      * </ul>
      * @param pixelWriter The {@link PixelWriter} to write to
@@ -204,7 +204,7 @@ public class GeneratedImageProvider implements IImageProvider {
                 if (!isInside) {
                     pixelWriter.setColor(x, y, backgroundColor);
                     continue;
-                };
+                }
 
                 var distanceFromCenter = Math.sqrt(Math.pow(x - centerX, 2) + Math.pow(y - centerY, 2));
                 var backgroundColorIntensity = Math.clamp(Math.pow(distanceFromCenter / centerX, 2), 0, 1);

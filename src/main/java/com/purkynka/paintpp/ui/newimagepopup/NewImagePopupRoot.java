@@ -11,10 +11,10 @@ import com.purkynka.paintpp.ui.shared.popup.PopupStage;
  * Element root of the {@link NewImagePopup}.
  */
 public class NewImagePopupRoot extends PopupRoot {
-    private PopupStage popupStage;
+    private final PopupStage popupStage;
 
-    private SizeInput sizeInput;
-    private ColorInput fillColorInput;
+    private final SizeInput sizeInput;
+    private final ColorInput fillColorInput;
 
     /**
      * Constructs a new {@link NewImagePopup}, with the assigned parent {@link PopupStage}.

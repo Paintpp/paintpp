@@ -9,8 +9,8 @@ import javafx.scene.control.SplitPane;
  * {@link SplitPane} containing the left sidebar contents.
  */
 public class LeftSidebar extends SplitPane {
-    private ToolPicker toolPicker;
-    private ToolOptions toolOptions;
+    private final ToolPicker toolPicker;
+    private final ToolOptions toolOptions;
 
     /**
      * Constructs a new {@link LeftSidebar}.

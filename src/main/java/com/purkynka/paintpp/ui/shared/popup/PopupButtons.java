@@ -11,8 +11,8 @@ import javafx.scene.layout.Priority;
  * Contains the cancel and submit {@link Button Buttons} of a {@link PopupStage}.
  */
 public class PopupButtons extends HBox {
-    private Button cancelButton;
-    private Button submitButton;
+    private final Button cancelButton;
+    private final Button submitButton;
 
     /**
      * Constructs a new {@link PopupButtons}, using the provided {@link String Strings} and {@link Runnable Runnables},

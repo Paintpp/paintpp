@@ -14,15 +14,15 @@ import org.kordamp.ikonli.materialdesign2.MaterialDesignA;
  * Also contains a {@link Button} to flip the current width and height values.
  */
 public class SizeInput {
-    private Label sizeLabel;
+    private final Label sizeLabel;
 
-    private Label widthLabel;
-    private PositiveIntegerInput widthInput;
+    private final Label widthLabel;
+    private final PositiveIntegerInput widthInput;
 
-    private Button flipButton;
+    private final Button flipButton;
 
-    private Label heightLabel;
-    private PositiveIntegerInput heightInput;
+    private final Label heightLabel;
+    private final PositiveIntegerInput heightInput;
 
     /**
      * Constructs a new {@link SizeInput} inside the provided {@link GridPane},

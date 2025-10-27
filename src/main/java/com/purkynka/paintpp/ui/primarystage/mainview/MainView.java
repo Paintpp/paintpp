@@ -12,9 +12,9 @@ import javafx.scene.layout.VBox;
  * {@link SplitPane} containing the columns of the {@link PrimaryStageRoot}.
  */
 public class MainView extends SplitPane {
-    private LeftSidebar leftSidebar;
-    private ImageViewer imageViewer;
-    private RightSidebar rightSidebar;
+    private final LeftSidebar leftSidebar;
+    private final ImageViewer imageViewer;
+    private final RightSidebar rightSidebar;
 
     /**
      * Constructs a new {@link MainView}.

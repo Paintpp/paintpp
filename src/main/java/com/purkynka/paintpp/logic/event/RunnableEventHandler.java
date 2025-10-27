@@ -6,7 +6,7 @@ import java.util.ArrayList;
  * Represents an event that doesn't send any value.
  */
 public class RunnableEventHandler {
-    private ArrayList<Runnable> listeners = new ArrayList<>();
+    private final ArrayList<Runnable> listeners = new ArrayList<>();
 
     /**
      * Adds an event listener to this event.

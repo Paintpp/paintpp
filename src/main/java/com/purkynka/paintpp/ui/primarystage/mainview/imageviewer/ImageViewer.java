@@ -22,7 +22,7 @@ import javafx.scene.layout.StackPane;
  * to allow panning to the edge properly.
  */
 public class ImageViewer extends StackPane {
-    public static ConsumerEventHandler<IImageProvider> IMAGE_PROVIDER_CHANGED = new ConsumerEventHandler<>();
+    public static final ConsumerEventHandler<IImageProvider> IMAGE_PROVIDER_CHANGED = new ConsumerEventHandler<>();
 
     private static final double DEFAULT_MIN_ZOOM = 0.9d;
     private static final double MIN_ZOOM_LIMIT = 0.001d;

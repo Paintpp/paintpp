@@ -9,8 +9,8 @@ import javafx.scene.layout.GridPane;
  * @param <T> Enum representing the possible options
  */
 public class ChoiceInput<T extends Enum<T>> {
-    private Label label;
-    private ChoiceBox<T> choiceBox;
+    private final Label label;
+    private final ChoiceBox<T> choiceBox;
 
     /**
      * Constructs a new {@link ChoiceInput} inside the provided {@link GridPane},

@@ -10,9 +10,9 @@ import javafx.scene.layout.VBox;
  * Includes a {@link #gridPane} that form elements can use.
  */
 public abstract class PopupRoot extends VBox {
-    protected PopupTitle popupTitle;
-    protected GridPane gridPane;
-    protected PopupButtons popupButtons;
+    protected final PopupTitle popupTitle;
+    protected final GridPane gridPane;
+    protected final PopupButtons popupButtons;
 
     /**
      * Constructs a new {@link PopupRoot} with the provided {@link String Strings} as the title and

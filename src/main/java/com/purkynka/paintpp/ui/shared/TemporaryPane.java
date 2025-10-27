@@ -8,7 +8,7 @@ import javafx.scene.layout.StackPane;
  * A temporary {@link StackPane} that just holds a centered {@link Label}.
  */
 public class TemporaryPane extends StackPane {
-    private Label label;
+    private final Label label;
 
     /**
      * Constructs a new {@link TemporaryPane} containing the provided {@link String}.

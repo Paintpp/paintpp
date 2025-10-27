@@ -9,8 +9,8 @@ import javafx.scene.control.SplitPane;
  * {@link SplitPane} containing the right sidebar contents.
  */
 public class RightSidebar extends SplitPane {
-    private ColorPicker colorPicker;
-    private LayerHierarchy  layerHierarchy;
+    private final ColorPicker colorPicker;
+    private final LayerHierarchy layerHierarchy;
 
     /**
      * Constructs a new {@link RightSidebar}.

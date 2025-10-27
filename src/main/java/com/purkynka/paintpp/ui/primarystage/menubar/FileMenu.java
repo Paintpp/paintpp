@@ -21,16 +21,16 @@ import java.io.File;
  * Also includes saving the image to the same location or as a new image and exiting the editor.
  */
 public class FileMenu extends Menu {
-    private MenuItem newImageItem;
-    private MenuItem loadImageItem;
-    private MenuItem generateImageItem;
+    private final MenuItem newImageItem;
+    private final MenuItem loadImageItem;
+    private final MenuItem generateImageItem;
 
-    private MenuItem saveItem;
-    private MenuItem saveAsItem;
+    private final MenuItem saveItem;
+    private final MenuItem saveAsItem;
 
-    private MenuItem exitItem;
+    private final MenuItem exitItem;
 
-    private FileChooser fileChooser;
+    private final FileChooser fileChooser;
 
     /**
      * Constructs a new {@link FileMenu}.
