@@ -5,10 +5,16 @@ import com.purkynka.paintpp.ui.primarystage.mainview.leftsidebar.toolpicker.Tool
 import javafx.geometry.Orientation;
 import javafx.scene.control.SplitPane;
 
+/**
+ * {@link SplitPane} containing the left sidebar contents.
+ */
 public class LeftSidebar extends SplitPane {
     private ToolPicker toolPicker;
     private ToolOptions toolOptions;
 
+    /**
+     * Constructs a new {@link LeftSidebar}.
+     */
     public LeftSidebar() {
         super();
 

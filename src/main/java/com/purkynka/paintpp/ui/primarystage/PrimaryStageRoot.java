@@ -4,10 +4,16 @@ import com.purkynka.paintpp.ui.primarystage.mainview.MainView;
 import com.purkynka.paintpp.ui.primarystage.menubar.MenuBar;
 import javafx.scene.layout.VBox;
 
+/**
+ * Element root of the {@link PrimaryStage}.
+ */
 public class PrimaryStageRoot extends VBox {
     private MenuBar menuBar;
     private MainView mainView;
 
+    /**
+     * Constructs a new {@link PrimaryStageRoot}.
+     */
     public PrimaryStageRoot() {
         menuBar = new MenuBar();
         mainView = new MainView();

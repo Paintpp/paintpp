@@ -5,10 +5,16 @@ import com.purkynka.paintpp.ui.primarystage.mainview.rightsidebar.layerhierarchy
 import javafx.geometry.Orientation;
 import javafx.scene.control.SplitPane;
 
+/**
+ * {@link SplitPane} containing the right sidebar contents.
+ */
 public class RightSidebar extends SplitPane {
     private ColorPicker colorPicker;
     private LayerHierarchy  layerHierarchy;
 
+    /**
+     * Constructs a new {@link RightSidebar}.
+     */
     public RightSidebar() {
         super();
 

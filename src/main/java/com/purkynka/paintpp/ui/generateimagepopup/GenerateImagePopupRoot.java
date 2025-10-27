@@ -8,12 +8,19 @@ import com.purkynka.paintpp.ui.shared.form.SizeInput;
 import com.purkynka.paintpp.ui.shared.popup.PopupRoot;
 import com.purkynka.paintpp.ui.shared.popup.PopupStage;
 
+/**
+ * Element root of the {@link GenerateImagePopup}.
+ */
 public class GenerateImagePopupRoot extends PopupRoot {
     private PopupStage popupStage;
 
     private SizeInput sizeInput;
     private ChoiceInput<ImageGenerationType> generationTypeInput;
 
+    /**
+     * Constructs a new {@link GenerateImagePopupRoot}, with the assigned parent {@link PopupStage}.
+     * @param popupStage The parent popup stage
+     */
     public GenerateImagePopupRoot(PopupStage popupStage) {
         super("Generate Image", "Cancel", "Generate");
 

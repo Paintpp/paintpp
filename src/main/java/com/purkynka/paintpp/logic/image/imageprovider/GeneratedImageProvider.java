@@ -7,10 +7,24 @@ import javafx.scene.image.PixelWriter;
 import javafx.scene.image.WritableImage;
 import javafx.scene.paint.Color;
 
+/**
+ * {@link IImageProvider} for an {@link Image} created with some algorithm.
+ * <p>
+ * Contains several options, represented by the {@link ImageGenerationType} enum.
+ */
 public class GeneratedImageProvider implements IImageProvider {
+    private static final int MANDELBROT_ITERATIONS = 1000;
+
     private ImageSize imageSize;
     private Image image;
 
+    /**
+     * Constructs a {@link GeneratedImageProvider}, creating an {@link Image} based on the provided
+     * {@link ImageSize} and {@link ImageGenerationType}.
+     *
+     * @param imageSize The image size of the generated image
+     * @param imageGenerationType The image generation type to use for generating the image
+     */
     public GeneratedImageProvider(ImageSize imageSize, ImageGenerationType imageGenerationType) {
         this.imageSize = imageSize;
 
@@ -31,6 +45,15 @@ public class GeneratedImageProvider implements IImageProvider {
         image = writableImage;
     }
 
+    /**
+     * Generates an {@link Image} where each pixel's:
+     * <ul>
+     * <li>{@code R} channel is the progress along the {@code X} axis.</li>
+     * <li>{@code G} channel is 0.</li>
+     * <li>{@code B} channel is 0.</li>
+     * </ul>
+     * @param pixelWriter The {@link PixelWriter} to write to
+     */
     private void xCoordinateGenerator(PixelWriter pixelWriter) {
         for (var x = 0; x < imageSize.width(); x++) {
             for (var y = 0; y < imageSize.height(); y++) {
@@ -41,6 +64,15 @@ public class GeneratedImageProvider implements IImageProvider {
         }
     }
 
+    /**
+     * Generates an {@link Image} where each pixel's:
+     * <ul>
+     * <li>{@code R} channel is 0.</li>
+     * <li>{@code G} channel is the progress along the {@code Y} axis.</li>
+     * <li>{@code B} channel is 0.</li>
+     * </ul>
+     * @param pixelWriter The {@link PixelWriter} to write to
+     */
     private void yCoordinateGenerator(PixelWriter pixelWriter) {
         for (var x = 0; x < imageSize.width(); x++) {
             for (var y = 0; y < imageSize.height(); y++) {
@@ -51,6 +83,15 @@ public class GeneratedImageProvider implements IImageProvider {
         }
     }
 
+    /**
+     * Generates an {@link Image} where each pixel's:
+     * <ul>
+     * <li>{@code R} channel is the progress along the {@code X} axis.</li>
+     * <li>{@code G} channel is the progress along the {@code Y} axis.</li>
+     * <li>{@code B} channel is 0.</li>
+     * </ul>
+     * @param pixelWriter The {@link PixelWriter} to write to
+     */
     private void xyCoordinatesGenerator(PixelWriter pixelWriter) {
         for (var x = 0; x < imageSize.width(); x++) {
             for (var y = 0; y < imageSize.height(); y++) {
@@ -62,6 +103,15 @@ public class GeneratedImageProvider implements IImageProvider {
         }
     }
 
+    /**
+     * Generates an {@link Image} where each pixel's:
+     * <ul>
+     * <li>{@code R} channel is the progress along the {@code X} axis.</li>
+     * <li>{@code G} channel is the progress along the {@code Y} axis.</li>@link File}
+     * <li>{@code B} channel is the average of the two.</li>
+     * </ul>
+     * @param pixelWriter The {@link PixelWriter} to write to
+     */
     private void xyCoordinatesAverageGenerator(PixelWriter pixelWriter) {
         for (var x = 0; x < imageSize.width(); x++) {
             for (var y = 0; y < imageSize.height(); y++) {
@@ -74,6 +124,15 @@ public class GeneratedImageProvider implements IImageProvider {
         }
     }
 
+    /**
+     * Generates an {@link Image} where each pixel's:
+     * <ul>
+     * <li>{@code R} channel is the {@code sin} of the {@code X} coordinate.</li>
+     * <li>{@code G} channel is the {@code sin} of the {@code Y} coordinate.</li>
+     * <li>{@code B} channel is the average of the two.</li>
+     * </ul>
+     * @param pixelWriter The {@link PixelWriter} to write to
+     */
     private void sinGenerator(PixelWriter pixelWriter) {
         for (var x = 0; x < imageSize.width(); x++) {
             for (var y = 0; y < imageSize.height(); y++) {
@@ -86,6 +145,17 @@ public class GeneratedImageProvider implements IImageProvider {
         }
     }
 
+    /**
+     * Generates an {@link Image} with a colored in circle that:
+     * <ul>
+     *     <li>Has a radius of half the image's width.</li>
+     *     <li>Is centered in the image.</li>
+     *     <li>Is on top of a differently colored background.</li>
+     * </ul>
+     * <p>
+     * The generated colors are randomized on each run.
+     * @param pixelWriter The {@link PixelWriter} to write to
+     */
     private void circleGenerator(PixelWriter pixelWriter) {
         var centerX = imageSize.width() / 2;
         var centerY = imageSize.height() / 2;
@@ -105,6 +175,18 @@ public class GeneratedImageProvider implements IImageProvider {
         }
     }
 
+    /**
+     * Generates an {@link Image} with a colored in circle that:
+     * <ul>
+     *     <li>Has a radius of half the image's width.</li>
+     *     <li>Is centered in the image.</li>
+     *     <li>Is on top of a differently colored background.</li>
+     *     <li>Fades into the background color, fading completely on the edge.</li>
+     * </ul>
+     * <p>
+     * The generated colors are randomized on each run.
+     * @param pixelWriter The {@link PixelWriter} to write to
+     */
     private void circleFalloffGenerator(PixelWriter pixelWriter) {
         var centerX = imageSize.width() / 2;
         var centerY = imageSize.height() / 2;
@@ -139,7 +221,17 @@ public class GeneratedImageProvider implements IImageProvider {
         }
     }
 
-    private static final int MANDELBROT_ITERATIONS = 1000;
+    /**
+     * Generates an {@link Image} displaying the Mandelbrot set, the color of a pixel is either:
+     * <ul>
+     *     <li>Black if the pixel's coordinates are inside the Mandelbrot set.</li>
+     *     <li>The iteration count transformed into a HSB color if not inside the Mandelbrot set.</li>
+     * </ul>
+     * <p>
+     * The algorithm's iteration count can be changed with the {@link #MANDELBROT_ITERATIONS} constant.
+     * @see <a href="https://en.wikipedia.org/wiki/Mandelbrot_set">https://en.wikipedia.org/wiki/Mandelbrot_set</a>
+     * @param pixelWriter The {@link PixelWriter} to write to
+     */
     private void mandelbrotGenerator(PixelWriter pixelWriter) {
         var originalXRange = (imageSize.width());
         var originalYRange = (imageSize.height());

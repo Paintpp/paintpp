@@ -1,5 +1,6 @@
 package com.purkynka.paintpp.ui.primarystage.mainview;
 
+import com.purkynka.paintpp.ui.primarystage.PrimaryStageRoot;
 import com.purkynka.paintpp.ui.primarystage.mainview.imageviewer.ImageViewer;
 import com.purkynka.paintpp.ui.primarystage.mainview.leftsidebar.LeftSidebar;
 import com.purkynka.paintpp.ui.primarystage.mainview.rightsidebar.RightSidebar;
@@ -7,11 +8,17 @@ import javafx.scene.control.SplitPane;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 
+/**
+ * {@link SplitPane} containing the columns of the {@link PrimaryStageRoot}.
+ */
 public class MainView extends SplitPane {
     private LeftSidebar leftSidebar;
     private ImageViewer imageViewer;
     private RightSidebar rightSidebar;
 
+    /**
+     * Constructs a new {@link MainView}.
+     */
     public MainView() {
         super();
 

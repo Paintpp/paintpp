@@ -1,7 +1,12 @@
 package com.purkynka.paintpp.ui.shared.textformatter;
 
+import javafx.scene.control.TextField;
+import javafx.util.StringConverter;
 import javafx.util.converter.IntegerStringConverter;
 
+/**
+ * {@link StringConverter} that only allows positive (without zero) numbers in a {@link TextField}.
+ */
 public class PositiveIntegerStringConverter extends IntegerStringConverter {
     @Override
     public Integer fromString(String value) {

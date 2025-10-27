@@ -7,12 +7,19 @@ import com.purkynka.paintpp.ui.shared.form.SizeInput;
 import com.purkynka.paintpp.ui.shared.popup.PopupRoot;
 import com.purkynka.paintpp.ui.shared.popup.PopupStage;
 
+/**
+ * Element root of the {@link NewImagePopup}.
+ */
 public class NewImagePopupRoot extends PopupRoot {
     private PopupStage popupStage;
 
     private SizeInput sizeInput;
     private ColorInput fillColorInput;
 
+    /**
+     * Constructs a new {@link NewImagePopup}, with the assigned parent {@link PopupStage}.
+     * @param popupStage The parent popup stage
+     */
     public NewImagePopupRoot(PopupStage popupStage) {
         super("New Image");
 

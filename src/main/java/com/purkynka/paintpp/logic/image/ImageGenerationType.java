@@ -1,5 +1,10 @@
 package com.purkynka.paintpp.logic.image;
 
+import com.purkynka.paintpp.logic.image.imageprovider.GeneratedImageProvider;
+
+/**
+ * Enum for the various generation types used in {@link GeneratedImageProvider}.
+ */
 public enum ImageGenerationType {
     XCoordinate("X Coordinate"),
     YCoordinate("Y Coordinate"),
@@ -12,6 +17,10 @@ public enum ImageGenerationType {
 
     private final String stringForm;
 
+    /**
+     * Constructs a new {@link ImageGenerationType} represented by the provided {@link String}.
+     * @param stringForm The string representation of the enum value.
+     */
     ImageGenerationType(String stringForm) {
         this.stringForm = stringForm;
     }
