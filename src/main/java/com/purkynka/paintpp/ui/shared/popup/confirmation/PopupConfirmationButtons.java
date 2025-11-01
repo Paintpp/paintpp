@@ -1,6 +1,7 @@
-package com.purkynka.paintpp.ui.shared.popup;
+package com.purkynka.paintpp.ui.shared.popup.confirmation;
 
 import atlantafx.base.theme.Styles;
+import com.purkynka.paintpp.ui.shared.popup.PopupStage;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.layout.HBox;
@@ -10,19 +11,19 @@ import javafx.scene.layout.Priority;
 /**
  * Contains the cancel and submit {@link Button Buttons} of a {@link PopupStage}.
  */
-public class PopupButtons extends HBox {
+public class PopupConfirmationButtons extends HBox {
     private final Button cancelButton;
     private final Button submitButton;
 
     /**
-     * Constructs a new {@link PopupButtons}, using the provided {@link String Strings} and {@link Runnable Runnables},
+     * Constructs a new {@link PopupConfirmationButtons}, using the provided {@link String Strings} and {@link Runnable Runnables},
      * for the button texts and on action events.
      * @param cancelText The text of the cancel button
      * @param onCancel The runnable to run when the cancel button is clicked
      * @param submitText The text of the submit button
      * @param onSubmit The runnable to run when the submit button is clicked
      */
-    public PopupButtons(String cancelText, Runnable onCancel, String submitText, Runnable onSubmit) {
+    public PopupConfirmationButtons(String cancelText, Runnable onCancel, String submitText, Runnable onSubmit) {
         super(8);
 
         setPadding(new Insets(16, 0, 0, 0));

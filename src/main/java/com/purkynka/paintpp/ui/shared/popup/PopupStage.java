@@ -19,12 +19,10 @@ public abstract class PopupStage extends Stage {
         initOwner(ownerStage);
         initModality(Modality.APPLICATION_MODAL);
 
-        var root = constructRoot(this);
-        var scene = new Scene(root);
-        setScene(scene);
-
         setResizable(false);
 
+        var root = constructRoot(this);
+        setScene(new Scene(root));
         showAndWait();
     }
 
@@ -35,11 +33,5 @@ public abstract class PopupStage extends Stage {
         this(PrimaryStage.PRIMARY_STAGE);
     }
 
-    /**
-     * Method that should be overridden by any popup that constructs the root element
-     * of the {@link PopupStage}.
-     * @param popupStage The popup stage to construct the root element for
-     * @return The constructed root element
-     */
-    protected abstract PopupBaseRoot constructRoot(PopupStage popupStage);
+    protected abstract PopupBaseRoot constructRoot(Stage stage);
 }

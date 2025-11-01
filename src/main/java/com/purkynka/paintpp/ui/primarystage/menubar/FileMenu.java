@@ -1,6 +1,5 @@
 package com.purkynka.paintpp.ui.primarystage.menubar;
 
-import atlantafx.base.theme.Styles;
 import com.purkynka.paintpp.logic.image.imageprovider.LoadedImageProvider;
 import com.purkynka.paintpp.ui.popup.generateimage.GenerateImagePopup;
 import com.purkynka.paintpp.ui.popup.newimage.NewImagePopup;
@@ -8,6 +7,7 @@ import com.purkynka.paintpp.ui.primarystage.PrimaryStage;
 import com.purkynka.paintpp.ui.primarystage.mainview.imageviewer.ImageViewer;
 import javafx.application.Platform;
 import javafx.scene.control.Menu;
+import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.SeparatorMenuItem;
 import javafx.stage.FileChooser;
@@ -25,7 +25,7 @@ import java.io.File;
  * <p>
  * Also includes saving the image to the same location or as a new image and exiting the editor.
  */
-public class FileMenu extends Menu {
+public class FileMenu extends MenuButton {
     private final MenuItem newImageItem;
     private final MenuItem loadImageItem;
     private final MenuItem generateImageItem;
@@ -44,8 +44,6 @@ public class FileMenu extends Menu {
     public FileMenu() {
         super("_File", new FontIcon(MaterialDesignF.FILE));
         setMnemonicParsing(true);
-
-        getStyleClass().add(Styles.ACCENT);
         
         newImageItem = new MenuItem("_New Image", new FontIcon(MaterialDesignF.FILE_PLUS));
         newImageItem.setMnemonicParsing(true);

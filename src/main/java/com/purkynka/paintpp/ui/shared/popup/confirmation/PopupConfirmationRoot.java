@@ -1,10 +1,13 @@
-package com.purkynka.paintpp.ui.shared.popup;
+package com.purkynka.paintpp.ui.shared.popup.confirmation;
 
-import javafx.application.Platform;
+import com.purkynka.paintpp.ui.shared.Title;
+import com.purkynka.paintpp.ui.shared.popup.PopupBaseRoot;
+import com.purkynka.paintpp.ui.shared.popup.PopupStage;
 import javafx.geometry.Insets;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
+import javafx.stage.Stage;
 
 /**
  * Sets up the default structure of a {@link PopupStage}.
@@ -12,9 +15,9 @@ import javafx.scene.layout.GridPane;
  * Includes a {@link #gridPane} that form elements can use.
  */
 public abstract class PopupConfirmationRoot extends PopupBaseRoot {
-    protected final PopupTitle popupTitle;
+    protected final Title popupTitle;
     protected final GridPane gridPane;
-    protected final PopupButtons popupButtons;
+    protected final PopupConfirmationButtons popupConfirmationButtons;
 
     /**
      * Constructs a new {@link PopupConfirmationRoot} with the provided {@link String Strings} as the title and
@@ -23,7 +26,7 @@ public abstract class PopupConfirmationRoot extends PopupBaseRoot {
      * @param cancelText The text inside the cancel button
      * @param submitText The text inside the submit button
      */
-    public PopupConfirmationRoot(PopupStage popupStage, String title, String cancelText, String submitText) {
+    public PopupConfirmationRoot(Stage stage, String title, String cancelText, String submitText) {
         super();                
         gridPane = new GridPane();
 
@@ -32,12 +35,12 @@ public abstract class PopupConfirmationRoot extends PopupBaseRoot {
         gridPane.setHgap(8);
         gridPane.setVgap(8);
 
-        popupTitle = new PopupTitle(title);
-        popupButtons = new PopupButtons(cancelText, this::onCancel, submitText, this::onSubmit);
-        
-        getChildren().addAll(popupTitle, gridPane, popupButtons);
-        
-        popupStage.sceneProperty().addListener((_, _, newScene) -> {
+        popupTitle = new Title(title);
+        popupConfirmationButtons = new PopupConfirmationButtons(cancelText, this::onCancel, submitText, this::onSubmit);
+
+        getChildren().addAll(popupTitle, gridPane, popupConfirmationButtons);
+
+        stage.sceneProperty().addListener((_, _, newScene) -> {
             if (newScene != null) {
                 newScene.setOnKeyPressed(event -> {
                     switch (event.getCode()) {
@@ -61,8 +64,8 @@ public abstract class PopupConfirmationRoot extends PopupBaseRoot {
      * Constructor overload for a {@link PopupConfirmationRoot} with default button texts.
      * @param title The text to use as the title
      */
-    public PopupConfirmationRoot(PopupStage popupStage, String title) {
-        this(popupStage, title, "Cancel", "Submit");
+    public PopupConfirmationRoot(Stage stage, String title) {
+        this(stage, title, "Cancel", "Submit");
     }
 
     /**

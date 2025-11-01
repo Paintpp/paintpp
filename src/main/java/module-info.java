@@ -5,6 +5,7 @@ module com.purkynka.paintpp {
     requires org.kordamp.ikonli.javafx;
     requires org.kordamp.ikonli.materialdesign2;
     requires java.rmi;
+    requires java.desktop;
 
     exports com.purkynka.paintpp;
 }
