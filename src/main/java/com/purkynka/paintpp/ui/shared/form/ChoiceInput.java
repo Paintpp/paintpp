@@ -43,4 +43,8 @@ public class ChoiceInput<T extends Enum<T>> {
     public T getValue() {
         return choiceBox.getValue();
     }
+    
+    public ChoiceBox<T> getChoiceBox() {
+        return choiceBox;
+    }
 }

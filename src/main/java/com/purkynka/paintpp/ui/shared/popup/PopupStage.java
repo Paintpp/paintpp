@@ -41,5 +41,5 @@ public abstract class PopupStage extends Stage {
      * @param popupStage The popup stage to construct the root element for
      * @return The constructed root element
      */
-    protected abstract PopupRoot constructRoot(PopupStage popupStage);
+    protected abstract PopupBaseRoot constructRoot(PopupStage popupStage);
 }

@@ -1,16 +1,16 @@
-package com.purkynka.paintpp.ui.newimagepopup;
+package com.purkynka.paintpp.ui.popup.newimage;
 
 import com.purkynka.paintpp.logic.image.imageprovider.NewImageProvider;
 import com.purkynka.paintpp.ui.primarystage.mainview.imageviewer.ImageViewer;
 import com.purkynka.paintpp.ui.shared.form.ColorInput;
 import com.purkynka.paintpp.ui.shared.form.SizeInput;
-import com.purkynka.paintpp.ui.shared.popup.PopupRoot;
+import com.purkynka.paintpp.ui.shared.popup.PopupConfirmationRoot;
 import com.purkynka.paintpp.ui.shared.popup.PopupStage;
 
 /**
  * Element root of the {@link NewImagePopup}.
  */
-public class NewImagePopupRoot extends PopupRoot {
+public class NewImagePopupConfirmationRoot extends PopupConfirmationRoot {
     private final PopupStage popupStage;
 
     private final SizeInput sizeInput;
@@ -20,8 +20,8 @@ public class NewImagePopupRoot extends PopupRoot {
      * Constructs a new {@link NewImagePopup}, with the assigned parent {@link PopupStage}.
      * @param popupStage The parent popup stage
      */
-    public NewImagePopupRoot(PopupStage popupStage) {
-        super("New Image");
+    public NewImagePopupConfirmationRoot(PopupStage popupStage) {
+        super(popupStage, "New Image");
 
         this.popupStage = popupStage;
 
