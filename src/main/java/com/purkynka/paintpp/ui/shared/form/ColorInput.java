@@ -1,5 +1,6 @@
 package com.purkynka.paintpp.ui.shared.form;
 
+import com.purkynka.paintpp.logic.configmanager.ConfigManager;
 import javafx.scene.control.ColorPicker;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
@@ -18,13 +19,22 @@ public class ColorInput {
      * @param parent The parent to put the elements inside of
      */
     public ColorInput(GridPane parent) {
+        this(parent, "Color:");
+    }
+
+    public ColorInput(GridPane parent, String title) {
         var rowOffset = parent.getRowCount();
 
-        label = new Label("Color:");
-        colorPicker = new ColorPicker();
+        label = new Label(title);
+        colorPicker = new ColorPicker(ConfigManager.getPreferredBackgroundColor());
 
         parent.add(label, 0, rowOffset);
         parent.add(colorPicker, 1, rowOffset);
+    }
+
+    public void setDisabled(boolean value) {
+        label.setDisable(value);
+        colorPicker.setDisable(value);
     }
 
     /**
@@ -33,5 +43,9 @@ public class ColorInput {
      */
     public Color getColor() {
         return colorPicker.getValue();
+    }
+
+    public ColorPicker getColorPicker() {
+        return colorPicker;
     }
 }

@@ -1,6 +1,7 @@
 package com.purkynka.paintpp.ui.shared;
 
 import atlantafx.base.theme.Styles;
+import com.purkynka.paintpp.logic.configmanager.ConfigManager;
 import com.purkynka.paintpp.ui.shared.popup.PopupStage;
 import javafx.geometry.Insets;
 import javafx.scene.control.Label;
@@ -19,7 +20,7 @@ public class Title extends Label {
     public Title(String text, FontIcon icon) {
         super(text, icon);
 
-        setFont(new Font(24));
+        setFont(new Font(ConfigManager.getFontSize() + 12));
         getStyleClass().add(Styles.TEXT_BOLD);
         setPadding(new Insets(0, 0, 16, 0));
     }
@@ -27,7 +28,7 @@ public class Title extends Label {
     public Title(String text) {
         super(text);
 
-        setFont(new Font(24));
+        setFont(new Font(ConfigManager.getFontSize() + 12));
         getStyleClass().add(Styles.TEXT_BOLD);
         setPadding(new Insets(0, 0, 16, 0));
     }

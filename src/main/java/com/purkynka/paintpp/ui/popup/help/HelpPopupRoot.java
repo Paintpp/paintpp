@@ -9,20 +9,17 @@ import org.kordamp.ikonli.javafx.FontIcon;
 import org.kordamp.ikonli.materialdesign2.MaterialDesignH;
 
 public class HelpPopupRoot extends PopupBaseRoot {
-    private final Stage stage;
-
     private final GridPane gridPane;
     private final Title popupTitle;
     private final HelpPopupButtons popupHelpButtons;
 
     public HelpPopupRoot(Stage stage) {
-        super();
-        this.stage = stage;
-
-        gridPane = new GridPane();
+        super(stage);
+        stage.setTitle("Help");
 
         setPadding(new Insets(24));
 
+        gridPane = new GridPane();
         gridPane.setHgap(8);
         gridPane.setVgap(8);
 
@@ -30,7 +27,6 @@ public class HelpPopupRoot extends PopupBaseRoot {
         popupHelpButtons = new HelpPopupButtons(this::onNext, this::onBack);
 
         getChildren().addAll(popupTitle, gridPane, popupHelpButtons);
-
     }
 
     public void onNext() {

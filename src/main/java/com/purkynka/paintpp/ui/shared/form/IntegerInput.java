@@ -2,6 +2,7 @@ package com.purkynka.paintpp.ui.shared.form;
 
 import atlantafx.base.theme.Styles;
 import javafx.application.Platform;
+import javafx.beans.property.StringProperty;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextFormatter;
 import javafx.scene.control.Tooltip;
@@ -50,22 +51,26 @@ public class IntegerInput extends TextField {
             return null;
         }));
     }
-    
-    private boolean isInputValid() {
+
+    public boolean isInputValid() {
         if (getText().isEmpty()) {
             setError("Invalid input can't be empty");
             return false;
         }
-        
-        if (Integer.parseInt(getText()) < minValue) {
-            setError(String.format("Invalid input can't be less than %d", minValue));
+        try {
+            if (Integer.parseInt(getText()) < minValue) {
+                setError(String.format("Invalid input can't be less than %d", minValue));
+                return false;
+            }
+
+            if (Integer.parseInt(getText()) > maxValue) {
+                setError(String.format("Invalid input can't be more than %d", maxValue));
+                return false;
+            }
+        } catch (NumberFormatException e) {
+            setError("Invalid input too large.");
             return false;
-        } 
-        
-        if (Integer.parseInt(getText()) > maxValue) {
-            setError(String.format("Invalid input can't be more than %d", maxValue));
-            return false;
-        } 
+        }
         
         clearError();
         if (tooltipWarningTimer != null & tooltipWarningTimerScheduled) {
@@ -128,10 +133,19 @@ public class IntegerInput extends TextField {
      */
     public int getValue() {
         var value = getText();
-        return Integer.parseInt(Objects.equals(value, "") ? "0" : value);
+        try {
+            return Integer.parseInt(Objects.equals(value, "") ? "0" : value);
+        } catch (NumberFormatException e) {
+            setError("Invalid input too large.");
+            return 0;
+        }
     }
     
     public void setValue(int value) {
         setText(String.valueOf(value));
+    }
+
+    public StringProperty getValueProperty() {
+        return textProperty();
     }
 }

@@ -43,8 +43,17 @@ public class ChoiceInput<T extends Enum<T>> {
     public T getValue() {
         return choiceBox.getValue();
     }
+
+    public void setValue(T value) {
+        choiceBox.setValue(value);
+    }
     
     public ChoiceBox<T> getChoiceBox() {
         return choiceBox;
+    }
+
+    public void setDisabled(boolean disabled) {
+        label.setDisable(disabled);
+        choiceBox.setDisable(disabled);
     }
 }

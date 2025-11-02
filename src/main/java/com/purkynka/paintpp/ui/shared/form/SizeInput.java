@@ -1,6 +1,8 @@
 package com.purkynka.paintpp.ui.shared.form;
 
 import atlantafx.base.theme.Styles;
+import com.purkynka.paintpp.logic.configmanager.ConfigManager;
+import com.purkynka.paintpp.logic.event.ConsumerEventHandler;
 import com.purkynka.paintpp.logic.image.ImageSize;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -14,6 +16,7 @@ import org.kordamp.ikonli.materialdesign2.MaterialDesignA;
  * Also contains a {@link Button} to flip the current width and height values.
  */
 public class SizeInput {
+    public final ConsumerEventHandler<ImageSize> imageSizeChanged = new ConsumerEventHandler<>();
     private final Label sizeLabel;
 
     private final Label widthLabel;
@@ -30,26 +33,38 @@ public class SizeInput {
      * @param parent The parent to put the elements inside of
      */
     public SizeInput(GridPane parent) {
+        this(parent, "Size", false);
+    }
+
+    public SizeInput(GridPane parent, String label, boolean hidePropertyLabel) {
         var rowOffset = parent.getRowCount();
+        var imagePreferredSize = ConfigManager.getPreferredImageSize();
+        var imageMaxSize = ConfigManager.getMaxImageSize();
 
-        sizeLabel = new Label("Size:");
-
+        sizeLabel = new Label(label);
+        
         widthLabel = createMutedLabel("Width");
-        widthInput = new IntegerInput(1, 4096, 400);
+        widthInput = new IntegerInput(1, imageMaxSize.width(), imagePreferredSize.width());
+        widthInput.setPrefWidth(10 * ConfigManager.getFontSize());
 
         flipButton = new Button("", new FontIcon(MaterialDesignA.ARROW_LEFT_RIGHT));
         flipButton.setOnAction(_ -> onFlipButtonClick());
-        
+
         heightLabel = createMutedLabel("Height");
-        heightInput = new IntegerInput(1, 4096, 400);
+        heightInput = new IntegerInput(1, imageMaxSize.height(), imagePreferredSize.height());
+        heightInput.setPrefWidth(10 * ConfigManager.getFontSize());
 
-        parent.add(widthLabel, 1, rowOffset);
-        parent.add(heightLabel, 3, rowOffset);
+        var offset = 0;
+        if (!hidePropertyLabel) {
+            parent.add(widthLabel, 1, rowOffset);
+            parent.add(heightLabel, 3, rowOffset);
+            offset += 1;
+        }
 
-        parent.add(sizeLabel, 0, rowOffset + 1);
-        parent.add(widthInput, 1, rowOffset + 1);
-        parent.add(flipButton, 2, rowOffset + 1);
-        parent.add(heightInput, 3, rowOffset + 1);
+        parent.add(sizeLabel, 0, rowOffset + offset);
+        parent.add(widthInput, 1, rowOffset + offset);
+        parent.add(flipButton, 2, rowOffset + offset);
+        parent.add(heightInput, 3, rowOffset + offset);
     }
 
     /**
@@ -64,6 +79,13 @@ public class SizeInput {
         return label;
     }
 
+    public void setDisabled(boolean value) {
+        flipButton.setDisable(value);
+        widthInput.setDisable(value);
+        heightInput.setDisable(value);
+        sizeLabel.setDisable(value);
+    }
+    
     /**
      * Flips the width and height values.
      */
@@ -85,5 +107,13 @@ public class SizeInput {
         var height = heightInput.getValue();
 
         return new ImageSize(width, height);
+    }
+
+    public IntegerInput getWidthInput() {
+        return widthInput;
+    }
+
+    public IntegerInput getHeightInput() {
+        return heightInput;
     }
 }

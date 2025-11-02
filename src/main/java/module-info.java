@@ -6,6 +6,8 @@ module com.purkynka.paintpp {
     requires org.kordamp.ikonli.materialdesign2;
     requires java.rmi;
     requires java.desktop;
+    requires jdk.compiler;
+    requires jdk.security.auth;
 
     exports com.purkynka.paintpp;
 }

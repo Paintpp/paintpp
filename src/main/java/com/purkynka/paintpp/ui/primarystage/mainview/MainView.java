@@ -9,6 +9,7 @@ import javafx.scene.control.SplitPane;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 
+
 /**
  * {@link SplitPane} containing the columns of the {@link PrimaryStageRoot}.
  */
@@ -22,23 +23,26 @@ public class MainView extends SplitPane {
      */
     public MainView() {
         super();
-
         VBox.setVgrow(this, Priority.ALWAYS);
+        setStyle("-fx-background-color: -color-bg-default;");
 
         leftSidebar = new LeftSidebar();
         imageViewer = new ImageViewer();
         rightSidebar = new RightSidebar();
 
         getItems().addAll(leftSidebar, imageViewer, rightSidebar);
-        
+        setupDividerPositioning();
+    }
+
+    private void setupDividerPositioning() {
         widthProperty().addListener(_ -> Platform.runLater(() ->
                 setDividerPositions(0.2, 0.8)
         ));
-        
+
         heightProperty().addListener(_ -> Platform.runLater(() ->
                 setDividerPositions(0.2, 0.8)
         ));
-        
+
         Platform.runLater(() -> setDividerPositions(0.2, 0.8));
     }
 }
