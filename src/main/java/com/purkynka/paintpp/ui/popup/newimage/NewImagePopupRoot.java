@@ -1,29 +1,30 @@
-package com.purkynka.paintpp.ui.newimagepopup;
+package com.purkynka.paintpp.ui.popup.newimage;
 
 import com.purkynka.paintpp.logic.image.imageprovider.NewImageProvider;
 import com.purkynka.paintpp.ui.primarystage.mainview.imageviewer.ImageViewer;
 import com.purkynka.paintpp.ui.shared.form.ColorInput;
 import com.purkynka.paintpp.ui.shared.form.SizeInput;
-import com.purkynka.paintpp.ui.shared.popup.PopupRoot;
 import com.purkynka.paintpp.ui.shared.popup.PopupStage;
+import com.purkynka.paintpp.ui.shared.popup.confirmation.PopupConfirmationRoot;
+import javafx.stage.Stage;
 
 /**
  * Element root of the {@link NewImagePopup}.
  */
-public class NewImagePopupRoot extends PopupRoot {
-    private final PopupStage popupStage;
+public class NewImagePopupRoot extends PopupConfirmationRoot {
+    private final Stage stage;
 
     private final SizeInput sizeInput;
     private final ColorInput fillColorInput;
 
     /**
      * Constructs a new {@link NewImagePopup}, with the assigned parent {@link PopupStage}.
-     * @param popupStage The parent popup stage
+     * @param stage The parent popup stage
      */
-    public NewImagePopupRoot(PopupStage popupStage) {
-        super("New Image");
+    public NewImagePopupRoot(Stage stage) {
+        super(stage, "New Image");
 
-        this.popupStage = popupStage;
+        this.stage = stage;
 
         sizeInput = new SizeInput(gridPane);
         fillColorInput = new ColorInput(gridPane);
@@ -31,7 +32,7 @@ public class NewImagePopupRoot extends PopupRoot {
 
     @Override
     protected void onCancel() {
-        popupStage.close();
+        stage.close();
     }
 
     @Override
@@ -41,6 +42,6 @@ public class NewImagePopupRoot extends PopupRoot {
 
         ImageViewer.IMAGE_PROVIDER_CHANGED.send(new NewImageProvider(imageSize, fillColor));
 
-        popupStage.close();
+        stage.close();
     }
 }

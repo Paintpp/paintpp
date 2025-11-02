@@ -17,8 +17,8 @@ public class PrimaryStage {
      */
     public PrimaryStage(Stage primaryStage) {
         primaryStage.setTitle("Paint++");
-        primaryStage.setMinWidth(800);
-        primaryStage.setMinHeight(600);
+        primaryStage.setMinWidth(768);
+        primaryStage.setMinHeight(512);
 
         var primaryStageRoot = new PrimaryStageRoot();
         var scene = new Scene(primaryStageRoot);
