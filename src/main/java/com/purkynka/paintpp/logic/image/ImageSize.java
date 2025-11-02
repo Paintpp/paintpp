@@ -23,4 +23,9 @@ public record ImageSize(int width, int height) {
     public double heightAsDouble() {
         return height;
     }
+
+    @Override
+    public String toString() {
+        return String.format("%d x %d", width, height);
+    }
 }

@@ -27,11 +27,11 @@ public abstract class PopupConfirmationRoot extends PopupBaseRoot {
      * @param submitText The text inside the submit button
      */
     public PopupConfirmationRoot(Stage stage, String title, String cancelText, String submitText) {
-        super();                
-        gridPane = new GridPane();
-
+        super(stage);
+        stage.setTitle(title);
         setPadding(new Insets(24));
 
+        gridPane = new GridPane();
         gridPane.setHgap(8);
         gridPane.setVgap(8);
 

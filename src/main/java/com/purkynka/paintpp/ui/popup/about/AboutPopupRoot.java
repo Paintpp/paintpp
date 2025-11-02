@@ -13,18 +13,16 @@ import org.kordamp.ikonli.javafx.FontIcon;
 import org.kordamp.ikonli.materialdesign2.MaterialDesignH;
 
 public class AboutPopupRoot extends PopupBaseRoot {
-    private final Stage stage;
     protected final Title popupTitle;
     protected final GridPane gridPane;
     protected final PopupAboutButton popupAboutButton;
 
     public AboutPopupRoot(Stage stage) {
-        super();
-        this.stage = stage;
-        gridPane = new GridPane();
-
+        super(stage);
+        stage.setTitle("About");
         setPadding(new Insets(24));
 
+        gridPane = new GridPane();
         gridPane.setHgap(8);
         gridPane.setVgap(8);
 

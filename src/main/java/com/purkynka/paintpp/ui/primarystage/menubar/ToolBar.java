@@ -9,6 +9,7 @@ import org.kordamp.ikonli.javafx.FontIcon;
 import org.kordamp.ikonli.materialdesign2.MaterialDesignC;
 import org.kordamp.ikonli.materialdesign2.MaterialDesignH;
 
+
 /**
  * {@link javafx.scene.control.MenuBar} for the editor's quick actions.
  */

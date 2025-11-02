@@ -1,7 +1,7 @@
 package com.purkynka.paintpp.ui.primarystage.menubar;
 
 import com.purkynka.paintpp.ui.popup.settings.PopupSettings;
-import com.purkynka.paintpp.ui.popup.settings.SettingOption;
+import com.purkynka.paintpp.ui.popup.settings.components.sidebar.pages.SettingPages;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
 import org.kordamp.ikonli.javafx.FontIcon;
@@ -17,11 +17,11 @@ public class OptionMenu extends MenuButton {
         setMnemonicParsing(true);
 
         general = new MenuItem("_General", new FontIcon(MaterialDesignC.CARD_TEXT));
-        general.setOnAction(_ -> new PopupSettings(SettingOption.GENERAL));
+        general.setOnAction(_ -> new PopupSettings(SettingPages.GENERAL));
         general.setMnemonicParsing(true);
 
         appearance = new MenuItem("_Appearance", new FontIcon(MaterialDesignB.BRUSH));
-        appearance.setOnAction(_ -> new PopupSettings(SettingOption.APPEARANCE));
+        appearance.setOnAction(_ -> new PopupSettings(SettingPages.APPEARANCE));
         appearance.setMnemonicParsing(true);
 
         getItems().addAll(general, appearance);

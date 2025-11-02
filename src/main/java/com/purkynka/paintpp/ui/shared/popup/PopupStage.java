@@ -1,5 +1,6 @@
 package com.purkynka.paintpp.ui.shared.popup;
 
+import com.purkynka.paintpp.logic.configmanager.ConfigManager;
 import com.purkynka.paintpp.ui.primarystage.PrimaryStage;
 import javafx.scene.Scene;
 import javafx.stage.Modality;
@@ -22,8 +23,12 @@ public abstract class PopupStage extends Stage {
         setResizable(false);
 
         var root = constructRoot(this);
-        setScene(new Scene(root));
+        var scene = new Scene(root);
+        setScene(scene);
+        ConfigManager.applyFont(this);
+        
         showAndWait();
+
     }
 
     /**
