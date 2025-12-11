@@ -12,6 +12,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import org.kordamp.ikonli.javafx.FontIcon;
 import org.kordamp.ikonli.materialdesign2.MaterialDesignH;
+import javafx.scene.layout.Region;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,6 +25,8 @@ public class HelpPopupRoot extends PopupBaseRoot {
     private final VBox contentBox;
     private final Label contentTitle;
     private final Label contentText;
+    private final Button previousButton;
+    private final Button nextButton;
 
     private int selectedIndex = 0;
 
@@ -62,12 +65,24 @@ public class HelpPopupRoot extends PopupBaseRoot {
 
         mainLayout.getChildren().addAll(menuBox, contentScrollPane);
 
+        // Navigation buttons
+        previousButton = new Button("Předchozí");
+        previousButton.setOnAction(_ -> showSection(selectedIndex - 1));
+
+        nextButton = new Button("Další");
+        nextButton.setOnAction(_ -> showSection(selectedIndex + 1));
+
         // Close B
         Button closeButton = new Button("Zavřít");
         closeButton.setOnAction(_ -> stage.close());
-        HBox buttonBox = new HBox();
-        buttonBox.setStyle("-fx-alignment: center-right;");
-        buttonBox.getChildren().add(closeButton);
+
+        // Buttons
+        Region spacer = new Region();
+        HBox.setHgrow(spacer, Priority.ALWAYS);
+
+        HBox buttonBox = new HBox(8);
+        buttonBox.setStyle("-fx-alignment: center;");
+        buttonBox.getChildren().addAll(previousButton, nextButton, spacer, closeButton);
 
         // UI
         getChildren().addAll(popupTitle, mainLayout, buttonBox);
@@ -159,6 +174,12 @@ public class HelpPopupRoot extends PopupBaseRoot {
         contentTitle.setText(section.getName());
         contentText.setText(section.getContent());
         updateMenuSelection();
+        updateNavigationButtons(); // Pokaždé
+    }
+
+    private void updateNavigationButtons() {
+        previousButton.setDisable(selectedIndex == 0);
+        nextButton.setDisable(selectedIndex == sections.size() - 1);
     }
 
     private void updateMenuSelection() {
