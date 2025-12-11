@@ -29,7 +29,7 @@ public class HelpPopupRoot extends PopupBaseRoot {
 
     public HelpPopupRoot(Stage stage) {
         super(stage);
-        stage.setTitle("Help");
+        stage.setTitle("Help Window");
 
         setPadding(new Insets(24));
         setSpacing(16);
