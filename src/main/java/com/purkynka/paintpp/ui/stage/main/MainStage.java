@@ -18,6 +18,7 @@ public class MainStage {
         var scene = new Scene(new MainRoot());
         scene.getStylesheets().addAll(
                 this.getStyleSheet("/colors.css"),
+                this.getStyleSheet("/menu_bar.css"),
                 this.getStyleSheet("/main_root.css"),
                 this.getStyleSheet("/action_bar.css"),
                 this.getStyleSheet("/status_bar.css")
