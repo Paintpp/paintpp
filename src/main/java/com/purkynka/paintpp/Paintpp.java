@@ -1,26 +1,19 @@
 package com.purkynka.paintpp;
 
-import com.purkynka.paintpp.logic.configmanager.ConfigManager;
-import com.purkynka.paintpp.ui.popup.help.HelpPopup;
-import com.purkynka.paintpp.ui.primarystage.PrimaryStage;
+import atlantafx.base.theme.CupertinoDark;
 import javafx.application.Application;
-import javafx.application.HostServices;
-import javafx.application.Platform;
+import javafx.scene.Scene;
+import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
 public class Paintpp extends Application {
-    public static HostServices hostServices;
-
     @Override
     public void start(Stage stage) {
-        hostServices = getHostServices();
-        Application.setUserAgentStylesheet(ConfigManager.getTheme().getUserAgentStylesheet());
+        Application.setUserAgentStylesheet(new CupertinoDark().getUserAgentStylesheet());
+        var scene = new Scene(new HBox());
 
-        var primaryStage = new PrimaryStage(stage);
-        primaryStage.show();
-
-        ConfigManager.applyFont();
-
-        Platform.runLater(HelpPopup::new);
+        stage.setTitle("Paint++");
+        stage.setScene(scene);
+        stage.show();
     }
 }
