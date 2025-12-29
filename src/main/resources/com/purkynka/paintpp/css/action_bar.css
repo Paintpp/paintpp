@@ -3,4 +3,25 @@
     -fx-border-width: 0 2px 0 0;
 }
 
+.action-bar-button {
+    -fx-cursor: hand;
+}
+
+.action-bar-button:hover {
+    -fx-background-color: derive(-color-bg-default, 10%);
+}
+
+.action-bar-button:pressed {
+    -fx-background-color: derive(-color-bg-default, 20%);
+}
+
+.action-bar-button-label {
+    -fx-font-size: 12px;
+    -fx-text-alignment: center;
+    -fx-text-fill: -color-fg-muted;
+}
+
+.action-bar-button-icon {
+    -fx-icon-size: 28px;
+    -fx-icon-color: -color-fg-muted;
 }
