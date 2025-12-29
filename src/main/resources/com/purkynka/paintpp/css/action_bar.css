@@ -1,5 +1,6 @@
 .action-bar {
-    -fx-border-style: hidden solid hidden hidden;
     -fx-border-color: -pp-border-color;
-    -fx-border-width: 2px;
+    -fx-border-width: 0 2px 0 0;
+}
+
 }

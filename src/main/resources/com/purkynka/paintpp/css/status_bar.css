@@ -1,5 +1,4 @@
 .status-bar {
-    -fx-border-style: solid hidden hidden hidden;
     -fx-border-color: -pp-border-color;
-    -fx-border-width: 2px;
+    -fx-border-width: 2px 0 0 0;
 }
