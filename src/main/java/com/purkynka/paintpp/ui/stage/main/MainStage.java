@@ -6,14 +6,14 @@ import javafx.stage.Stage;
 import java.util.Objects;
 
 public class MainStage {
-    private final Stage stage;
+    public static Stage MAIN_STAGE;
 
     public MainStage(Stage stage) {
-        this.stage = stage;
+        MainStage.MAIN_STAGE = stage;
 
-        this.stage.setTitle("Paint++");
-        this.stage.setMinWidth(1200);
-        this.stage.setMinHeight(800);
+        MainStage.MAIN_STAGE.setTitle("Paint++");
+        MainStage.MAIN_STAGE.setMinWidth(1200);
+        MainStage.MAIN_STAGE.setMinHeight(800);
 
         var scene = new Scene(new MainRoot());
         scene.getStylesheets().addAll(
@@ -24,7 +24,7 @@ public class MainStage {
                 this.getStyleSheet("/status_bar.css")
         );
 
-        this.stage.setScene(scene);
+        MainStage.MAIN_STAGE.setScene(scene);
     }
 
     private String getStyleSheet(String relativePath) {
@@ -32,6 +32,6 @@ public class MainStage {
     }
 
     public void show() {
-        this.stage.show();
+        MainStage.MAIN_STAGE.show();
     }
 }

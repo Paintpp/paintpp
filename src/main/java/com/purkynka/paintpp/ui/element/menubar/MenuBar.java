@@ -1,11 +1,13 @@
 package com.purkynka.paintpp.ui.element.menubar;
 
+import com.purkynka.paintpp.logic.image.ImageIO;
+import com.purkynka.paintpp.logic.image.ImageManager;
+import com.purkynka.paintpp.logic.image.provider.LoadedImageProvider;
 import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Priority;
 import org.kordamp.ikonli.javafx.FontIcon;
-import org.kordamp.ikonli.materialdesign2.MaterialDesignA;
 import org.kordamp.ikonli.materialdesign2.MaterialDesignC;
 import org.kordamp.ikonli.materialdesign2.MaterialDesignF;
 import org.kordamp.ikonli.materialdesign2.MaterialDesignI;
@@ -15,12 +17,25 @@ public class MenuBar extends ToolBar {
         super();
 
         var fileMenu = new MenuButton("File", new FontIcon(MaterialDesignF.FILE));
+
+        var generateImageButton = new MenuItem("Generate Image", new FontIcon(MaterialDesignF.FILE_PLUS));
+        generateImageButton.setOnAction((_) -> this.onGenerateImage());
+
+        var loadImageButton = new MenuItem("Load Image", new FontIcon(MaterialDesignF.FILE_UPLOAD));
+        loadImageButton.setOnAction((_) -> this.onLoadImage());
+
+        var saveImageButton = new MenuItem("Save Image", new FontIcon(MaterialDesignF.FILE_DOWNLOAD));
+        saveImageButton.setOnAction((_) -> this.onSaveImage());
+
+        var saveAsButton = new MenuItem("Save As", new FontIcon(MaterialDesignF.FILE_DOWNLOAD));
+        saveAsButton.setOnAction((_) -> this.onSaveAs());
+
         fileMenu.getItems().addAll(
-                new MenuItem("Generate Image", new FontIcon(MaterialDesignF.FILE_PLUS)),
-                new MenuItem("Load Image", new FontIcon(MaterialDesignF.FILE_UPLOAD)),
+                generateImageButton,
+                loadImageButton,
                 new SeparatorMenuItem(),
-                new MenuItem("Save Image", new FontIcon(MaterialDesignF.FILE_DOWNLOAD)),
-                new MenuItem("Save As", new FontIcon(MaterialDesignF.FILE_DOWNLOAD))
+                saveImageButton,
+                saveAsButton
         );
 
         var filler = new Pane();
@@ -34,4 +49,21 @@ public class MenuBar extends ToolBar {
 
         this.getItems().addAll(fileMenu, filler, aboutButton, exitButton);
     }
+
+    private void onGenerateImage() {}
+
+    private void onLoadImage() {
+        var chosenImagePath = ImageIO.openImageURI();
+        if (chosenImagePath == null) return;
+
+        ImageManager.IMAGE_PROVIDER.set(new LoadedImageProvider(chosenImagePath));
+    }
+
+    private void onSaveImage() {}
+
+    private void onSaveAs() {}
+
+    private void onAbout() {}
+
+    private void onExit() {}
 }
