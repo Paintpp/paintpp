@@ -3,6 +3,7 @@ package com.purkynka.paintpp.ui.element.form.input.textfield;
 import com.purkynka.paintpp.ui.element.form.context.FormContext;
 import com.purkynka.paintpp.ui.element.form.context.FormValueSetter;
 import com.purkynka.paintpp.ui.element.form.input.validator.TextFieldValidator;
+import javafx.beans.property.ReadOnlyDoubleProperty;
 
 import java.util.Collections;
 
@@ -35,6 +36,12 @@ public class IntegerTextField<C> extends TextField<C, Integer> {
     @Override
     public IntegerTextField<C> setWidth(int width) {
         super.setWidth(width);
+        return this;
+    }
+
+    @Override
+    public IntegerTextField<C> bindWidth(ReadOnlyDoubleProperty width) {
+        super.bindWidth(width);
         return this;
     }
 

@@ -4,7 +4,9 @@ import com.purkynka.paintpp.logic.observable.ObservableHashSet;
 import com.purkynka.paintpp.logic.observable.ObservableValue;
 import com.purkynka.paintpp.ui.element.form.context.FormContext;
 import com.purkynka.paintpp.ui.element.form.context.FormValueSetter;
+import com.purkynka.paintpp.ui.element.form.input.choicefield.ChoiceField;
 import com.purkynka.paintpp.ui.element.form.input.validator.TextFieldValidator;
+import javafx.beans.property.ReadOnlyDoubleProperty;
 import javafx.css.PseudoClass;
 import javafx.geometry.Insets;
 import javafx.scene.control.Label;
@@ -186,6 +188,13 @@ public abstract class TextField<C, V> extends Pane {
     public TextField<C, V> setWidth(int width) {
         this.setMinWidth(width);
         this.setMaxWidth(width);
+
+        return this;
+    }
+
+    public TextField<C, V> bindWidth(ReadOnlyDoubleProperty width) {
+        this.minWidthProperty().bind(width);
+        this.maxWidthProperty().bind(width);
 
         return this;
     }

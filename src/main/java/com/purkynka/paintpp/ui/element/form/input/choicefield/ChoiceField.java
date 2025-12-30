@@ -5,6 +5,7 @@ import com.purkynka.paintpp.logic.observable.ObservableValue;
 import com.purkynka.paintpp.ui.element.form.context.FormContext;
 import com.purkynka.paintpp.ui.element.form.context.FormValueSetter;
 import com.purkynka.paintpp.ui.element.form.input.validator.ChoiceFieldValidator;
+import javafx.beans.property.ReadOnlyDoubleProperty;
 import javafx.css.PseudoClass;
 import javafx.geometry.Insets;
 import javafx.scene.control.Label;
@@ -279,6 +280,13 @@ public class ChoiceField<C, E extends Enum<E> & DescriptiveEnum> extends Pane {
     public ChoiceField<C, E> setWidth(int width) {
         this.setMinWidth(width);
         this.setMaxWidth(width);
+
+        return this;
+    }
+
+    public ChoiceField<C, E> bindWidth(ReadOnlyDoubleProperty width) {
+        this.minWidthProperty().bind(width);
+        this.maxWidthProperty().bind(width);
 
         return this;
     }
