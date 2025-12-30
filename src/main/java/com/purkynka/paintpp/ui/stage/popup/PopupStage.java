@@ -26,7 +26,7 @@ public abstract class PopupStage extends Stage {
     private boolean showTitle;
     private String titleText;
 
-    private ArrayList<Button> buttons = new ArrayList<>();
+    protected ArrayList<Button> buttons = new ArrayList<>();
 
     public PopupStage() {
         this.initStyle(StageStyle.UNDECORATED);
@@ -54,10 +54,12 @@ public abstract class PopupStage extends Stage {
             String cancelText
     ) {
         var submitButton = new Button(submitText);
+        submitButton.setDefaultButton(true);
         submitButton.setOnAction((_) -> onSubmit.run());
         submitButton.getStyleClass().add(Styles.SUCCESS);
 
         var cancelButton = new Button(cancelText);
+        cancelButton.setCancelButton(true);
         cancelButton.setOnAction((_) -> this.close());
         cancelButton.getStyleClass().add(Styles.DANGER);
 
