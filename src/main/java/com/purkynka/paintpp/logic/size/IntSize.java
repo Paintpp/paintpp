@@ -11,6 +11,10 @@ public class IntSize {
 
     public IntSize() {}
 
+    public int totalPixels() {
+        return width * height;
+    }
+
     @Override
     public String toString() {
         return "IntSize{" +

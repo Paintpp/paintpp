@@ -3,6 +3,7 @@ package com.purkynka.paintpp.ui.element.menubar;
 import com.purkynka.paintpp.logic.image.ImageIO;
 import com.purkynka.paintpp.logic.image.ImageManager;
 import com.purkynka.paintpp.logic.image.provider.LoadedImageProvider;
+import com.purkynka.paintpp.ui.stage.imagegenerator.ImageGeneratorPopupStage;
 import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
@@ -50,7 +51,10 @@ public class MenuBar extends ToolBar {
         this.getItems().addAll(fileMenu, filler, aboutButton, exitButton);
     }
 
-    private void onGenerateImage() {}
+    private void onGenerateImage() {
+        var imageGeneratorPopupStage = new ImageGeneratorPopupStage();
+        imageGeneratorPopupStage.open();
+    }
 
     private void onLoadImage() {
         var chosenImagePath = ImageIO.openImageURI();
