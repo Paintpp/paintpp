@@ -1,6 +1,7 @@
 package com.purkynka.paintpp.ui;
 
 import com.purkynka.paintpp.ui.stage.main.MainStage;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 
 import java.util.Objects;
@@ -15,7 +16,8 @@ public class CommonCSS {
                 CommonCSS.getStyleSheet("/main_root.css"),
                 CommonCSS.getStyleSheet("/action_bar.css"),
                 CommonCSS.getStyleSheet("/status_bar.css"),
-                CommonCSS.getStyleSheet("/popup.css")
+                CommonCSS.getStyleSheet("/popup.css"),
+                CommonCSS.getStyleSheet("/text_field.css")
         );
     }
 
