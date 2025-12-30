@@ -3,6 +3,7 @@ package com.purkynka.paintpp.ui.element.imageviewer;
 
 import atlantafx.base.theme.Styles;
 import com.purkynka.paintpp.logic.event.ConsumerEvent;
+import com.purkynka.paintpp.logic.event.ZoomChangeEvent;
 import com.purkynka.paintpp.logic.image.ImageManager;
 import com.purkynka.paintpp.logic.image.provider.ImageProvider;
 import javafx.geometry.Insets;
@@ -38,6 +39,8 @@ public class ImageViewer extends StackPane {
     private double currentZoom = ImageViewer.DEFAULT_MIN_ZOOM;
     private double currentMinZoom = ImageViewer.DEFAULT_MIN_ZOOM;
     private double currentMaxZoom = ImageViewer.DEFAULT_MAX_ZOOM;
+
+    public static final ZoomChangeEvent ZOOM_CHANGE_EVENT = new ZoomChangeEvent();
 
     public ImageViewer() {
         super();
@@ -133,6 +136,8 @@ public class ImageViewer extends StackPane {
         var wantedMaxZoomHeight = imageScrollPaneHeight / imageSize.height * ImageViewer.DEFAULT_MAX_ZOOM;
 
         this.currentMaxZoom = Math.max(wantedMaxZoomWidth, wantedMaxZoomHeight);
+
+        ImageViewer.ZOOM_CHANGE_EVENT.invoke(this.currentZoom, this.currentMinZoom, this.currentMaxZoom);
     }
 
     private void recalculatePadding() {
@@ -197,6 +202,8 @@ public class ImageViewer extends StackPane {
                     this.imageScrollPane.getHvalue() * scrollRatio,
                     this.imageScrollPane.getVvalue() * scrollRatio
             );
+
+            ImageViewer.ZOOM_CHANGE_EVENT.invoke(this.currentZoom, this.currentMinZoom, this.currentMaxZoom);
         });
     }
 

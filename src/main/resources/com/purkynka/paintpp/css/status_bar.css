@@ -2,3 +2,30 @@
     -fx-border-color: -pp-border-color;
     -fx-border-width: 2px 0 0 0;
 }
+
+.image-size-watcher {
+    -fx-border-color: -pp-border-color;
+    -fx-border-width: 0 2px 0 0;
+}
+
+.image-zoom-watcher {
+    -fx-border-color: -pp-border-color;
+    -fx-border-width: 0 0 0 2px;
+}
+
+.image-size-watcher-icon,
+.image-zoom-watcher-icon {
+    -fx-icon-color: -color-fg-subtle;
+}
+
+.image-size-watcher-label,
+.image-zoom-watcher-label {
+    -fx-alignment: center;
+    -fx-text-fill: -color-fg-subtle;
+    -fx-font-weight: bold;
+}
+
+.image-size-watcher-size,
+.image-zoom-watcher-zoom {
+    -fx-text-fill: -color-fg-default;
+}
