@@ -57,4 +57,9 @@ public class GeneratedImageProvider implements ImageProvider {
     public Image getImage() {
         return this.generatedImage;
     }
+
+    @Override
+    public IntSize getImageSize() {
+        return this.imageSize;
+    }
 }
