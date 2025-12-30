@@ -1,0 +1,32 @@
+.image-swapper-button {
+    -fx-background-radius: 0;
+}
+
+.image-swapper-button.original {
+    -fx-background-radius: 8px 8px 0 0 !important;
+}
+
+.image-swapper-button.original:active {
+    -fx-background-color: -color-border-default, derive(-color-success-muted, -65%);
+}
+
+.image-swapper-button.modified {
+    -fx-background-radius: 0 0 8px 8px !important;
+}
+
+.image-swapper-button.modified:active {
+    -fx-background-color: -color-border-default, derive(-color-accent-muted, -60%);
+}
+
+.image-swapper-button-icon {
+    -fx-icon-size: 32px;
+}
+
+.image-swapper-button-title {
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+}
+
+.image-swapper-button-description {
+    -fx-text-fill: -color-fg-muted;
+}
