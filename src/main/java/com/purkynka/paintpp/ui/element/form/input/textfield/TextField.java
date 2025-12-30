@@ -203,4 +203,23 @@ public abstract class TextField<C, V> extends Pane {
 
         return this;
     }
+
+    public TextField<C, V> setStringValue(String value) {
+        this.textField.setText(value);
+        return this;
+    }
+
+    public TextField<C, V> setValue(V value) {
+        this.textField.setText(value == null ? null : value.toString());
+
+        return this;
+    }
+
+    public String getStringValue() {
+        return this.observableStringValue.get();
+    }
+
+    public V getValue() {
+        return this.observableValue.get();
+    }
 }
