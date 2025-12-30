@@ -75,6 +75,9 @@ public class ChoiceField<C, E extends Enum<E> & DescriptiveEnum> extends Pane {
     }
 
     private void setupContainer() {
+        this.setMinHeight(ChoiceField.CHOICE_FIELD_HEIGHT);
+        this.setMaxHeight(ChoiceField.CHOICE_FIELD_HEIGHT);
+        
         this.setWidth(256);
         this.getStyleClass().addAll("choice-field");
 
@@ -94,7 +97,9 @@ public class ChoiceField<C, E extends Enum<E> & DescriptiveEnum> extends Pane {
 
         this.choiceField.setPadding(new Insets(0, 12, 0, 12));
         this.choiceField.minWidthProperty().bind(widthProperty());
+        this.choiceField.maxWidthProperty().bind(widthProperty());
         this.choiceField.minHeightProperty().bind(heightProperty());
+        this.choiceField.maxHeightProperty().bind(heightProperty());
         this.choiceField.setFocusTraversable(true);
 
         this.choiceField.getStyleClass().add("choice-field-input");
@@ -272,8 +277,8 @@ public class ChoiceField<C, E extends Enum<E> & DescriptiveEnum> extends Pane {
     }
 
     public ChoiceField<C, E> setWidth(int width) {
-        this.setMinSize(width, CHOICE_FIELD_HEIGHT);
-        this.setMaxSize(width, CHOICE_FIELD_HEIGHT);
+        this.setMinWidth(width);
+        this.setMaxWidth(width);
 
         return this;
     }

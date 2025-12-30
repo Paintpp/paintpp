@@ -59,6 +59,9 @@ public abstract class TextField<C, V> extends Pane {
     }
 
     private void setupContainer() {
+        this.setMinHeight(TextField.TEXT_FIELD_HEIGHT);
+        this.setMaxHeight(TextField.TEXT_FIELD_HEIGHT);
+
         this.setWidth(256);
         this.getStyleClass().add("text-field");
     }
@@ -74,7 +77,9 @@ public abstract class TextField<C, V> extends Pane {
 
         this.textField.setPadding(new Insets(0, 12, 0, 12));
         this.textField.minWidthProperty().bind(this.widthProperty());
+        this.textField.maxWidthProperty().bind(this.widthProperty());
         this.textField.minHeightProperty().bind(this.heightProperty());
+        this.textField.maxHeightProperty().bind(this.heightProperty());
 
         this.textField.getStyleClass().add("text-field-input");
     }
@@ -179,8 +184,8 @@ public abstract class TextField<C, V> extends Pane {
     }
 
     public TextField<C, V> setWidth(int width) {
-        this.setMinSize(width, TEXT_FIELD_HEIGHT);
-        this.setMaxSize(width, TEXT_FIELD_HEIGHT);
+        this.setMinWidth(width);
+        this.setMaxWidth(width);
 
         return this;
     }
