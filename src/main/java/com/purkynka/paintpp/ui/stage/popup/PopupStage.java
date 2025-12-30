@@ -89,7 +89,7 @@ public abstract class PopupStage extends Stage {
         if (this.root == null) {
             this.root = this.createRoot();
 
-            var container = new VBox(4);
+            var container = new VBox(16);
             container.setPadding(new Insets(16));
 
             var containerChildren = container.getChildren();

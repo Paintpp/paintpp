@@ -17,7 +17,8 @@ public class CommonCSS {
                 CommonCSS.getStyleSheet("/action_bar.css"),
                 CommonCSS.getStyleSheet("/status_bar.css"),
                 CommonCSS.getStyleSheet("/popup.css"),
-                CommonCSS.getStyleSheet("/text_field.css")
+                CommonCSS.getStyleSheet("/text_field.css"),
+                CommonCSS.getStyleSheet("/choice_field.css")
         );
     }
 
