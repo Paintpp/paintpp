@@ -116,7 +116,7 @@ public class ImageViewer extends StackPane {
         var imageScrollPaneWidth = this.imageScrollPane.getPrefWidth();
         var imageScrollPaneHeight = this.imageScrollPane.getPrefHeight();
 
-        var imageSize = this.imageProvider.getImageSize();
+        var imageSize = this.imageProvider.getBufferBackedImage().getImageSize();
 
         var wantedMinZoomWidth = imageScrollPaneWidth / imageSize.width * ImageViewer.DEFAULT_MIN_ZOOM;
         var wantedMinZoomHeight = imageScrollPaneHeight / imageSize.height * ImageViewer.DEFAULT_MIN_ZOOM;
@@ -155,7 +155,7 @@ public class ImageViewer extends StackPane {
     }
 
     private void onImageProviderChanged() {
-        var image = this.imageProvider.getImage();
+        var image = this.imageProvider.getBufferBackedImage().getImage();
 
         this.imageView.setImage(image);
 

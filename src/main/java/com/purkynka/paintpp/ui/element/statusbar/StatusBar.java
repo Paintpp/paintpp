@@ -87,7 +87,7 @@ public class StatusBar extends HBox {
 
     private void setupChangeHandlers() {
         ImageManager.IMAGE_PROVIDER.addUpdateListener(imageProvider -> {
-            var imageSize = imageProvider.getImageSize();
+            var imageSize = imageProvider.getBufferBackedImage().getImageSize();
 
             this.imageSizeWatcherWidth.setText(imageSize.width.toString());
             this.imageSizeWatcherHeight.setText(imageSize.height.toString());
