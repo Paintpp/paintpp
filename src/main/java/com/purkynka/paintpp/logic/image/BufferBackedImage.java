@@ -21,6 +21,27 @@ public class BufferBackedImage {
         this.image = new WritableImage(this.pixelBuffer);
     }
 
+    public BufferBackedImage(BufferBackedImage fromImage) {
+        this(fromImage.imageSize);
+        this.pixelIntBuffer.put(0, fromImage.pixelIntBuffer, 0, fromImage.imageSize.totalPixels());
+    }
+
+    public BufferBackedImage(Image image) {
+        this(new IntSize((int) image.getWidth(), (int) image.getHeight()));
+        var imageSize = this.imageSize;
+
+        var pixelReader = image.getPixelReader();
+        pixelReader.getPixels(
+                0,
+                0,
+                imageSize.width,
+                imageSize.height,
+                this.pixelFormat,
+                this.pixelIntBuffer,
+                imageSize.width
+        );
+    }
+
     public IntSize getImageSize() {
         return this.imageSize;
     }

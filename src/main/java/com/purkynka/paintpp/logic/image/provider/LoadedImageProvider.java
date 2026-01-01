@@ -10,19 +10,7 @@ public class LoadedImageProvider implements ImageProvider {
     public LoadedImageProvider(String loadedImagePath) {
         var image = new Image(loadedImagePath);
 
-        this.bufferBackedImage = new BufferBackedImage(new IntSize((int) image.getWidth(), (int) image.getHeight()));
-        var imageSize = this.bufferBackedImage.getImageSize();
-
-        var pixelReader = image.getPixelReader();
-        pixelReader.getPixels(
-                0,
-                0,
-                imageSize.width,
-                imageSize.height,
-                this.bufferBackedImage.getPixelFormat(),
-                this.bufferBackedImage.getPixelIntBuffer(),
-                imageSize.width
-        );
+        this.bufferBackedImage = new BufferBackedImage(image);
     }
 
     @Override
