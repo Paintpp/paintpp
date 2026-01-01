@@ -5,6 +5,8 @@ import com.purkynka.paintpp.ui.element.form.context.FormValueSetter;
 import com.purkynka.paintpp.ui.element.form.input.validator.TextFieldValidator;
 import javafx.beans.property.ReadOnlyDoubleProperty;
 
+import java.util.function.Function;
+
 public class StringTextField<C> extends TextField<C, String> {
     public StringTextField(FormContext<C> formContext) {
         super(formContext);
@@ -49,6 +51,12 @@ public class StringTextField<C> extends TextField<C, String> {
     @Override
     public StringTextField<C> setFormValueSetter(FormValueSetter<C, String> formValueSetter) {
         super.setFormValueSetter(formValueSetter);
+        return this;
+    }
+
+    @Override
+    public StringTextField<C> setValuePostprocessor(Function<String, String> valuePostprocessor) {
+        super.setValuePostprocessor(valuePostprocessor);
         return this;
     }
 

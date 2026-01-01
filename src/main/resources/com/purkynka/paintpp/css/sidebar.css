@@ -30,3 +30,22 @@
 .image-swapper-button-description {
     -fx-text-fill: -color-fg-muted;
 }
+
+.filter-list {
+    -fx-border-color: -color-border-default;
+    -fx-border-radius: 8px;
+}
+
+.filter-list-row.original {
+    -fx-background-color: -color-bg-subtle;
+    -fx-background-radius: 0 0 8px 8px;
+    -fx-font-weight: bold;
+}
+
+.filter-list-row-icon {
+    -fx-icon-size: 24px;
+}
+
+.filter-list-row-name {
+    -fx-font-size: 16px;
+}

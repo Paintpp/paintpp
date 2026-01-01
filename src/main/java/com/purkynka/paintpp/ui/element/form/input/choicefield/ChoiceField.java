@@ -2,6 +2,8 @@ package com.purkynka.paintpp.ui.element.form.input.choicefield;
 
 import com.purkynka.paintpp.logic.observable.ObservableHashSet;
 import com.purkynka.paintpp.logic.observable.ObservableValue;
+import com.purkynka.paintpp.ui.element.ChoiceListButton;
+import com.purkynka.paintpp.ui.element.ElementOrder;
 import com.purkynka.paintpp.ui.element.form.context.FormContext;
 import com.purkynka.paintpp.ui.element.form.context.FormValueSetter;
 import com.purkynka.paintpp.ui.element.form.input.validator.ChoiceFieldValidator;
@@ -126,12 +128,6 @@ public class ChoiceField<C, E extends Enum<E> & DescriptiveEnum> extends Pane {
         this.openedIcon.getStyleClass().add("choice-field-opened-icon");
     }
 
-    private ChoicePosition getChoicePosition(int index) {
-        if (index == 0) return ChoicePosition.FIRST;
-        if (index == this.availableValues.length - 1) return ChoicePosition.LAST;
-        return ChoicePosition.BETWEEN;
-    }
-
     private void setupChoiceContainer() {
         this.choiceContainer = new VBox();
 
@@ -142,11 +138,11 @@ public class ChoiceField<C, E extends Enum<E> & DescriptiveEnum> extends Pane {
         var children = this.choiceContainer.getChildren();
         for (var i = 0; i < this.availableValues.length; i++) {
             var choice = this.availableValues[i];
-            var child = new ChoiceFieldChoice(
+            var child = new ChoiceListButton(
                     choice.getName(),
-                    choice.getDescription(),
-                    this.getChoicePosition(i)
+                    choice.getDescription()
             );
+            ElementOrder.applyPseudoclass(child, i, availableValues.length);
 
             int finalI = i;
             child.setOnAction(_ -> this.onChoiceSelected(this.availableValues[finalI]));

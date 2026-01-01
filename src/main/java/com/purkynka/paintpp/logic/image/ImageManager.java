@@ -5,6 +5,9 @@ import com.purkynka.paintpp.logic.observable.ObservableValue;
 
 public class ImageManager {
     public static ObservableValue<ImageProvider> IMAGE_PROVIDER = new ObservableValue<>();
-
     public static ObservableValue<Boolean> DISPLAYING_MODIFIED_IMAGE = new ObservableValue<>(true);
+
+    static {
+        ImageManager.IMAGE_PROVIDER.addUpdateListener(_ -> ImageManager.DISPLAYING_MODIFIED_IMAGE.set(true));
+    }
 }

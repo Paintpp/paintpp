@@ -1,6 +1,7 @@
-package com.purkynka.paintpp.ui.element.sidebar;
+package com.purkynka.paintpp.ui.element.sidebar.imageswapper;
 
 import com.purkynka.paintpp.logic.image.ImageManager;
+import com.purkynka.paintpp.ui.element.sidebar.Sidebar;
 import javafx.css.PseudoClass;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -20,20 +21,15 @@ public class ImageSwapperButtonContainer extends VBox {
     private Button originalImageButton;
     private Button modifiedImageButton;
 
-    private boolean displayingModifiedImage = true;
-
-    public ImageSwapperButtonContainer(Sidebar sidebar) {
+    public ImageSwapperButtonContainer() {
         super();
 
-        this.setupContainer(sidebar);
+        this.setFillWidth(true);
+
         this.setupElements();
         this.setupHandlers();
 
         this.getChildren().addAll(this.originalImageButton, this.modifiedImageButton);
-    }
-
-    private void setupContainer(Sidebar sidebar) {
-        this.minWidthProperty().bind(sidebar.widthProperty().subtract(32));
     }
 
     private void setupElements() {
@@ -59,7 +55,8 @@ public class ImageSwapperButtonContainer extends VBox {
         var button = new Button();
         button.setPadding(new Insets(8));
         button.setMinHeight(64);
-        button.minWidthProperty().bind(container.widthProperty());
+        button.setMaxWidth(Double.MAX_VALUE);
+        // button.minWidthProperty().bind(container.widthProperty());
         button.getStyleClass().add("image-swapper-button");
 
         var buttonIcon = new FontIcon(icon);
@@ -90,24 +87,24 @@ public class ImageSwapperButtonContainer extends VBox {
 
     private void setupHandlers() {
         this.originalImageButton.setOnAction(_ -> {
-            if (!this.displayingModifiedImage) return;
+            var displayingModifiedImage = ImageManager.DISPLAYING_MODIFIED_IMAGE.get();
+            if (!displayingModifiedImage) return;
 
-            this.displayingModifiedImage = false;
-            this.updateActiveButton();
+            ImageManager.DISPLAYING_MODIFIED_IMAGE.set(false);
         });
 
         this.modifiedImageButton.setOnAction(_ -> {
-            if (this.displayingModifiedImage) return;
+            var displayingModifiedImage = ImageManager.DISPLAYING_MODIFIED_IMAGE.get();
+            if (displayingModifiedImage) return;
 
-            this.displayingModifiedImage = true;
-            this.updateActiveButton();
+            ImageManager.DISPLAYING_MODIFIED_IMAGE.set(true);
         });
+
+        ImageManager.DISPLAYING_MODIFIED_IMAGE.addUpdateListener(this::updateActiveButton);
     }
 
-    private void updateActiveButton() {
-        ImageManager.DISPLAYING_MODIFIED_IMAGE.set(this.displayingModifiedImage);
-
-        this.originalImageButton.pseudoClassStateChanged(ACTIVE, !this.displayingModifiedImage);
-        this.modifiedImageButton.pseudoClassStateChanged(ACTIVE, this.displayingModifiedImage);
+    private void updateActiveButton(boolean displayingModifiedImage) {
+        this.originalImageButton.pseudoClassStateChanged(ACTIVE, !displayingModifiedImage);
+        this.modifiedImageButton.pseudoClassStateChanged(ACTIVE, displayingModifiedImage);
     }
 }

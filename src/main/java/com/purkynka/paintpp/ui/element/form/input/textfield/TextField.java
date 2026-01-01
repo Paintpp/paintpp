@@ -18,6 +18,7 @@ import org.kordamp.ikonli.materialdesign2.MaterialDesignA;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.UUID;
+import java.util.function.Function;
 
 public abstract class TextField<C, V> extends Pane {
     protected static final double TEXT_FIELD_HEIGHT = 40d;
@@ -37,6 +38,7 @@ public abstract class TextField<C, V> extends Pane {
     protected ObservableValue<C> observableFormValue;
     protected ObservableHashSet<String> observableFormErrors;
     protected FormValueSetter<C, V> formValueSetter;
+    protected Function<V, V> valuePostprocessor;
 
     protected ObservableValue<String> observableStringValue = new ObservableValue<>(null);
     protected ObservableValue<V> observableValue = new ObservableValue<>(null);
@@ -163,7 +165,12 @@ public abstract class TextField<C, V> extends Pane {
         if (this.formValueSetter == null) return;
 
         var formValue = this.observableFormValue.get();
-        this.formValueSetter.setValue(formValue, this.hasErrors ? null : value);
+        this.formValueSetter.setValue(
+                formValue,
+                this.hasErrors ? null :
+                        this.valuePostprocessor != null ? this.valuePostprocessor.apply(value) :
+                                value
+        );
         this.observableFormValue.set(formValue);
     }
 
@@ -213,6 +220,12 @@ public abstract class TextField<C, V> extends Pane {
         return this;
     }
 
+    public TextField<C, V> setValuePostprocessor(Function<V, V> valuePostprocessor) {
+        this.valuePostprocessor = valuePostprocessor;
+
+        return this;
+    }
+
     public TextField<C, V> setStringValue(String value) {
         this.textField.setText(value);
         return this;
@@ -230,5 +243,13 @@ public abstract class TextField<C, V> extends Pane {
 
     public V getValue() {
         return this.observableValue.get();
+    }
+
+    public ObservableValue<String> getObservableStringValue() {
+        return this.observableStringValue;
+    }
+
+    public ObservableValue<V> getObservableValue() {
+        return this.observableValue;
     }
 }

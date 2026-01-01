@@ -25,11 +25,6 @@
     -fx-background-radius: 6px, 5px;
 }
 
-.choice-field-choice {
-    -fx-background-radius: 0;
-    -fx-cursor: hand;
-}
-
 .choice-field-error-icon {
     -fx-icon-size: 24px;
     -fx-icon-color: -color-danger-fg;
@@ -88,20 +83,4 @@
 
 .choice-field:focused .choice-field-label {
     -fx-text-fill: -color-accent-fg;
-}
-
-/*
-    CHOICE FIELD CHOICE STYLING
- */
-.choice-field-choice:first {
-    -fx-background-radius: 6px 6px 0 0, 5px 5px 0 0;
-}
-
-.choice-field-choice:last {
-    -fx-background-radius: 0 0 6px 6px, 0 0 5px 5px;
-}
-
-.choice-field-choice-title {
-    -fx-font-weight: bold;
-    -fx-font-size: 16px;
 }

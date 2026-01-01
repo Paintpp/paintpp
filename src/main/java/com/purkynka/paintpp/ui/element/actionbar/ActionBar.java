@@ -1,6 +1,8 @@
 package com.purkynka.paintpp.ui.element.actionbar;
 
+import com.purkynka.paintpp.logic.image.ImageManager;
 import com.purkynka.paintpp.ui.CommonCSS;
+import com.purkynka.paintpp.ui.stage.filteradder.FilterAdderPopupStage;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
@@ -23,8 +25,19 @@ public class ActionBar extends VBox {
         var filler = new Pane();
         VBox.setVgrow(filler, Priority.ALWAYS);
 
+        var addFilterButton = new ActionBarButton(MaterialDesignF.FUNCTION_VARIANT, "Add Filter");
+        // addFilterButton.setDisable(true);
+        addFilterButton.setOnMouseClicked(_ -> {
+            var filterAdderPopupStage = new FilterAdderPopupStage();
+            filterAdderPopupStage.open();
+        });
+
+        ImageManager.IMAGE_PROVIDER.addUpdateListener(imageProvider -> {
+            addFilterButton.setDisable(imageProvider == null);
+        });
+
         this.getChildren().addAll(
-                new ActionBarButton(MaterialDesignF.FUNCTION_VARIANT, "Add Filter"),
+                addFilterButton,
                 filler,
                 new ActionBarButton(MaterialDesignC.COG, "Settings"),
                 new ActionBarButton(MaterialDesignH.HELP, "Help")

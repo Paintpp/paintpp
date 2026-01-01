@@ -4,6 +4,7 @@ package com.purkynka.paintpp.ui.element.imageviewer;
 import atlantafx.base.theme.Styles;
 import com.purkynka.paintpp.logic.event.ConsumerEvent;
 import com.purkynka.paintpp.logic.event.ZoomChangeEvent;
+import com.purkynka.paintpp.logic.filter.FilterManager;
 import com.purkynka.paintpp.logic.image.ImageManager;
 import com.purkynka.paintpp.logic.image.provider.ImageProvider;
 import javafx.geometry.Insets;
@@ -151,6 +152,21 @@ public class ImageViewer extends StackPane {
         ImageManager.IMAGE_PROVIDER.addUpdateListener(imageProvider -> {
             this.imageProvider = imageProvider;
             this.onImageProviderChanged();
+        });
+
+        ImageManager.DISPLAYING_MODIFIED_IMAGE.addUpdateListener(displayingModifiedImage -> {
+            if (this.imageProvider == null) return;
+
+            this.imageView.setImage(
+                    displayingModifiedImage ? FilterManager.FILTERED_IMAGE.get().getImage()
+                            : this.imageProvider.getBufferBackedImage().getImage()
+            );
+        });
+
+        FilterManager.FILTERED_IMAGE.addUpdateListener(filteredImage -> {
+            if (!ImageManager.DISPLAYING_MODIFIED_IMAGE.get()) return;
+
+            this.imageView.setImage(filteredImage.getImage());
         });
     }
 
