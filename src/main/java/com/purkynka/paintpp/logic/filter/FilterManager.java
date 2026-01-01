@@ -24,10 +24,9 @@ public class FilterManager {
 
     private static void applyFilters(BufferBackedImage originalImage) {
         var newImage = new BufferBackedImage(originalImage);
-        var pixelBuffer = newImage.getPixelBuffer();
 
         for (ImageFilter filter : FilterManager.FILTERS) {
-            filter.modifyPixelBuffer(pixelBuffer);
+            filter.modifyPixelBuffer(newImage);
         }
 
         FILTERED_IMAGE.set(newImage);

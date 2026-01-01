@@ -1,5 +1,6 @@
 package com.purkynka.paintpp.logic.filter;
 
+import com.purkynka.paintpp.logic.image.BufferBackedImage;
 import javafx.scene.image.PixelBuffer;
 
 import java.awt.*;
@@ -7,10 +8,11 @@ import java.nio.IntBuffer;
 
 public class NegativeFilter extends ImageFilter {
     @Override
-    public void modifyPixelBuffer(PixelBuffer<IntBuffer> pixelBuffer) {
-        var intBuffer = pixelBuffer.getBuffer();
+    public void modifyPixelBuffer(BufferBackedImage modifiedImage) {
+        var imageSize = modifiedImage.getImageSize();
+        var intBuffer = modifiedImage.getPixelIntBuffer();
 
-        for (var i = 0; i < pixelBuffer.getWidth() * pixelBuffer.getHeight(); i++) {
+        for (var i = 0; i < imageSize.totalPixels(); i++) {
             var colorInt = intBuffer.get(i);
             var color = new Color(colorInt);
             var newColor = new Color(

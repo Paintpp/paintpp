@@ -1,5 +1,6 @@
 package com.purkynka.paintpp.logic.filter;
 
+import com.purkynka.paintpp.logic.image.BufferBackedImage;
 import com.purkynka.paintpp.logic.util.BufferUtil;
 import javafx.scene.image.PixelBuffer;
 
@@ -18,15 +19,14 @@ public class PixelizeFilter extends ImageFilter {
     }
 
     @Override
-    public void modifyPixelBuffer(PixelBuffer<IntBuffer> pixelBuffer) {
-        var imageWidth = pixelBuffer.getWidth();
-        var imageHeight = pixelBuffer.getHeight();
-        var intBuffer = pixelBuffer.getBuffer();
+    public void modifyPixelBuffer(BufferBackedImage modifiedImage) {
+        var imageSize = modifiedImage.getImageSize();
+        var intBuffer = modifiedImage.getPixelIntBuffer();
 
-        var intBufferCopy = IntBuffer.allocate(imageWidth * imageHeight);
+        var intBufferCopy = IntBuffer.allocate(imageSize.totalPixels());
 
-        for (var y = 0; y < imageHeight; y += this.step) {
-            for (var x = 0; x < imageWidth; x += this.step) {
+        for (var y = 0; y < imageSize.height; y += this.step) {
+            for (var x = 0; x < imageSize.width; x += this.step) {
                 var totalPixels = 0;
                 var newRed = 0;
                 var newGreen = 0;
@@ -34,13 +34,13 @@ public class PixelizeFilter extends ImageFilter {
 
                 for (var yBlock = 0; yBlock < step; yBlock++) {
                     var newY = y + yBlock;
-                    if (newY >= imageHeight) continue;
+                    if (newY >= imageSize.height) continue;
 
                     for (var xBlock = 0; xBlock < step; xBlock++) {
                         var newX = x + xBlock;
-                        if (newX >= imageWidth) continue;
+                        if (newX >= imageSize.width) continue;
 
-                        var index = BufferUtil.positionToIndex(newX, newY, imageWidth);
+                        var index = BufferUtil.positionToIndex(newX, newY, imageSize.width);
                         var color = new Color(intBuffer.get(index));
 
                         newRed += color.getRed();
@@ -54,20 +54,20 @@ public class PixelizeFilter extends ImageFilter {
 
                 for (var yBlock = 0; yBlock < step; yBlock++) {
                     var newY = y + yBlock;
-                    if (newY >= imageHeight) continue;
+                    if (newY >= imageSize.height) continue;
 
                     for (var xBlock = 0; xBlock < step; xBlock++) {
                         var newX = x + xBlock;
-                        if (newX >= imageWidth) continue;
+                        if (newX >= imageSize.width) continue;
 
-                        var index = BufferUtil.positionToIndex(newX, newY, imageWidth);
+                        var index = BufferUtil.positionToIndex(newX, newY, imageSize.width);
                         intBufferCopy.put(index, newColor.getRGB());
                     }
                 }
             }
         }
 
-        intBuffer.put(0, intBufferCopy, 0, imageWidth * imageHeight);
+        intBuffer.put(0, intBufferCopy, 0, imageSize.totalPixels());
     }
 
     @Override

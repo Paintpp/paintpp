@@ -1,5 +1,6 @@
 package com.purkynka.paintpp.logic.filter;
 
+import com.purkynka.paintpp.logic.image.BufferBackedImage;
 import com.purkynka.paintpp.logic.util.BufferUtil;
 import javafx.scene.image.PixelBuffer;
 
@@ -39,14 +40,14 @@ public abstract class KernelFilter extends ImageFilter {
     protected abstract double[][] constructKernel();
 
     @Override
-    public void modifyPixelBuffer(PixelBuffer<IntBuffer> pixelBuffer) {
-        var intBuffer = pixelBuffer.getBuffer();
-        var imageWidth = pixelBuffer.getWidth();
-        var imageHeight = pixelBuffer.getHeight();
+    public void modifyPixelBuffer(BufferBackedImage modifiedImage) {
+        var imageSize = modifiedImage.getImageSize();
+        var intBuffer = modifiedImage.getPixelIntBuffer();
+        var pixelBuffer = modifiedImage.getPixelBuffer();
 
-        var intBufferCopy = IntBuffer.allocate(imageWidth * imageHeight);
+        var intBufferCopy = IntBuffer.allocate(imageSize.totalPixels());
 
-        for (var pixelIndex = 0; pixelIndex < imageWidth * imageHeight; pixelIndex++) {
+        for (var pixelIndex = 0; pixelIndex < imageSize.totalPixels(); pixelIndex++) {
             var surroundingPixels = BufferUtil.getSurroundingPixels(pixelIndex, pixelBuffer, this.kernelWidth, this.kernelHeight);
 
             var newColor = applyKernel(surroundingPixels);
@@ -54,7 +55,7 @@ public abstract class KernelFilter extends ImageFilter {
             intBufferCopy.put(pixelIndex, newColor.getRGB());
         }
 
-        intBuffer.put(0, intBufferCopy, 0, imageWidth * imageHeight);
+        intBuffer.put(0, intBufferCopy, 0, imageSize.totalPixels());
     }
 
     private Color applyKernel(Color[] surroundingPixels) {

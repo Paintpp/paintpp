@@ -1,7 +1,8 @@
 package com.purkynka.paintpp.logic.filter;
 
 import com.purkynka.paintpp.ui.element.form.input.choicefield.DescriptiveEnum;
-import com.purkynka.paintpp.ui.stage.filter.PixelizeFilterAdder;
+import com.purkynka.paintpp.ui.stage.filter.pixelize.PixelizeFilterAdder;
+import com.purkynka.paintpp.ui.stage.filter.threshold.ThresholdFilterAdder;
 
 public enum FilterType implements DescriptiveEnum {
     NEGATIVE("Negative", "Inverts the colors of the image."),
@@ -26,7 +27,7 @@ public enum FilterType implements DescriptiveEnum {
         switch (this) {
             case NEGATIVE -> FilterManager.FILTERS.add(new NegativeFilter());
             case PIXELIZE -> new PixelizeFilterAdder().open();
-            case THRESHOLD -> {}
+            case THRESHOLD -> new ThresholdFilterAdder().open();
             case NOISE -> {}
             case BLACK_AND_WHITE -> {}
             case MEAN_BLUR -> FilterManager.FILTERS.add(new MeanBlurFilter());

@@ -69,7 +69,7 @@ public class FilterPreview extends VBox {
 
     public void refreshImage() {
         var imageCopy = new BufferBackedImage(this.scaledImageCopy);
-        this.imageFilter.modifyPixelBuffer(imageCopy.getPixelBuffer());
+        this.imageFilter.modifyPixelBuffer(imageCopy);
         this.imageView.setImage(imageCopy.getImage());
     }
 }

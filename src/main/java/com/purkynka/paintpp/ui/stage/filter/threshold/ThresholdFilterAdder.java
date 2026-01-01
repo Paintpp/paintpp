@@ -1,7 +1,7 @@
-package com.purkynka.paintpp.ui.stage.filter;
+package com.purkynka.paintpp.ui.stage.filter.threshold;
 
 import com.purkynka.paintpp.logic.filter.FilterManager;
-import com.purkynka.paintpp.logic.filter.PixelizeFilter;
+import com.purkynka.paintpp.logic.filter.ThresholdFilter;
 import com.purkynka.paintpp.ui.element.FilterPreview;
 import com.purkynka.paintpp.ui.element.form.context.FormContext;
 import com.purkynka.paintpp.ui.element.form.input.sliderinput.IntegerSliderInput;
@@ -9,19 +9,19 @@ import com.purkynka.paintpp.ui.stage.popup.PopupStage;
 import javafx.scene.Parent;
 import javafx.scene.layout.VBox;
 
-public class PixelizeFilterAdder extends PopupStage {
-    private final FormContext<PixelizeFilterFormValue> formContext = new FormContext<>(new PixelizeFilterFormValue());
+public class ThresholdFilterAdder extends PopupStage {
+    private final FormContext<ThresholdFilterFormValue> formContext = new FormContext<>(new ThresholdFilterFormValue());
 
-    private final PixelizeFilter pixelizeFilter = new PixelizeFilter(1);
+    private final ThresholdFilter thresholdFilter = new ThresholdFilter(1);
     private FilterPreview filterPreview;
 
-    public PixelizeFilterAdder() {
+    public ThresholdFilterAdder() {
         super();
 
-        this.setPopupTitle("Add Pixelize Filter");
+        this.setPopupTitle("Add Threshold Filter");
         this.setShowTitle(true);
         this.addDefaultButtons(() -> {
-            FilterManager.FILTERS.add(this.pixelizeFilter);
+            FilterManager.FILTERS.add(this.thresholdFilter);
             this.close();
         });
 
@@ -31,23 +31,23 @@ public class PixelizeFilterAdder extends PopupStage {
         });
 
         this.formContext.getObservableFormValue().addUpdateListener(v -> {
-            if (v.step == null) return;
+            if (v.threshold == null) return;
 
-            this.pixelizeFilter.setStep(v.step);
+            this.thresholdFilter.setThreshold(v.threshold);
             this.filterPreview.refreshImage();
         });
     }
 
     @Override
     protected Parent createRoot() {
-        this.filterPreview = new FilterPreview(this.pixelizeFilter);
+        this.filterPreview = new FilterPreview(this.thresholdFilter);
 
-        var stepSlider = new IntegerSliderInput<>(this.formContext)
-                .setLabel("Step")
+        var thresholdSlider = new IntegerSliderInput<>(this.formContext)
+                .setLabel("Threshold")
                 .setSnapIncrement(1)
-                .setRange(1, 20)
-                .setFormValueSetter((curr, v) -> curr.step = v);
+                .setRange(0, 255)
+                .setFormValueSetter((curr, v) -> curr.threshold = v);
 
-        return new VBox(filterPreview, stepSlider);
+        return new VBox(this.filterPreview, thresholdSlider);
     }
 }

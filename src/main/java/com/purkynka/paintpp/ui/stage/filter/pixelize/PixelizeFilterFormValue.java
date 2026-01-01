@@ -1,4 +1,4 @@
-package com.purkynka.paintpp.ui.stage.filter;
+package com.purkynka.paintpp.ui.stage.filter.pixelize;
 
 public class PixelizeFilterFormValue {
     public Integer step;
