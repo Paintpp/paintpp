@@ -2,12 +2,18 @@ package com.purkynka.paintpp.ui.stage.filter.threshold;
 
 import com.purkynka.paintpp.logic.filter.FilterManager;
 import com.purkynka.paintpp.logic.filter.ThresholdFilter;
+import com.purkynka.paintpp.logic.util.ColorUtil;
+import com.purkynka.paintpp.logic.util.ImageUtil;
 import com.purkynka.paintpp.ui.element.FilterPreview;
 import com.purkynka.paintpp.ui.element.form.context.FormContext;
+import com.purkynka.paintpp.ui.element.form.input.checkboxfield.CheckboxField;
 import com.purkynka.paintpp.ui.element.form.input.sliderfield.IntegerSliderField;
 import com.purkynka.paintpp.ui.stage.popup.PopupStage;
+import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.layout.VBox;
+
+import java.awt.*;
 
 public class ThresholdFilterAdder extends PopupStage {
     private final FormContext<ThresholdFilterFormValue> formContext = new FormContext<>(new ThresholdFilterFormValue());
@@ -38,6 +44,22 @@ public class ThresholdFilterAdder extends PopupStage {
         });
     }
 
+    private int getImageAverage() {
+        var currentImage = ImageUtil.getCurrentImage();
+        var imageSize = currentImage.getImageSize();
+        var intBuffer = currentImage.getPixelIntBuffer();
+
+        var averageColor = 0;
+
+        for (var i = 0; i < imageSize.totalPixels(); i++) {
+            var color = new Color(intBuffer.get(i));
+            var averagedColor = ColorUtil.getAveragedColor(color);
+            averageColor += averagedColor.getRed();
+        }
+
+        return averageColor / imageSize.totalPixels();
+    }
+
     @Override
     protected Parent createRoot() {
         this.filterPreview = new FilterPreview(this.thresholdFilter);
@@ -49,6 +71,16 @@ public class ThresholdFilterAdder extends PopupStage {
                 .setRange(0, 255)
                 .setFormValueSetter((curr, v) -> curr.threshold = v);
 
-        return new VBox(this.filterPreview, thresholdSlider);
+        var automaticThresholdCheckbox = new CheckboxField<>()
+                .setLabel("Automatic Threshold Value");
+
+        automaticThresholdCheckbox.setAlignment(Pos.CENTER);
+
+        automaticThresholdCheckbox.getObservableValue().addUpdateListener(v -> {
+            thresholdSlider.setDisable(v);
+            if (v) thresholdSlider.setValue(this.getImageAverage());
+        });
+
+        return new VBox(16, this.filterPreview, thresholdSlider, automaticThresholdCheckbox);
     }
 }
