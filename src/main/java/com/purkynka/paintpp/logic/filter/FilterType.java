@@ -6,7 +6,6 @@ import com.purkynka.paintpp.ui.stage.filter.PixelizeFilterAdder;
 public enum FilterType implements DescriptiveEnum {
     NEGATIVE("Negative", "Inverts the colors of the image."),
     PIXELIZE("Pixelize", "Pixelizes the image with a stepping function."),
-    IDENTITY("Identity", "Passes over the image with no changes."),
     THRESHOLD("Threshold", "Turns the pixels over the threshold white and the\nrest black."),
     NOISE("Noise", "Applies noise over the image."),
     BLACK_AND_WHITE("Black & White", "Turns the image grayscale."),
@@ -27,7 +26,6 @@ public enum FilterType implements DescriptiveEnum {
         switch (this) {
             case NEGATIVE -> FilterManager.FILTERS.add(new NegativeFilter());
             case PIXELIZE -> new PixelizeFilterAdder().open();
-            case IDENTITY -> {}
             case THRESHOLD -> {}
             case NOISE -> {}
             case BLACK_AND_WHITE -> {}
