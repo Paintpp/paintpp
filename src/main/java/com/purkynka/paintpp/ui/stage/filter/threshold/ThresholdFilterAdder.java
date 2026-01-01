@@ -44,7 +44,8 @@ public class ThresholdFilterAdder extends PopupStage {
 
         var thresholdSlider = new IntegerSliderInput<>(this.formContext)
                 .setLabel("Threshold")
-                .setSnapIncrement(1)
+                .setSnapIncrement(5)
+                .setMinorTickCount(3)
                 .setRange(0, 255)
                 .setFormValueSetter((curr, v) -> curr.threshold = v);
 

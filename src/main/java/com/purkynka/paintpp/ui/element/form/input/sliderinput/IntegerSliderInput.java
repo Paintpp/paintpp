@@ -103,4 +103,9 @@ public class IntegerSliderInput<C> extends HBox {
         this.integerTextField.setFormValueSetter(formValueSetter);
         return this;
     }
+
+    public IntegerSliderInput<C> setMinorTickCount(int minorTickCount) {
+        this.slider.setMinorTickCount(minorTickCount);
+        return this;
+    }
 }
