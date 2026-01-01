@@ -1,6 +1,5 @@
-package com.purkynka.paintpp.ui.stage.filteradder;
+package com.purkynka.paintpp.logic.filter;
 
-import com.purkynka.paintpp.logic.filter.*;
 import com.purkynka.paintpp.ui.element.form.input.choicefield.DescriptiveEnum;
 import com.purkynka.paintpp.ui.stage.filter.PixelizeFilterAdder;
 

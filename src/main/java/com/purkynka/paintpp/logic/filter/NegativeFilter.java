@@ -1,6 +1,5 @@
 package com.purkynka.paintpp.logic.filter;
 
-import com.purkynka.paintpp.ui.stage.filteradder.FilterType;
 import javafx.scene.image.PixelBuffer;
 
 import java.awt.*;

@@ -1,7 +1,5 @@
 package com.purkynka.paintpp.logic.filter;
 
-import com.purkynka.paintpp.ui.stage.filteradder.FilterType;
-
 public class MeanBlurFilter extends KernelFilter {
     public MeanBlurFilter() {
         super(true);

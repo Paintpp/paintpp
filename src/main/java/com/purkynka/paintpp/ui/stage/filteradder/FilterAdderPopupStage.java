@@ -1,17 +1,16 @@
 package com.purkynka.paintpp.ui.stage.filteradder;
 
+import com.purkynka.paintpp.logic.filter.FilterType;
 import com.purkynka.paintpp.ui.element.ChoiceListButton;
 import com.purkynka.paintpp.ui.element.ElementOrder;
 import com.purkynka.paintpp.ui.element.form.context.FormContext;
 import com.purkynka.paintpp.ui.element.form.input.textfield.StringTextField;
 import com.purkynka.paintpp.ui.stage.popup.PopupStage;
-import javafx.geometry.Insets;
 import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.VBox;
 
-import java.awt.*;
 import java.util.Arrays;
 
 public class FilterAdderPopupStage extends PopupStage {
