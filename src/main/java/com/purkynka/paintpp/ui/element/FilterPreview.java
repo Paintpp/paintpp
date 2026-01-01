@@ -5,6 +5,7 @@ import com.purkynka.paintpp.logic.filter.FilterManager;
 import com.purkynka.paintpp.logic.filter.ImageFilter;
 import com.purkynka.paintpp.logic.image.BufferBackedImage;
 import com.purkynka.paintpp.logic.image.ImageManager;
+import com.purkynka.paintpp.logic.util.ImageUtil;
 import javafx.geometry.Pos;
 import javafx.scene.SnapshotParameters;
 import javafx.scene.control.Label;
@@ -37,7 +38,7 @@ public class FilterPreview extends VBox {
     }
 
     private void setupScaledImage() {
-        var currentImage = this.getCurrentImage();
+        var currentImage = ImageUtil.getCurrentImage();
         this.imageView.setImage(currentImage.getImage());
 
         var snapshotParameters = new SnapshotParameters();
@@ -47,11 +48,6 @@ public class FilterPreview extends VBox {
         this.scaledImageCopy = new BufferBackedImage(scaledImage);
 
         this.imageView.setImage(scaledImage);
-    }
-
-    private BufferBackedImage getCurrentImage() {
-        if (ImageManager.DISPLAYING_MODIFIED_IMAGE.get()) return FilterManager.FILTERED_IMAGE.get();
-        else return ImageManager.IMAGE_PROVIDER.get().getBufferBackedImage();
     }
 
     private void setupImageView() {
