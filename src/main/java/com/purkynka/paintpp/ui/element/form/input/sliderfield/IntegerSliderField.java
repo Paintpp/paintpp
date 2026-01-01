@@ -1,4 +1,4 @@
-package com.purkynka.paintpp.ui.element.form.input.sliderinput;
+package com.purkynka.paintpp.ui.element.form.input.sliderfield;
 
 import com.purkynka.paintpp.ui.element.form.context.FormContext;
 import com.purkynka.paintpp.ui.element.form.context.FormValueSetter;
@@ -9,7 +9,7 @@ import javafx.geometry.Pos;
 import javafx.scene.control.Slider;
 import javafx.scene.layout.HBox;
 
-public class IntegerSliderInput<C> extends HBox {
+public class IntegerSliderField<C> extends HBox {
     private IntegerTextField<C> integerTextField;
     private Slider slider;
 
@@ -18,7 +18,7 @@ public class IntegerSliderInput<C> extends HBox {
 
     private FormContext<C> formContext;
 
-    public IntegerSliderInput(FormContext<C> formContext) {
+    public IntegerSliderField(FormContext<C> formContext) {
         super(16);
 
         this.formContext = formContext;
@@ -74,18 +74,18 @@ public class IntegerSliderInput<C> extends HBox {
         });
     }
 
-    public IntegerSliderInput<C> setLabel(String label) {
+    public IntegerSliderField<C> setLabel(String label) {
         this.integerTextField.setLabel(label);
         return this;
     }
 
-    public IntegerSliderInput<C> setSnapIncrement(int increment) {
+    public IntegerSliderField<C> setSnapIncrement(int increment) {
         this.slider.setMajorTickUnit(increment);
         this.slider.setBlockIncrement(increment);
         return this;
     }
 
-    public IntegerSliderInput<C> setRange(int min, int max) {
+    public IntegerSliderField<C> setRange(int min, int max) {
         this.min = min;
         this.max = max;
 
@@ -99,12 +99,12 @@ public class IntegerSliderInput<C> extends HBox {
         return this;
     }
 
-    public IntegerSliderInput<C> setFormValueSetter(FormValueSetter<C, Integer> formValueSetter) {
+    public IntegerSliderField<C> setFormValueSetter(FormValueSetter<C, Integer> formValueSetter) {
         this.integerTextField.setFormValueSetter(formValueSetter);
         return this;
     }
 
-    public IntegerSliderInput<C> setMinorTickCount(int minorTickCount) {
+    public IntegerSliderField<C> setMinorTickCount(int minorTickCount) {
         this.slider.setMinorTickCount(minorTickCount);
         return this;
     }

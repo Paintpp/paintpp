@@ -4,7 +4,7 @@ import com.purkynka.paintpp.logic.filter.FilterManager;
 import com.purkynka.paintpp.logic.filter.ThresholdFilter;
 import com.purkynka.paintpp.ui.element.FilterPreview;
 import com.purkynka.paintpp.ui.element.form.context.FormContext;
-import com.purkynka.paintpp.ui.element.form.input.sliderinput.IntegerSliderInput;
+import com.purkynka.paintpp.ui.element.form.input.sliderfield.IntegerSliderField;
 import com.purkynka.paintpp.ui.stage.popup.PopupStage;
 import javafx.scene.Parent;
 import javafx.scene.layout.VBox;
@@ -42,7 +42,7 @@ public class ThresholdFilterAdder extends PopupStage {
     protected Parent createRoot() {
         this.filterPreview = new FilterPreview(this.thresholdFilter);
 
-        var thresholdSlider = new IntegerSliderInput<>(this.formContext)
+        var thresholdSlider = new IntegerSliderField<>(this.formContext)
                 .setLabel("Threshold")
                 .setSnapIncrement(5)
                 .setMinorTickCount(3)

@@ -4,7 +4,7 @@ import com.purkynka.paintpp.logic.filter.FilterManager;
 import com.purkynka.paintpp.logic.filter.PixelizeFilter;
 import com.purkynka.paintpp.ui.element.FilterPreview;
 import com.purkynka.paintpp.ui.element.form.context.FormContext;
-import com.purkynka.paintpp.ui.element.form.input.sliderinput.IntegerSliderInput;
+import com.purkynka.paintpp.ui.element.form.input.sliderfield.IntegerSliderField;
 import com.purkynka.paintpp.ui.stage.popup.PopupStage;
 import javafx.scene.Parent;
 import javafx.scene.layout.VBox;
@@ -42,7 +42,7 @@ public class PixelizeFilterAdder extends PopupStage {
     protected Parent createRoot() {
         this.filterPreview = new FilterPreview(this.pixelizeFilter);
 
-        var stepSlider = new IntegerSliderInput<>(this.formContext)
+        var stepSlider = new IntegerSliderField<>(this.formContext)
                 .setLabel("Step")
                 .setSnapIncrement(1)
                 .setRange(1, 20)
