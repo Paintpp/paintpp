@@ -9,6 +9,7 @@ import com.purkynka.paintpp.ui.stage.popup.PopupStage;
 import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.VBox;
 
 import java.util.Arrays;
@@ -58,6 +59,9 @@ public class FilterAdderPopupStage extends PopupStage {
     protected Parent createRoot() {
         var container = new VBox(16);
         container.setMinWidth(384);
+        container.setOnKeyPressed(e -> {
+            if (e.getCode() == KeyCode.ESCAPE) this.close();
+        });
 
         var filterQueryInput = new StringTextField<>(this.formContext)
                 .bindWidth(container.widthProperty())
