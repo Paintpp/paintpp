@@ -26,7 +26,7 @@ public class ActionBar extends VBox {
         VBox.setVgrow(filler, Priority.ALWAYS);
 
         var addFilterButton = new ActionBarButton(MaterialDesignF.FUNCTION_VARIANT, "Add Filter");
-        // addFilterButton.setDisable(true);
+        addFilterButton.setDisable(true);
         addFilterButton.setOnMouseClicked(_ -> {
             var filterAdderPopupStage = new FilterAdderPopupStage();
             filterAdderPopupStage.open();
