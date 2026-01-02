@@ -4,6 +4,6 @@ public class ThresholdFilterFormValue {
     public Integer threshold;
 
     public ThresholdFilterFormValue() {
-        this.threshold = null;
+        this.threshold = 0;
     }
 }

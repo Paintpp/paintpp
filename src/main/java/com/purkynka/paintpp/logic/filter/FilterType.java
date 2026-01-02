@@ -1,6 +1,7 @@
 package com.purkynka.paintpp.logic.filter;
 
 import com.purkynka.paintpp.ui.element.form.input.choicefield.DescriptiveEnum;
+import com.purkynka.paintpp.ui.stage.filter.noise.NoiseFilterAdder;
 import com.purkynka.paintpp.ui.stage.filter.pixelize.PixelizeFilterAdder;
 import com.purkynka.paintpp.ui.stage.filter.threshold.ThresholdFilterAdder;
 
@@ -28,7 +29,7 @@ public enum FilterType implements DescriptiveEnum {
             case NEGATIVE -> FilterManager.FILTERS.add(new NegativeFilter());
             case PIXELIZE -> new PixelizeFilterAdder().open();
             case THRESHOLD -> new ThresholdFilterAdder().open();
-            case NOISE -> {}
+            case NOISE -> new NoiseFilterAdder().open();
             case BLACK_AND_WHITE -> {}
             case MEAN_BLUR -> FilterManager.FILTERS.add(new MeanBlurFilter());
             case GAUSSIAN_BLUR -> FilterManager.FILTERS.add(new GaussianBlurFilter());

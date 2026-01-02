@@ -4,6 +4,6 @@ public class PixelizeFilterFormValue {
     public Integer step;
 
     public PixelizeFilterFormValue() {
-        this.step = null;
+        this.step = 1;
     }
 }
