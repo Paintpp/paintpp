@@ -1,6 +1,7 @@
 package com.purkynka.paintpp.logic.filter;
 
 import com.purkynka.paintpp.ui.element.form.input.choicefield.DescriptiveEnum;
+import com.purkynka.paintpp.ui.stage.filter.colorizer.ColorizerFilterAdder;
 import com.purkynka.paintpp.ui.stage.filter.gaussianblur.GaussianBlurFilterAdder;
 import com.purkynka.paintpp.ui.stage.filter.noise.NoiseFilterAdder;
 import com.purkynka.paintpp.ui.stage.filter.pixelize.PixelizeFilterAdder;
@@ -12,9 +13,9 @@ public enum FilterType implements DescriptiveEnum {
     THRESHOLD("Threshold", "Turns the pixels over the threshold white and the\nrest black."),
     NOISE("Noise", "Applies noise over the image."),
     BLACK_AND_WHITE("Black & White", "Turns the image grayscale."),
-    GAUSSIAN_BLUR("Gaussian Blur", "Applies a 3x3 Gaussian blur to the image."),
+    GAUSSIAN_BLUR("Gaussian Blur", "Applies a Gaussian blur to the image."),
     SHARPEN("Sharpen", "Sharpens the image."),
-    COLORIZER("Colorizer", "Adds an amount of color to each pixel.");
+    COLORIZER("Colorizer", "Adds a flat amount of color to each pixel.");
 
     private final String name;
     private final String description;
@@ -33,7 +34,7 @@ public enum FilterType implements DescriptiveEnum {
             case BLACK_AND_WHITE -> FilterManager.FILTERS.add(new BlackAndWhiteFilter());
             case GAUSSIAN_BLUR -> new GaussianBlurFilterAdder().open();
             case SHARPEN -> FilterManager.FILTERS.add(new SharpenFilter());
-            case COLORIZER -> {}
+            case COLORIZER -> new ColorizerFilterAdder().open();
         }
     }
 
