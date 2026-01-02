@@ -60,6 +60,8 @@ public class IntegerSliderField<C> extends HBox {
 
     private void setupHandlers() {
         this.slider.valueProperty().addListener((_, _, v) -> {
+            if ((v.intValue() - min) % this.slider.getMajorTickUnit() != 0) return;
+
             var newValue = Math.clamp(v.intValue(), this.min, this.max);
             this.integerTextField.setValue(newValue);
         });
@@ -82,6 +84,7 @@ public class IntegerSliderField<C> extends HBox {
     public IntegerSliderField<C> setSnapIncrement(int increment) {
         this.slider.setMajorTickUnit(increment);
         this.slider.setBlockIncrement(increment);
+
         return this;
     }
 

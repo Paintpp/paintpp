@@ -9,11 +9,20 @@ import java.nio.IntBuffer;
 import java.util.Arrays;
 
 public abstract class KernelFilter extends ImageFilter {
-    protected final double[] kernel;
-    protected final int kernelWidth;
-    protected final int kernelHeight;
+    protected boolean normalizeKernel;
+    protected double[] kernel;
+    protected int kernelWidth;
+    protected int kernelHeight;
+
+    public KernelFilter() {}
 
     public KernelFilter(boolean normalizeKernel) {
+        this.normalizeKernel = normalizeKernel;
+
+        this.refreshKernel();
+    }
+
+    protected void refreshKernel() {
         var kernel = this.constructKernel();
 
         this.kernelWidth = kernel[0].length;
