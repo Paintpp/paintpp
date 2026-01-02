@@ -15,7 +15,9 @@ public enum FilterType implements DescriptiveEnum {
     BLACK_AND_WHITE("Black & White", "Turns the image grayscale."),
     GAUSSIAN_BLUR("Gaussian Blur", "Applies a Gaussian blur to the image."),
     SHARPEN("Sharpen", "Sharpens the image."),
-    COLORIZER("Colorizer", "Adds a flat amount of color to each pixel.");
+    COLORIZER("Colorizer", "Adds a flat amount of color to each pixel."),
+    HORIZONTAL_EDGE_DETECT("Horizontal Edge Detect", "Highlights horizontal edges using a Sobel kernel."),
+    VERTICAL_EDGE_DETECT("Vertical Edge Detect", "Highlights vertical edges using a Sobel kernel.");
 
     private final String name;
     private final String description;
@@ -35,6 +37,8 @@ public enum FilterType implements DescriptiveEnum {
             case GAUSSIAN_BLUR -> new GaussianBlurFilterAdder().open();
             case SHARPEN -> FilterManager.FILTERS.add(new SharpenFilter());
             case COLORIZER -> new ColorizerFilterAdder().open();
+            case HORIZONTAL_EDGE_DETECT -> FilterManager.FILTERS.add(new HorizontalEdgeDetect());
+            case VERTICAL_EDGE_DETECT -> FilterManager.FILTERS.add(new VerticalEdgeDetect());
         }
     }
 
