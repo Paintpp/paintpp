@@ -2,6 +2,7 @@ package com.purkynka.paintpp.logic.filter;
 
 import com.purkynka.paintpp.ui.element.form.input.choicefield.DescriptiveEnum;
 import com.purkynka.paintpp.ui.stage.filter.colorizer.ColorizerFilterAdder;
+import com.purkynka.paintpp.ui.stage.filter.colortemperature.ColorTemperatureFilterAdder;
 import com.purkynka.paintpp.ui.stage.filter.gaussianblur.GaussianBlurFilterAdder;
 import com.purkynka.paintpp.ui.stage.filter.hsb.HSBFilterAdder;
 import com.purkynka.paintpp.ui.stage.filter.noise.NoiseFilterAdder;
@@ -20,7 +21,8 @@ public enum FilterType implements DescriptiveEnum {
     HORIZONTAL_EDGE_DETECT("Horizontal Edge Detect", "Highlights horizontal edges using a Sobel kernel."),
     VERTICAL_EDGE_DETECT("Vertical Edge Detect", "Highlights vertical edges using a Sobel kernel."),
     EMBOSS("Emboss", "Embosses an image diagonally."),
-    HSB("HSB", "Modifies the image's hue, saturation and brightness.");
+    HSB("HSB", "Modifies the image's hue, saturation and brightness."),
+    COLOR_TEMPERATURE("Color Temperature", "Adjusts the color temperature of the image.");
 
     private final String name;
     private final String description;
@@ -44,6 +46,7 @@ public enum FilterType implements DescriptiveEnum {
             case VERTICAL_EDGE_DETECT -> FilterManager.FILTERS.add(new VerticalEdgeDetect());
             case EMBOSS -> FilterManager.FILTERS.add(new EmbossFilter());
             case HSB -> new HSBFilterAdder().open();
+            case COLOR_TEMPERATURE -> new ColorTemperatureFilterAdder().open();
         }
     }
 
