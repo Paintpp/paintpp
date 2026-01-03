@@ -186,6 +186,12 @@ public abstract class TextField<C, V> extends Pane {
         return this;
     }
 
+    public TextField<C, V> removeLabel() {
+        this.getChildren().remove(this.fieldLabel);
+
+        return this;
+    }
+
     public TextField<C, V> setPlaceholder(String placeholderText) {
         this.textField.setPromptText(placeholderText);
 

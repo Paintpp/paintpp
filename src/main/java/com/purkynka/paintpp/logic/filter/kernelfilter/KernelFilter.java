@@ -22,6 +22,11 @@ public abstract class KernelFilter extends ImageFilter {
         this.refreshKernel();
     }
 
+    public void setNormalizeKernel(boolean normalizeKernel) {
+        this.normalizeKernel = normalizeKernel;
+        this.refreshKernel();
+    }
+
     protected void refreshKernel() {
         var kernel = this.constructKernel();
 

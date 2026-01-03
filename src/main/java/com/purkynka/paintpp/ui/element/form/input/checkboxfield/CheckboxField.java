@@ -79,4 +79,11 @@ public class CheckboxField<C> extends HBox {
     public Boolean getValue() {
         return this.observableValue.get();
     }
+
+    public CheckboxField<C> setValue(boolean value) {
+        this.checkBox.setSelected(value);
+        this.observableValue.set(value);
+
+        return this;
+    }
 }

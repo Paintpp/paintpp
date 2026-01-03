@@ -29,6 +29,12 @@ public class IntegerTextField<C> extends TextField<C, Integer> {
     }
 
     @Override
+    public IntegerTextField<C> removeLabel() {
+        super.removeLabel();
+        return this;
+    }
+
+    @Override
     public IntegerTextField<C> setPlaceholder(String placeholderText) {
         super.setPlaceholder(placeholderText);
         return this;

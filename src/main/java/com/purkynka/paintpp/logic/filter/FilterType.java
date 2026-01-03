@@ -9,6 +9,7 @@ import com.purkynka.paintpp.logic.filter.kernelfilter.VerticalEdgeDetect;
 import com.purkynka.paintpp.ui.element.form.input.choicefield.DescriptiveEnum;
 import com.purkynka.paintpp.ui.stage.filter.colorizer.ColorizerFilterAdder;
 import com.purkynka.paintpp.ui.stage.filter.colortemperature.ColorTemperatureFilterAdder;
+import com.purkynka.paintpp.ui.stage.filter.custommatrix.CustomMatrixFilterAdder;
 import com.purkynka.paintpp.ui.stage.filter.gaussianblur.GaussianBlurFilterAdder;
 import com.purkynka.paintpp.ui.stage.filter.hsb.HSBFilterAdder;
 import com.purkynka.paintpp.ui.stage.filter.noise.NoiseFilterAdder;
@@ -16,6 +17,7 @@ import com.purkynka.paintpp.ui.stage.filter.pixelize.PixelizeFilterAdder;
 import com.purkynka.paintpp.ui.stage.filter.threshold.ThresholdFilterAdder;
 
 public enum FilterType implements DescriptiveEnum {
+    CUSTOM_MATRIX("Custom Matrix", "Filters the image using a custom kernel matrix."),
     NEGATIVE("Negative", "Inverts the colors of the image."),
     PIXELIZE("Pixelize", "Pixelizes the image with a stepping function."),
     THRESHOLD("Threshold", "Turns the pixels over the threshold white and the\nrest black."),
@@ -40,6 +42,7 @@ public enum FilterType implements DescriptiveEnum {
 
     public void addOrConfigure() {
         switch (this) {
+            case CUSTOM_MATRIX -> new CustomMatrixFilterAdder().open();
             case NEGATIVE -> FilterManager.FILTERS.add(new NegativeFilter());
             case PIXELIZE -> new PixelizeFilterAdder().open();
             case THRESHOLD -> new ThresholdFilterAdder().open();

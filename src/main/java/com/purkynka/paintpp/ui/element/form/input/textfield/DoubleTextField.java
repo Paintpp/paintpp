@@ -7,73 +7,78 @@ import javafx.beans.property.ReadOnlyDoubleProperty;
 
 import java.util.function.Function;
 
-public class StringTextField<C> extends TextField<C, String> {
-    public StringTextField(FormContext<C> formContext) {
+public class DoubleTextField<C> extends TextField<C, Double> {
+    public DoubleTextField(FormContext<C> formContext) {
         super(formContext);
     }
 
     @Override
-    protected String parseValue(String stringValue) {
-        if (stringValue == null || stringValue.trim().isEmpty()) return null;
-        return stringValue;
+    protected Double parseValue(String stringValue) {
+        if (stringValue == null) return null;
+
+        try {
+            return Double.parseDouble(stringValue);
+        } catch (NumberFormatException e) {
+            return null;
+        }
     }
 
     @Override
-    public StringTextField<C> setLabel(String labelText) {
+    public DoubleTextField<C> setLabel(String labelText) {
         super.setLabel(labelText);
         return this;
     }
 
     @Override
-    public StringTextField<C> removeLabel() {
+    public DoubleTextField<C> removeLabel() {
         super.removeLabel();
         return this;
     }
 
     @Override
-    public StringTextField<C> setPlaceholder(String placeholderText) {
+    public DoubleTextField<C> setPlaceholder(String placeholderText) {
         super.setPlaceholder(placeholderText);
         return this;
     }
 
     @Override
-    public StringTextField<C> setWidth(int width) {
+    public DoubleTextField<C> setWidth(int width) {
         super.setWidth(width);
         return this;
     }
 
     @Override
-    public StringTextField<C> bindWidth(ReadOnlyDoubleProperty width) {
+    public DoubleTextField<C> bindWidth(ReadOnlyDoubleProperty width) {
         super.bindWidth(width);
         return this;
     }
 
     @Override
-    public StringTextField<C> addValidators(TextFieldValidator... validators) {
+    public DoubleTextField<C> addValidators(TextFieldValidator... validators) {
         super.addValidators(validators);
         return this;
     }
 
     @Override
-    public StringTextField<C> setFormValueSetter(FormValueSetter<C, String> formValueSetter) {
+    public DoubleTextField<C> setFormValueSetter(FormValueSetter<C, Double> formValueSetter) {
         super.setFormValueSetter(formValueSetter);
         return this;
     }
 
     @Override
-    public StringTextField<C> setValuePostprocessor(Function<String, String> valuePostprocessor) {
+    public DoubleTextField<C> setValuePostprocessor(Function<Double, Double> valuePostprocessor) {
         super.setValuePostprocessor(valuePostprocessor);
         return this;
     }
 
     @Override
-    public StringTextField<C> setStringValue(String value) {
+    public DoubleTextField<C> setStringValue(String value) {
         this.textField.setText(value);
         return this;
     }
 
     @Override
-    public StringTextField<C> setValue(String value) {
+    public DoubleTextField<C> setValue(Double value) {
         super.setValue(value);
         return this;
     }
