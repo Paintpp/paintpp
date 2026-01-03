@@ -1,7 +1,7 @@
 package com.purkynka.paintpp.ui.stage.filter.gaussianblur;
 
 import com.purkynka.paintpp.logic.filter.FilterManager;
-import com.purkynka.paintpp.logic.filter.GaussianBlurFilter;
+import com.purkynka.paintpp.logic.filter.kernelfilter.GaussianBlurFilter;
 import com.purkynka.paintpp.ui.element.FilterPreview;
 import com.purkynka.paintpp.ui.element.form.context.FormContext;
 import com.purkynka.paintpp.ui.element.form.input.sliderfield.IntegerSliderField;

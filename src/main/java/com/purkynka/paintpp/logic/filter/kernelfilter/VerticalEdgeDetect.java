@@ -1,4 +1,6 @@
-package com.purkynka.paintpp.logic.filter;
+package com.purkynka.paintpp.logic.filter.kernelfilter;
+
+import com.purkynka.paintpp.logic.filter.FilterType;
 
 public class VerticalEdgeDetect extends KernelFilter {
     public VerticalEdgeDetect() {

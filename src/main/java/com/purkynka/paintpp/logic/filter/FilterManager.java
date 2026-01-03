@@ -1,5 +1,6 @@
 package com.purkynka.paintpp.logic.filter;
 
+import com.purkynka.paintpp.logic.filter.imagefilter.ImageFilter;
 import com.purkynka.paintpp.logic.image.BufferBackedImage;
 import com.purkynka.paintpp.logic.image.ImageManager;
 import com.purkynka.paintpp.logic.observable.ObservableArrayList;

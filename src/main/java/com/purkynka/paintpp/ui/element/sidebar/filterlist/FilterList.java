@@ -2,7 +2,7 @@ package com.purkynka.paintpp.ui.element.sidebar.filterlist;
 
 import atlantafx.base.theme.Styles;
 import com.purkynka.paintpp.logic.filter.FilterManager;
-import com.purkynka.paintpp.logic.filter.ImageFilter;
+import com.purkynka.paintpp.logic.filter.imagefilter.ImageFilter;
 import com.purkynka.paintpp.ui.element.sidebar.Sidebar;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;

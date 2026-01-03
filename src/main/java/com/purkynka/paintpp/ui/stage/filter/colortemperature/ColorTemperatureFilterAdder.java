@@ -1,6 +1,6 @@
 package com.purkynka.paintpp.ui.stage.filter.colortemperature;
 
-import com.purkynka.paintpp.logic.filter.ColorTemperatureFilter;
+import com.purkynka.paintpp.logic.filter.imagefilter.ColorTemperatureFilter;
 import com.purkynka.paintpp.logic.filter.FilterManager;
 import com.purkynka.paintpp.ui.element.FilterPreview;
 import com.purkynka.paintpp.ui.element.form.context.FormContext;

@@ -1,10 +1,8 @@
 package com.purkynka.paintpp.ui.element;
 
 import atlantafx.base.theme.Styles;
-import com.purkynka.paintpp.logic.filter.FilterManager;
-import com.purkynka.paintpp.logic.filter.ImageFilter;
+import com.purkynka.paintpp.logic.filter.imagefilter.ImageFilter;
 import com.purkynka.paintpp.logic.image.BufferBackedImage;
-import com.purkynka.paintpp.logic.image.ImageManager;
 import com.purkynka.paintpp.logic.util.ImageUtil;
 import javafx.geometry.Pos;
 import javafx.scene.SnapshotParameters;

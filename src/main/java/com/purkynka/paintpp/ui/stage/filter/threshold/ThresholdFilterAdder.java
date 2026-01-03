@@ -1,7 +1,7 @@
 package com.purkynka.paintpp.ui.stage.filter.threshold;
 
 import com.purkynka.paintpp.logic.filter.FilterManager;
-import com.purkynka.paintpp.logic.filter.ThresholdFilter;
+import com.purkynka.paintpp.logic.filter.imagefilter.ThresholdFilter;
 import com.purkynka.paintpp.logic.util.ColorUtil;
 import com.purkynka.paintpp.logic.util.ImageUtil;
 import com.purkynka.paintpp.ui.element.FilterPreview;

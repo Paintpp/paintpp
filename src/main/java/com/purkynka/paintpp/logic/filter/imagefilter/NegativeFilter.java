@@ -1,10 +1,9 @@
-package com.purkynka.paintpp.logic.filter;
+package com.purkynka.paintpp.logic.filter.imagefilter;
 
+import com.purkynka.paintpp.logic.filter.FilterType;
 import com.purkynka.paintpp.logic.image.BufferBackedImage;
-import javafx.scene.image.PixelBuffer;
 
 import java.awt.*;
-import java.nio.IntBuffer;
 
 public class NegativeFilter extends ImageFilter {
     @Override

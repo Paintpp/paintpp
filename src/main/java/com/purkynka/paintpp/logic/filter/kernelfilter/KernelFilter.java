@@ -1,8 +1,8 @@
-package com.purkynka.paintpp.logic.filter;
+package com.purkynka.paintpp.logic.filter.kernelfilter;
 
+import com.purkynka.paintpp.logic.filter.imagefilter.ImageFilter;
 import com.purkynka.paintpp.logic.image.BufferBackedImage;
 import com.purkynka.paintpp.logic.util.BufferUtil;
-import javafx.scene.image.PixelBuffer;
 
 import java.awt.*;
 import java.nio.IntBuffer;

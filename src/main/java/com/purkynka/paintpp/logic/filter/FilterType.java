@@ -1,5 +1,11 @@
 package com.purkynka.paintpp.logic.filter;
 
+import com.purkynka.paintpp.logic.filter.imagefilter.BlackAndWhiteFilter;
+import com.purkynka.paintpp.logic.filter.imagefilter.NegativeFilter;
+import com.purkynka.paintpp.logic.filter.kernelfilter.EmbossFilter;
+import com.purkynka.paintpp.logic.filter.kernelfilter.HorizontalEdgeDetect;
+import com.purkynka.paintpp.logic.filter.kernelfilter.SharpenFilter;
+import com.purkynka.paintpp.logic.filter.kernelfilter.VerticalEdgeDetect;
 import com.purkynka.paintpp.ui.element.form.input.choicefield.DescriptiveEnum;
 import com.purkynka.paintpp.ui.stage.filter.colorizer.ColorizerFilterAdder;
 import com.purkynka.paintpp.ui.stage.filter.colortemperature.ColorTemperatureFilterAdder;

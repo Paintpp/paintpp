@@ -1,9 +1,7 @@
-package com.purkynka.paintpp.logic.filter;
+package com.purkynka.paintpp.logic.filter.imagefilter;
 
+import com.purkynka.paintpp.logic.filter.FilterType;
 import com.purkynka.paintpp.logic.image.BufferBackedImage;
-import javafx.scene.image.PixelBuffer;
-
-import java.nio.IntBuffer;
 
 public abstract class ImageFilter {
     public abstract void modifyPixelBuffer(BufferBackedImage modifiedImage);

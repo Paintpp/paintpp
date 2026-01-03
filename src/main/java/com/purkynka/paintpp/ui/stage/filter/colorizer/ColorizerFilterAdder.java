@@ -1,6 +1,6 @@
 package com.purkynka.paintpp.ui.stage.filter.colorizer;
 
-import com.purkynka.paintpp.logic.filter.ColorizerFilter;
+import com.purkynka.paintpp.logic.filter.imagefilter.ColorizerFilter;
 import com.purkynka.paintpp.logic.filter.FilterManager;
 import com.purkynka.paintpp.ui.element.FilterPreview;
 import com.purkynka.paintpp.ui.element.form.context.FormContext;
@@ -8,8 +8,6 @@ import com.purkynka.paintpp.ui.element.form.input.sliderfield.IntegerSliderField
 import com.purkynka.paintpp.ui.stage.popup.PopupStage;
 import javafx.scene.Parent;
 import javafx.scene.layout.VBox;
-
-import java.awt.*;
 
 public class ColorizerFilterAdder extends PopupStage {
     private final FormContext<ColorizerFormValue> formContext = new FormContext<>(new ColorizerFormValue());

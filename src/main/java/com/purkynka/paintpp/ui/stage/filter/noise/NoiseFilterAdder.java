@@ -1,7 +1,7 @@
 package com.purkynka.paintpp.ui.stage.filter.noise;
 
 import com.purkynka.paintpp.logic.filter.FilterManager;
-import com.purkynka.paintpp.logic.filter.NoiseFilter;
+import com.purkynka.paintpp.logic.filter.imagefilter.NoiseFilter;
 import com.purkynka.paintpp.ui.element.FilterPreview;
 import com.purkynka.paintpp.ui.element.form.context.FormContext;
 import com.purkynka.paintpp.ui.element.form.input.sliderfield.IntegerSliderField;
