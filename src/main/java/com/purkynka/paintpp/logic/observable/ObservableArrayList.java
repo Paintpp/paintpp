@@ -8,6 +8,7 @@ import java.util.function.Consumer;
 
 public class ObservableArrayList<T> extends ArrayList<T> {
     private final ConsumerEvent<ArrayList<T>> changeEvent = new ConsumerEvent<>();
+    private boolean suppressingUpdates;
 
     public ObservableArrayList() {
         super();
@@ -22,10 +23,22 @@ public class ObservableArrayList<T> extends ArrayList<T> {
         this.changeEvent.invoke(this);
     }
 
+    public void suppressUpdates() {
+        this.suppressingUpdates = true;
+    }
+
+    public void unsuppressUpdates() {
+        this.suppressingUpdates = false;
+    }
+
+    public void manualUpdate() {
+        this.changeEvent.invoke(this);
+    }
+
     @Override
     public boolean add(T t) {
         var result = super.add(t);
-        this.changeEvent.invoke(this);
+        if (!this.suppressingUpdates) this.changeEvent.invoke(this);
 
         return result;
     }
@@ -33,7 +46,7 @@ public class ObservableArrayList<T> extends ArrayList<T> {
     @Override
     public boolean remove(Object o) {
         var result = super.remove(o);
-        this.changeEvent.invoke(this);
+        if (!this.suppressingUpdates) this.changeEvent.invoke(this);
 
         return result;
     }
@@ -41,7 +54,7 @@ public class ObservableArrayList<T> extends ArrayList<T> {
     @Override
     public T remove(int index) {
         var result = super.remove(index);
-        this.changeEvent.invoke(this);
+        if (!this.suppressingUpdates) this.changeEvent.invoke(this);
 
         return result;
     }
@@ -49,6 +62,6 @@ public class ObservableArrayList<T> extends ArrayList<T> {
     @Override
     public void clear() {
         super.clear();
-        this.changeEvent.invoke(this);
+        if (!this.suppressingUpdates) this.changeEvent.invoke(this);
     }
 }

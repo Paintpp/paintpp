@@ -5,6 +5,10 @@ import com.purkynka.paintpp.logic.image.BufferBackedImage;
 import com.purkynka.paintpp.logic.image.ImageManager;
 import com.purkynka.paintpp.logic.observable.ObservableArrayList;
 import com.purkynka.paintpp.logic.observable.ObservableValue;
+import com.purkynka.paintpp.ui.element.sidebar.filterlist.FilterApplyDuration;
+import javafx.concurrent.Task;
+
+import java.time.Duration;
 
 public class FilterManager {
     public static ObservableArrayList<ImageFilter> FILTERS = new ObservableArrayList<>();
@@ -26,9 +30,18 @@ public class FilterManager {
     private static void applyFilters(BufferBackedImage originalImage) {
         var newImage = new BufferBackedImage(originalImage);
 
+        var rawTotal = 0L;
+        var actualTotal = 0L;
+
         for (ImageFilter filter : FilterManager.FILTERS) {
-            filter.modifyPixelBuffer(newImage);
+            var usedCache = filter.copyCacheOrModifyPixelBuffer(newImage);
+
+            rawTotal += filter.getCalculationTime();
+            actualTotal += usedCache ? filter.getCopyTime() : filter.getCalculationTime();
         }
+
+        System.out.println("Raw total: " + Duration.ofNanos(rawTotal));
+        System.out.println("Actual total: " + Duration.ofNanos(actualTotal));
 
         FILTERED_IMAGE.set(newImage);
     }

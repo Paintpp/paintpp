@@ -95,15 +95,46 @@ public class FilterListRow extends HBox {
 
     private void moveUp() {
         if (this.filterIndex == this.filterMaxIndex) return;
+
+        FilterManager.FILTERS.suppressUpdates();
+
         FilterManager.FILTERS.swap(this.filterIndex, this.filterIndex + 1);
+
+        for (var i = this.filterIndex; i < FilterManager.FILTERS.size(); i++) {
+            FilterManager.FILTERS.get(i).markDirty();
+        }
+
+        FilterManager.FILTERS.unsuppressUpdates();
+        FilterManager.FILTERS.manualUpdate();
     }
 
     private void moveDown() {
         if (this.filterIndex == 0) return;
-        FilterManager.FILTERS.swap(this.filterIndex, this.filterIndex - 1);
+
+        var newIndex = this.filterIndex - 1;
+
+        FilterManager.FILTERS.suppressUpdates();
+
+        FilterManager.FILTERS.swap(this.filterIndex, newIndex);
+
+        for (var i = newIndex; i < FilterManager.FILTERS.size(); i++) {
+            FilterManager.FILTERS.get(i).markDirty();
+        }
+
+        FilterManager.FILTERS.unsuppressUpdates();
+        FilterManager.FILTERS.manualUpdate();
     }
 
     private void delete() {
+        FilterManager.FILTERS.suppressUpdates();
+
         FilterManager.FILTERS.remove(this.filterIndex);
+
+        for (var i = this.filterIndex; i < FilterManager.FILTERS.size(); i++) {
+            FilterManager.FILTERS.get(i).markDirty();
+        }
+
+        FilterManager.FILTERS.unsuppressUpdates();
+        FilterManager.FILTERS.manualUpdate();
     }
 }
