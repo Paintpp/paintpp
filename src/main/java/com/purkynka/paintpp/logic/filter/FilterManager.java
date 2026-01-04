@@ -5,10 +5,13 @@ import com.purkynka.paintpp.logic.image.BufferBackedImage;
 import com.purkynka.paintpp.logic.image.ImageManager;
 import com.purkynka.paintpp.logic.observable.ObservableArrayList;
 import com.purkynka.paintpp.logic.observable.ObservableValue;
+import com.purkynka.paintpp.ui.element.filterloadingscreen.FilterLoadingScreen;
 import com.purkynka.paintpp.ui.element.sidebar.filterlist.FilterApplyDuration;
+import javafx.application.Platform;
 import javafx.concurrent.Task;
 
 import java.time.Duration;
+import java.util.concurrent.atomic.AtomicLong;
 
 public class FilterManager {
     public static ObservableArrayList<ImageFilter> FILTERS = new ObservableArrayList<>();
@@ -18,31 +21,56 @@ public class FilterManager {
         ImageManager.IMAGE_PROVIDER.addUpdateListener(
                 imageProvider -> {
                     FilterManager.FILTERS.clear();
-                    applyFilters(imageProvider.getBufferBackedImage());
+                    applyFilters(imageProvider.getBufferBackedImage(), false);
                 }
         );
 
         FilterManager.FILTERS.addListener(
-                _ -> applyFilters(ImageManager.IMAGE_PROVIDER.get().getBufferBackedImage())
+            _ -> {
+                var newImage = new BufferBackedImage(ImageManager.IMAGE_PROVIDER.get().getBufferBackedImage());
+
+                var task = new Task<FilterApplyTime>() {
+                    @Override
+                    protected FilterApplyTime call() {
+                        return FilterManager.applyFilters(newImage, true);
+                    }
+                };
+
+                task.setOnScheduled(_ -> FilterLoadingScreen.FILTER_LOADING_SCREEN.show());
+                task.setOnSucceeded(_ -> {
+                    FilterManager.FILTERED_IMAGE.set(newImage);
+                    FilterLoadingScreen.FILTER_LOADING_SCREEN.hide();
+
+                    var filterApplyTime = task.getValue();
+                    System.out.println("Finished applying filters: " + filterApplyTime);
+                });
+
+                var thread = new Thread(task);
+                thread.setDaemon(true);
+                thread.start();
+            }
         );
     }
 
-    private static void applyFilters(BufferBackedImage originalImage) {
-        var newImage = new BufferBackedImage(originalImage);
-
+    private static FilterApplyTime applyFilters(BufferBackedImage originalImage, boolean updateLoadingScreen) {
         var rawTotal = 0L;
         var actualTotal = 0L;
 
-        for (ImageFilter filter : FilterManager.FILTERS) {
-            var usedCache = filter.copyCacheOrModifyPixelBuffer(newImage);
+        var totalFilters = FilterManager.FILTERS.size();
+        for (int i = 0; i < totalFilters; i++) {
+            ImageFilter filter = FilterManager.FILTERS.get(i);
+
+            if (updateLoadingScreen) {
+                int finalI = i;
+                Platform.runLater(() -> FilterLoadingScreen.FILTER_LOADING_SCREEN.updateFilterProgress(finalI, totalFilters, filter.getFilterType().getName()));
+            }
+
+            var usedCache = filter.copyCacheOrModifyPixelBuffer(originalImage);
 
             rawTotal += filter.getCalculationTime();
             actualTotal += usedCache ? filter.getCopyTime() : filter.getCalculationTime();
         }
 
-        System.out.println("Raw total: " + Duration.ofNanos(rawTotal));
-        System.out.println("Actual total: " + Duration.ofNanos(actualTotal));
-
-        FILTERED_IMAGE.set(newImage);
+        return new FilterApplyTime(Duration.ofNanos(rawTotal), Duration.ofNanos(actualTotal));
     }
 }

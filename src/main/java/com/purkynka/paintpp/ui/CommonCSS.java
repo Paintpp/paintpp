@@ -21,7 +21,8 @@ public class CommonCSS {
                 CommonCSS.getStyleSheet("/choice_field.css"),
                 CommonCSS.getStyleSheet("/size_field.css"),
                 CommonCSS.getStyleSheet("/sidebar.css"),
-                CommonCSS.getStyleSheet("/choice_list.css")
+                CommonCSS.getStyleSheet("/choice_list.css"),
+                CommonCSS.getStyleSheet("/filter_loading_screen.css")
         );
     }
 
