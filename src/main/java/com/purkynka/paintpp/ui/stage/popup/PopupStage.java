@@ -53,23 +53,32 @@ public abstract class PopupStage extends Stage {
             Runnable onSubmit,
             String cancelText
     ) {
-        var submitButton = new Button(submitText);
-        submitButton.setDefaultButton(true);
-        submitButton.setOnAction((_) -> onSubmit.run());
-        submitButton.getStyleClass().add(Styles.SUCCESS);
-
-        var cancelButton = new Button(cancelText);
-        cancelButton.setCancelButton(true);
-        cancelButton.setOnAction((_) -> this.close());
-        cancelButton.getStyleClass().add(Styles.DANGER);
-
-        this.addButtons(cancelButton, submitButton);
+        this.addDefaultCancelButton(cancelText);
+        this.addDefaultSubmitButton(submitText, onSubmit);
     }
 
     public void addDefaultButtons(
             Runnable onSubmit
     ) {
         this.addDefaultButtons("Submit", onSubmit, "Cancel");
+    }
+
+    public void addDefaultSubmitButton(String submitText, Runnable onSubmit) {
+        var submitButton = new Button(submitText);
+        submitButton.setDefaultButton(true);
+        submitButton.setOnAction((_) -> onSubmit.run());
+        submitButton.getStyleClass().add(Styles.SUCCESS);
+
+        this.addButtons(submitButton);
+    }
+
+    public void addDefaultCancelButton(String cancelText) {
+        var cancelButton = new Button(cancelText);
+        cancelButton.setCancelButton(true);
+        cancelButton.setOnAction((_) -> this.close());
+        cancelButton.getStyleClass().add(Styles.DANGER);
+
+        this.addButtons(cancelButton);
     }
 
     private void addTitle(ObservableList<Node> children, String titleText) {

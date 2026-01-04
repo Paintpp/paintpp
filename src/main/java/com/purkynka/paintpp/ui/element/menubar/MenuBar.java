@@ -4,6 +4,7 @@ import com.purkynka.paintpp.logic.filter.FilterManager;
 import com.purkynka.paintpp.logic.image.ImageIO;
 import com.purkynka.paintpp.logic.image.ImageManager;
 import com.purkynka.paintpp.logic.image.provider.LoadedImageProvider;
+import com.purkynka.paintpp.ui.stage.about.AboutPopupStage;
 import com.purkynka.paintpp.ui.stage.imagegenerator.ImageGeneratorPopupStage;
 import com.purkynka.paintpp.ui.stage.main.MainStage;
 import javafx.scene.control.*;
@@ -43,6 +44,7 @@ public class MenuBar extends ToolBar {
         HBox.setHgrow(filler, Priority.ALWAYS);
 
         var aboutButton = new Button("About", new FontIcon(MaterialDesignI.INFORMATION_VARIANT));
+        aboutButton.setOnAction(_ -> this.onAbout());
         aboutButton.getStyleClass().add("menu-bar-about-button");
 
         this.getItems().addAll(fileMenu, filler, aboutButton);
@@ -70,5 +72,7 @@ public class MenuBar extends ToolBar {
         }
     }
 
-    private void onAbout() {}
+    private void onAbout() {
+        new AboutPopupStage().open();
+    }
 }

@@ -2,11 +2,13 @@ package com.purkynka.paintpp;
 
 import atlantafx.base.theme.CupertinoDark;
 import com.purkynka.paintpp.ui.stage.main.MainStage;
-import devtoolsfx.gui.GUI;
 import javafx.application.Application;
+import javafx.application.HostServices;
 import javafx.stage.Stage;
 
 public class Paintpp extends Application {
+    public static HostServices HOST_SERVICES;
+
     @Override
     public void start(Stage stage) {
         Application.setUserAgentStylesheet(new CupertinoDark().getUserAgentStylesheet());
@@ -14,6 +16,6 @@ public class Paintpp extends Application {
         var mainStage = new MainStage(stage);
         mainStage.show();
 
-        GUI.openToolStage(MainStage.MAIN_STAGE, this.getHostServices());
+        Paintpp.HOST_SERVICES = this.getHostServices();
     }
 }

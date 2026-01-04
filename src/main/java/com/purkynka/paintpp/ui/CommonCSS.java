@@ -1,5 +1,6 @@
 package com.purkynka.paintpp.ui;
 
+import com.purkynka.paintpp.logic.util.ResourceUtil;
 import com.purkynka.paintpp.ui.stage.main.MainStage;
 import javafx.scene.Node;
 import javafx.scene.Scene;
@@ -22,11 +23,12 @@ public class CommonCSS {
                 CommonCSS.getStyleSheet("/size_field.css"),
                 CommonCSS.getStyleSheet("/sidebar.css"),
                 CommonCSS.getStyleSheet("/choice_list.css"),
-                CommonCSS.getStyleSheet("/filter_loading_screen.css")
+                CommonCSS.getStyleSheet("/filter_loading_screen.css"),
+                CommonCSS.getStyleSheet("/about.css")
         );
     }
 
     private static String getStyleSheet(String relativePath) {
-        return Objects.requireNonNull(MainStage.class.getResource("/com/purkynka/paintpp/css" + relativePath)).toExternalForm();
+        return ResourceUtil.getResource("/css" +  relativePath);
     }
 }
