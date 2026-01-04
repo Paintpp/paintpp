@@ -16,6 +16,7 @@ import java.util.concurrent.atomic.AtomicLong;
 public class FilterManager {
     public static ObservableArrayList<ImageFilter> FILTERS = new ObservableArrayList<>();
     public static ObservableValue<BufferBackedImage> FILTERED_IMAGE = new ObservableValue<>();
+    public static ObservableValue<FilterApplyTime> LAST_FILTER_APPLY_TIME = new ObservableValue<>(new FilterApplyTime(Duration.ZERO, Duration.ZERO));
 
     static {
         ImageManager.IMAGE_PROVIDER.addUpdateListener(
@@ -40,9 +41,7 @@ public class FilterManager {
                 task.setOnSucceeded(_ -> {
                     FilterManager.FILTERED_IMAGE.set(newImage);
                     FilterLoadingScreen.FILTER_LOADING_SCREEN.hide();
-
-                    var filterApplyTime = task.getValue();
-                    System.out.println("Finished applying filters: " + filterApplyTime);
+                    LAST_FILTER_APPLY_TIME.set(task.getValue());
                 });
 
                 var thread = new Thread(task);

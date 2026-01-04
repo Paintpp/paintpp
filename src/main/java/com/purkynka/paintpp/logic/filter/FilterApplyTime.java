@@ -13,12 +13,11 @@ public class FilterApplyTime {
         this.actualTime = actualTime;
     }
 
-    @Override
-    public String toString() {
-        return String.format(
-                "%ss (%ss)",
-                FilterApplyTime.DECIMAL_FORMAT.format(actualTime.toMillis() / 1_000d),
-                FilterApplyTime.DECIMAL_FORMAT.format(rawTime.toMillis() / 1_000d)
-        );
+    public String getRawTimeSeconds() {
+        return DECIMAL_FORMAT.format(rawTime.toMillis() / 1_000d);
+    }
+
+    public String getActualTimeSeconds() {
+        return DECIMAL_FORMAT.format(actualTime.toMillis() / 1_000d);
     }
 }

@@ -1,5 +1,6 @@
 package com.purkynka.paintpp.ui.element.statusbar;
 
+import com.purkynka.paintpp.logic.filter.FilterManager;
 import com.purkynka.paintpp.logic.image.ImageManager;
 import com.purkynka.paintpp.ui.CommonCSS;
 import com.purkynka.paintpp.ui.element.imageviewer.ImageViewer;
@@ -11,7 +12,9 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.Priority;
 import org.kordamp.ikonli.javafx.FontIcon;
 import org.kordamp.ikonli.materialdesign2.MaterialDesignA;
+import org.kordamp.ikonli.materialdesign2.MaterialDesignF;
 import org.kordamp.ikonli.materialdesign2.MaterialDesignM;
+import org.kordamp.ikonli.materialdesign2.MaterialDesignT;
 
 public class StatusBar extends HBox {
     public static final double STATUS_BAR_HEIGHT = 32d;
@@ -23,6 +26,10 @@ public class StatusBar extends HBox {
 
     private HBox imageZoomWatcher;
     private Label imageZoom;
+
+    private HBox filterApplyTimeWatcher;
+    private Label filterApplyTimeActual;
+    private Label filterApplyTimeRaw;
 
     public StatusBar() {
         super();
@@ -41,6 +48,7 @@ public class StatusBar extends HBox {
         this.getChildren().addAll(
                 this.imageSizeWatcher,
                 filler,
+                this.filterApplyTimeWatcher,
                 this.imageZoomWatcher
         );
     }
@@ -48,6 +56,7 @@ public class StatusBar extends HBox {
     private void setupElements() {
         this.setupImageSizeWatcher();
         this.setupImageZoomWatcher();
+        this.setupFilterApplyTimeWatcher();
     }
 
     private void setupImageSizeWatcher() {
@@ -85,6 +94,22 @@ public class StatusBar extends HBox {
         this.imageZoomWatcher.getStyleClass().add("image-zoom-watcher");
     }
 
+    private void setupFilterApplyTimeWatcher() {
+        var filterIcon = new FontIcon(MaterialDesignF.FUNCTION_VARIANT);
+        filterIcon.getStyleClass().add("filter-apply-time-watcher-icon");
+
+        this.filterApplyTimeActual = new Label("0s");
+        this.filterApplyTimeActual.getStyleClass().addAll("filter-apply-time-watcher-label", "filter-apply-time-watcher-time");
+
+        this.filterApplyTimeRaw = new Label("(0s)");
+        this.filterApplyTimeRaw.getStyleClass().addAll("filter-apply-time-watcher-label");
+
+        this.filterApplyTimeWatcher = new HBox(8, filterIcon, this.filterApplyTimeActual, this.filterApplyTimeRaw);
+        this.filterApplyTimeWatcher.setPadding(new Insets(0, 8, 0, 8));
+        this.filterApplyTimeWatcher.setAlignment(Pos.CENTER);
+        this.filterApplyTimeWatcher.getStyleClass().add("filter-apply-time-watcher");
+    }
+
     private void setupChangeHandlers() {
         ImageManager.IMAGE_PROVIDER.addUpdateListener(imageProvider -> {
             var imageSize = imageProvider.getBufferBackedImage().getImageSize();
@@ -96,5 +121,10 @@ public class StatusBar extends HBox {
         ImageViewer.ZOOM_CHANGE_EVENT.addEventListener(
                 (currentZoom, _, _) -> this.imageZoom.setText(String.format("%.2fx", currentZoom))
         );
+
+        FilterManager.LAST_FILTER_APPLY_TIME.addUpdateListener(v -> {
+            this.filterApplyTimeActual.setText(String.format("%ss", v.getActualTimeSeconds()));
+            this.filterApplyTimeRaw.setText(String.format("(%ss)", v.getRawTimeSeconds()));
+        });
     }
 }
