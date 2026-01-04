@@ -8,7 +8,7 @@ public enum ImageGenerationType implements DescriptiveEnum {
     XY("X & Y Position", "R: x, G: y"),
     XY_AVERAGE("X & Y Position with Average", "R: x, G: y, B: avg(x + y)"),
     SIN("Sin", "R: sin(x), G: sin(y), B: avg(x + y)"),
-    MANDELBROT("Mandelbrot", "Mandelbrot set with 1000 iterations");
+    MANDELBROT("Mandelbrot", "Mandelbrot set with 1000 iterations.\nQuite slow to generate!");
 
     private final String name;
     private final String description;
