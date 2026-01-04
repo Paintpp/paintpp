@@ -39,7 +39,6 @@ public class ActionBar extends VBox {
         this.getChildren().addAll(
                 addFilterButton,
                 filler,
-                new ActionBarButton(MaterialDesignC.COG, "Settings"),
                 new ActionBarButton(MaterialDesignH.HELP, "Help")
         );
     }
