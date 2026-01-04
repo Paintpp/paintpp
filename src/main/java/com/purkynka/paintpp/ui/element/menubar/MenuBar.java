@@ -5,6 +5,7 @@ import com.purkynka.paintpp.logic.image.ImageIO;
 import com.purkynka.paintpp.logic.image.ImageManager;
 import com.purkynka.paintpp.logic.image.provider.LoadedImageProvider;
 import com.purkynka.paintpp.ui.stage.imagegenerator.ImageGeneratorPopupStage;
+import com.purkynka.paintpp.ui.stage.main.MainStage;
 import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
@@ -44,10 +45,7 @@ public class MenuBar extends ToolBar {
         var aboutButton = new Button("About", new FontIcon(MaterialDesignI.INFORMATION_VARIANT));
         aboutButton.getStyleClass().add("menu-bar-about-button");
 
-        var exitButton = new Button("", new FontIcon(MaterialDesignC.CLOSE));
-        exitButton.getStyleClass().add("menu-bar-exit-button");
-
-        this.getItems().addAll(fileMenu, filler, aboutButton, exitButton);
+        this.getItems().addAll(fileMenu, filler, aboutButton);
     }
 
     private void onGenerateImage() {
@@ -73,6 +71,4 @@ public class MenuBar extends ToolBar {
     }
 
     private void onAbout() {}
-
-    private void onExit() {}
 }
