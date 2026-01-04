@@ -2,6 +2,7 @@ package com.purkynka.paintpp.ui.element.actionbar;
 
 import com.purkynka.paintpp.logic.image.ImageManager;
 import com.purkynka.paintpp.ui.CommonCSS;
+import com.purkynka.paintpp.ui.stage.about.AboutPopupStage;
 import com.purkynka.paintpp.ui.stage.filteradder.FilterAdderPopupStage;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Priority;
@@ -9,6 +10,7 @@ import javafx.scene.layout.VBox;
 import org.kordamp.ikonli.materialdesign2.MaterialDesignC;
 import org.kordamp.ikonli.materialdesign2.MaterialDesignF;
 import org.kordamp.ikonli.materialdesign2.MaterialDesignH;
+import org.kordamp.ikonli.materialdesign2.MaterialDesignI;
 
 public class ActionBar extends VBox {
     public static final double ACTION_BAR_WIDTH = 96d;
@@ -36,10 +38,13 @@ public class ActionBar extends VBox {
             addFilterButton.setDisable(imageProvider == null);
         });
 
+        var aboutButton = new ActionBarButton(MaterialDesignI.INFORMATION_VARIANT, "About");
+        aboutButton.setOnMouseClicked(_ -> new AboutPopupStage().open());
+
         this.getChildren().addAll(
                 addFilterButton,
                 filler,
-                new ActionBarButton(MaterialDesignH.HELP, "Help")
+                aboutButton
         );
     }
 }

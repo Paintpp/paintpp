@@ -40,14 +40,7 @@ public class MenuBar extends ToolBar {
                 saveImageButton
         );
 
-        var filler = new Pane();
-        HBox.setHgrow(filler, Priority.ALWAYS);
-
-        var aboutButton = new Button("About", new FontIcon(MaterialDesignI.INFORMATION_VARIANT));
-        aboutButton.setOnAction(_ -> this.onAbout());
-        aboutButton.getStyleClass().add("menu-bar-about-button");
-
-        this.getItems().addAll(fileMenu, filler, aboutButton);
+        this.getItems().addAll(fileMenu);
     }
 
     private void onGenerateImage() {
@@ -70,9 +63,5 @@ public class MenuBar extends ToolBar {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-    }
-
-    private void onAbout() {
-        new AboutPopupStage().open();
     }
 }
