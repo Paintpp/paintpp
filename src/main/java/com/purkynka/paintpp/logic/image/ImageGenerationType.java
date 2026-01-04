@@ -1,23 +1,27 @@
-package com.purkynka.paintpp.ui.stage.imagegenerator;
+package com.purkynka.paintpp.logic.image;
 
 import com.purkynka.paintpp.ui.element.form.input.choicefield.DescriptiveEnum;
 
-public enum GenerationType implements DescriptiveEnum {
-    X("X Position", "Red: x"),
-    Y("Y Position", "Green: y");
+public enum ImageGenerationType implements DescriptiveEnum {
+    X("X Position", "R: x"),
+    Y("Y Position", "G: y"),
+    XY("X & Y Position", "R: x, G: y"),
+    XY_AVERAGE("X & Y Position with Average", "R: x, G: y, B: avg(x + y)"),
+    SIN("Sin", "R: sin(x), G: sin(y), B: avg(x + y)"),
+    MANDELBROT("Mandelbrot", "Mandelbrot set with 1000 iterations");
 
     private final String name;
     private final String description;
 
-    GenerationType(String name, String description) {
+    ImageGenerationType(String name, String description) {
         this.name = name;
         this.description = this.highlightVariables(description);
     }
 
     private String highlightVariables(String text) {
-        var result = text.replaceAll("Red", "[color=-color-danger-fg]R[/color]");
-        result = result.replaceAll("Green", "[color=-color-success-fg]G[/color]");
-        result = result.replaceAll("Blue", "[color=-color-accent-fg]B[/color]");
+        var result = text.replaceAll("R", "[color=-color-danger-fg]R[/color]");
+        result = result.replaceAll("G", "[color=-color-success-fg]G[/color]");
+        result = result.replaceAll("B", "[color=-color-accent-fg]B[/color]");
         result = result.replaceAll("x", "[color=-color-fg-default]x[/color]");
         result = result.replaceAll("y", "[color=-color-fg-default]y[/color]");
         result = result.replaceAll("\\d+", "[color=-color-fg-default]$0[/color]");

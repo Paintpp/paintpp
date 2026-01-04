@@ -10,7 +10,9 @@ import com.purkynka.paintpp.ui.element.form.input.validator.ChoiceFieldValidator
 import javafx.beans.property.ReadOnlyDoubleProperty;
 import javafx.css.PseudoClass;
 import javafx.geometry.Insets;
+import javafx.scene.Group;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Tooltip;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.Pane;
@@ -37,6 +39,7 @@ public class ChoiceField<C, E extends Enum<E> & DescriptiveEnum> extends Pane {
     private Label choiceField;
     private Label fieldLabel;
     private FontIcon openedIcon;
+    private ScrollPane choiceScrollPane;
     private VBox choiceContainer;
     private boolean opened;
 
@@ -65,7 +68,7 @@ public class ChoiceField<C, E extends Enum<E> & DescriptiveEnum> extends Pane {
 
         this.onChoiceSelected();
 
-        this.getChildren().addAll(this.choiceField, this.fieldLabel, this.openedIcon, this.choiceContainer, this.errorIcon);
+        this.getChildren().addAll(this.choiceField, this.fieldLabel, this.openedIcon, this.choiceScrollPane, this.errorIcon);
     }
 
     private void setupFormObservables(FormContext<C> formContext) {
@@ -84,14 +87,14 @@ public class ChoiceField<C, E extends Enum<E> & DescriptiveEnum> extends Pane {
         this.setWidth(256);
         this.getStyleClass().addAll("choice-field");
 
-        // this.setViewOrder(-10);
+        this.setViewOrder(-10);
     }
 
     private void setupElements() {
         this.setupChoiceField();
         this.setupFieldLabel();
         this.setupOpenedIcon();
-        this.setupChoiceContainer();
+        this.setupChoiceElements();
         this.setupErrorElements();
     }
 
@@ -128,12 +131,17 @@ public class ChoiceField<C, E extends Enum<E> & DescriptiveEnum> extends Pane {
         this.openedIcon.getStyleClass().add("choice-field-opened-icon");
     }
 
-    private void setupChoiceContainer() {
+    private void setupChoiceElements() {
         this.choiceContainer = new VBox();
-
-        this.choiceContainer.minWidthProperty().bind(widthProperty());
-        this.choiceContainer.layoutYProperty().bind(heightProperty().add(4));
+        this.choiceContainer.minWidthProperty().bind(this.widthProperty().subtract(16));
         this.choiceContainer.setFillWidth(true);
+
+        this.choiceScrollPane = new ScrollPane(new Group(this.choiceContainer));
+        this.choiceScrollPane.prefWidthProperty().bind(this.widthProperty());
+        this.choiceScrollPane.setPrefHeight(128);
+        this.choiceScrollPane.layoutYProperty().bind(this.heightProperty().add(4));
+
+        // this.choiceContainer.setFillWidth(true);
 
         var children = this.choiceContainer.getChildren();
         for (var i = 0; i < this.availableValues.length; i++) {
@@ -150,7 +158,7 @@ public class ChoiceField<C, E extends Enum<E> & DescriptiveEnum> extends Pane {
             children.add(child);
         }
 
-        this.choiceContainer.setVisible(false);
+        this.choiceScrollPane.setVisible(false);
         this.choiceContainer.getStyleClass().add("choice-field-choice-container");
     }
 
@@ -184,7 +192,7 @@ public class ChoiceField<C, E extends Enum<E> & DescriptiveEnum> extends Pane {
     private void setOpened(boolean opened) {
         this.opened = opened;
 
-        this.choiceContainer.setVisible(this.opened);
+        this.choiceScrollPane.setVisible(this.opened);
         this.choiceContainer.getChildren().getFirst().requestFocus();
         pseudoClassStateChanged(ChoiceField.OPENED, this.opened);
     }

@@ -1,5 +1,6 @@
 package com.purkynka.paintpp.ui.stage.imagegenerator;
 
+import com.purkynka.paintpp.logic.image.ImageGenerationType;
 import com.purkynka.paintpp.logic.image.ImageManager;
 import com.purkynka.paintpp.logic.image.provider.GeneratedImageProvider;
 import com.purkynka.paintpp.ui.element.form.context.FormContext;
@@ -28,7 +29,7 @@ public class ImageGeneratorPopupStage extends PopupStage {
 
     private void onSubmit() {
         var formValue = this.formContext.getObservableFormValue().get();
-        ImageManager.IMAGE_PROVIDER.set(new GeneratedImageProvider(formValue.generationType, formValue.imageSize));
+        ImageManager.IMAGE_PROVIDER.set(new GeneratedImageProvider(formValue.imageGenerationType, formValue.imageSize));
 
         this.close();
     }
@@ -36,19 +37,19 @@ public class ImageGeneratorPopupStage extends PopupStage {
     @Override
     protected Parent createRoot() {
         var container = new VBox(16);
-        container.setMinHeight(200);
+        container.setMinHeight(232);
 
         var imageSizeInput = new SizeField<>(this.formContext,
                 (curr, width) -> curr.imageSize.width = width,
                 (curr, height) -> curr.imageSize.height = height
         );
 
-        var generationTypeInput = new ChoiceField<>(this.formContext, GenerationType.class)
+        var generationTypeInput = new ChoiceField<>(this.formContext, ImageGenerationType.class)
                 .bindWidth(container.widthProperty())
                 .setLabel("Generation Type")
                 .setPlaceholder("X Position...")
                 .addValidators(new RequiredValidator())
-                .setFormValueSetter((curr, v) -> curr.generationType = v);
+                .setFormValueSetter((curr, v) -> curr.imageGenerationType = v);
 
         container.getChildren().addAll(imageSizeInput, generationTypeInput);
 
