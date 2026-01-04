@@ -22,6 +22,12 @@
         </dependency>
 
         <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-swing</artifactId>
+            <version>25</version>
+        </dependency>
+
+        <dependency>
             <groupId>io.github.mkpaz</groupId>
             <artifactId>atlantafx-base</artifactId>
             <version>2.1.0</version>

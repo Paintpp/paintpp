@@ -1,5 +1,6 @@
 package com.purkynka.paintpp.ui.element.menubar;
 
+import com.purkynka.paintpp.logic.filter.FilterManager;
 import com.purkynka.paintpp.logic.image.ImageIO;
 import com.purkynka.paintpp.logic.image.ImageManager;
 import com.purkynka.paintpp.logic.image.provider.LoadedImageProvider;
@@ -12,6 +13,8 @@ import org.kordamp.ikonli.javafx.FontIcon;
 import org.kordamp.ikonli.materialdesign2.MaterialDesignC;
 import org.kordamp.ikonli.materialdesign2.MaterialDesignF;
 import org.kordamp.ikonli.materialdesign2.MaterialDesignI;
+
+import java.io.IOException;
 
 public class MenuBar extends ToolBar {
     public MenuBar() {
@@ -28,15 +31,11 @@ public class MenuBar extends ToolBar {
         var saveImageButton = new MenuItem("Save Image", new FontIcon(MaterialDesignF.FILE_DOWNLOAD));
         saveImageButton.setOnAction((_) -> this.onSaveImage());
 
-        var saveAsButton = new MenuItem("Save As", new FontIcon(MaterialDesignF.FILE_DOWNLOAD));
-        saveAsButton.setOnAction((_) -> this.onSaveAs());
-
         fileMenu.getItems().addAll(
                 generateImageButton,
                 loadImageButton,
                 new SeparatorMenuItem(),
-                saveImageButton,
-                saveAsButton
+                saveImageButton
         );
 
         var filler = new Pane();
@@ -63,9 +62,15 @@ public class MenuBar extends ToolBar {
         ImageManager.IMAGE_PROVIDER.set(new LoadedImageProvider(chosenImagePath));
     }
 
-    private void onSaveImage() {}
+    private void onSaveImage() {
+        var currentFilteredImage = FilterManager.FILTERED_IMAGE.get();
 
-    private void onSaveAs() {}
+        try {
+            ImageIO.saveImage(currentFilteredImage.getImage());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
     private void onAbout() {}
 
