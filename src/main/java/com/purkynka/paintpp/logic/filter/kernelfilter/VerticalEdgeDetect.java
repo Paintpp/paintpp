@@ -9,10 +9,10 @@ public class VerticalEdgeDetect extends KernelFilter {
 
     @Override
     protected double[][] constructKernel() {
-        return new double[][] {
-                { 1, 2, 1 },
-                { 0, 0, 0 },
-                { -1, -2, -1 }
+        return new double[][]{
+                {1, 2, 1},
+                {0, 0, 0},
+                {-1, -2, -1}
         };
     }
 

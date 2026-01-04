@@ -2,7 +2,6 @@ package com.purkynka.paintpp.ui.element.imageviewer;
 
 
 import atlantafx.base.theme.Styles;
-import com.purkynka.paintpp.logic.event.ConsumerEvent;
 import com.purkynka.paintpp.logic.event.ZoomChangeEvent;
 import com.purkynka.paintpp.logic.filter.FilterManager;
 import com.purkynka.paintpp.logic.image.ImageManager;
@@ -19,29 +18,22 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 
 public class ImageViewer extends StackPane {
+    public static final ZoomChangeEvent ZOOM_CHANGE_EVENT = new ZoomChangeEvent();
     private static final double DEFAULT_MIN_ZOOM = 0.9d;
     private static final double MIN_ZOOM_LIMIT = 0.001d;
     private static final double DEFAULT_MAX_ZOOM = 5d;
     private static final double ZOOM_SENSITIVITY = 0.5d;
-
     private Label noImageLabel;
-
     private ImageView imageView;
     private Group imageViewGroup;
-
     private StackPane imagePaddingPane;
     private StackPane imageCenteringPane;
-
     private ScrollPane imageScrollPane;
-
     private boolean imageVisible;
     private ImageProvider imageProvider;
-
     private double currentZoom = ImageViewer.DEFAULT_MIN_ZOOM;
     private double currentMinZoom = ImageViewer.DEFAULT_MIN_ZOOM;
     private double currentMaxZoom = ImageViewer.DEFAULT_MAX_ZOOM;
-
-    public static final ZoomChangeEvent ZOOM_CHANGE_EVENT = new ZoomChangeEvent();
 
     public ImageViewer() {
         super();

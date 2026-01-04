@@ -1,18 +1,18 @@
 package com.purkynka.paintpp.logic.image.provider;
 
 import com.purkynka.paintpp.logic.image.BufferBackedImage;
+import com.purkynka.paintpp.logic.image.ImageGenerationType;
 import com.purkynka.paintpp.logic.size.FloatSize;
 import com.purkynka.paintpp.logic.size.IntSize;
-import com.purkynka.paintpp.logic.image.ImageGenerationType;
 import com.purkynka.paintpp.logic.util.BufferUtil;
 
 import java.awt.*;
 import java.nio.IntBuffer;
 
 public class GeneratedImageProvider implements ImageProvider {
+    private static final int MANDELBROT_ITERATIONS = 1000;
     private final IntSize imageSize;
     private final FloatSize imageFloatSize;
-
     private final BufferBackedImage bufferBackedImage;
     private final IntBuffer pixelIntBuffer;
 
@@ -23,14 +23,14 @@ public class GeneratedImageProvider implements ImageProvider {
         this.bufferBackedImage = new BufferBackedImage(imageSize);
         this.pixelIntBuffer = bufferBackedImage.getPixelIntBuffer();
 
-        switch(imageGenerationType) {
+        switch (imageGenerationType) {
             case X -> generateX();
             case Y -> generateY();
             case XY -> generateXY();
             case XY_AVERAGE -> generateXYAverage();
             case SIN -> generateSin();
             case MANDELBROT -> generateMandelbrot();
-        };
+        }
     }
 
     private void generateX() {
@@ -89,7 +89,6 @@ public class GeneratedImageProvider implements ImageProvider {
         }
     }
 
-    private static final int MANDELBROT_ITERATIONS = 1000;
     private void generateMandelbrot() {
         var originalXRange = imageSize.width;
         var originalYRange = imageSize.height;

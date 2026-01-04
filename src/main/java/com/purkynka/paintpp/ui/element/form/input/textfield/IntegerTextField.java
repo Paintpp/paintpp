@@ -5,7 +5,6 @@ import com.purkynka.paintpp.ui.element.form.context.FormValueSetter;
 import com.purkynka.paintpp.ui.element.form.input.validator.TextFieldValidator;
 import javafx.beans.property.ReadOnlyDoubleProperty;
 
-import java.util.Collections;
 import java.util.function.Function;
 
 public class IntegerTextField<C> extends TextField<C, Integer> {

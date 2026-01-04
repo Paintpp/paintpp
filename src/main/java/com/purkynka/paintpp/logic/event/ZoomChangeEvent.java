@@ -3,11 +3,6 @@ package com.purkynka.paintpp.logic.event;
 import java.util.ArrayList;
 
 public class ZoomChangeEvent {
-    @FunctionalInterface
-    public interface ZoomChangeListener {
-        void onChange(double currentZoom, double currentMinZoom, double currentMaxZoom);
-    }
-
     private final ArrayList<ZoomChangeListener> listeners;
 
     public ZoomChangeEvent() {
@@ -22,5 +17,10 @@ public class ZoomChangeEvent {
         for (ZoomChangeListener listener : listeners) {
             listener.onChange(currentZoom, currentMinZoom, currentMaxZoom);
         }
+    }
+
+    @FunctionalInterface
+    public interface ZoomChangeListener {
+        void onChange(double currentZoom, double currentMinZoom, double currentMaxZoom);
     }
 }

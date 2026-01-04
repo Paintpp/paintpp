@@ -22,7 +22,7 @@ public class CustomMatrixFilter extends KernelFilter {
         var height = providedKernel.size();
         var width = providedKernel.getFirst().size();
 
-        var kernel = new  double[height][width];
+        var kernel = new double[height][width];
         for (var y = 0; y < height; y++) {
             for (var x = 0; x < width; x++) {
                 kernel[y][x] = providedKernel.get(y).get(x);

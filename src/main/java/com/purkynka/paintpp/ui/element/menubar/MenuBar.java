@@ -4,17 +4,13 @@ import com.purkynka.paintpp.logic.filter.FilterManager;
 import com.purkynka.paintpp.logic.image.ImageIO;
 import com.purkynka.paintpp.logic.image.ImageManager;
 import com.purkynka.paintpp.logic.image.provider.LoadedImageProvider;
-import com.purkynka.paintpp.ui.stage.about.AboutPopupStage;
 import com.purkynka.paintpp.ui.stage.imagegenerator.ImageGeneratorPopupStage;
-import com.purkynka.paintpp.ui.stage.main.MainStage;
-import javafx.scene.control.*;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.Priority;
+import javafx.scene.control.MenuButton;
+import javafx.scene.control.MenuItem;
+import javafx.scene.control.SeparatorMenuItem;
+import javafx.scene.control.ToolBar;
 import org.kordamp.ikonli.javafx.FontIcon;
-import org.kordamp.ikonli.materialdesign2.MaterialDesignC;
 import org.kordamp.ikonli.materialdesign2.MaterialDesignF;
-import org.kordamp.ikonli.materialdesign2.MaterialDesignI;
 
 import java.io.IOException;
 

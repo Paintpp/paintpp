@@ -8,12 +8,10 @@ import java.awt.*;
 import java.util.Random;
 
 public class NoiseFilter extends ImageFilter {
+    private final Random random = new Random();
     private int noiseAmount;
     private int noiseStrength;
-
     private double noiseColorRatio;
-
-    private final Random random = new Random();
 
     public NoiseFilter(int noiseAmount, int noiseStrength) {
         this.noiseAmount = noiseAmount;

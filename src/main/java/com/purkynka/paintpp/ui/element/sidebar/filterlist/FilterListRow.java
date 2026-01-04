@@ -15,9 +15,9 @@ import org.kordamp.ikonli.materialdesign2.MaterialDesignF;
 import org.kordamp.ikonli.materialdesign2.MaterialDesignT;
 
 public class FilterListRow extends HBox {
-    private ImageFilter imageFilter;
-    private int filterIndex;
-    private int filterMaxIndex;
+    private final ImageFilter imageFilter;
+    private final int filterIndex;
+    private final int filterMaxIndex;
 
     private FontIcon rowIcon;
     private Label rowLabel;

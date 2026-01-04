@@ -12,10 +12,8 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 
 public class FilterPreview extends VBox {
-    private BufferBackedImage scaledImageCopy;
-
     private final ImageFilter imageFilter;
-
+    private BufferBackedImage scaledImageCopy;
     private ImageView imageView;
     private Label previewLabel;
 

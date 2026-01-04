@@ -9,10 +9,10 @@ public class EmbossFilter extends KernelFilter {
 
     @Override
     protected double[][] constructKernel() {
-        return new double[][] {
-                { -2, -1, 0 },
-                { -1, 1, 1 },
-                { 0, 1, 2 }
+        return new double[][]{
+                {-2, -1, 0},
+                {-1, 1, 1},
+                {0, 1, 2}
         };
     }
 

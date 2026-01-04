@@ -14,7 +14,8 @@ public abstract class KernelFilter extends ImageFilter {
     protected int kernelWidth;
     protected int kernelHeight;
 
-    public KernelFilter() {}
+    public KernelFilter() {
+    }
 
     public KernelFilter(boolean normalizeKernel) {
         this.normalizeKernel = normalizeKernel;

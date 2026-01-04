@@ -9,7 +9,8 @@ public class IntSize {
         this.height = height;
     }
 
-    public IntSize() {}
+    public IntSize() {
+    }
 
     public int totalPixels() {
         return width * height;

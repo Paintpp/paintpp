@@ -16,7 +16,7 @@ public class IntegerSliderField<C> extends HBox {
     private int min;
     private int max;
 
-    private FormContext<C> formContext;
+    private final FormContext<C> formContext;
 
     public IntegerSliderField(FormContext<C> formContext) {
         super(16);

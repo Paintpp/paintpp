@@ -3,8 +3,6 @@ package com.purkynka.paintpp.logic.filter.imagefilter;
 import com.purkynka.paintpp.logic.filter.FilterType;
 import com.purkynka.paintpp.logic.image.BufferBackedImage;
 
-import java.nio.Buffer;
-
 public abstract class ImageFilter {
     private BufferBackedImage cachedImage = null;
     private boolean dirty;
@@ -49,5 +47,6 @@ public abstract class ImageFilter {
     }
 
     public abstract void modifyPixelBuffer(BufferBackedImage modifiedImage);
+
     public abstract FilterType getFilterType();
 }

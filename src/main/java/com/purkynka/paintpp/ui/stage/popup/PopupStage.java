@@ -21,12 +21,10 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 public abstract class PopupStage extends Stage {
+    protected ArrayList<Button> buttons = new ArrayList<>();
     private Parent root;
-
     private boolean showTitle;
     private String titleText;
-
-    protected ArrayList<Button> buttons = new ArrayList<>();
 
     public PopupStage() {
         this.initStyle(StageStyle.UNDECORATED);

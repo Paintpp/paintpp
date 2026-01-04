@@ -9,10 +9,10 @@ public class SharpenFilter extends KernelFilter {
 
     @Override
     protected double[][] constructKernel() {
-        return new double[][] {
-                {  0,  -1,  0 },
-                { -1,   5, -1 },
-                {  0,  -1,  0 }
+        return new double[][]{
+                {0, -1, 0},
+                {-1, 5, -1},
+                {0, -1, 0}
         };
     }
 

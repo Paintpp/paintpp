@@ -4,8 +4,6 @@ import atlantafx.base.theme.Styles;
 import com.purkynka.paintpp.Paintpp;
 import com.purkynka.paintpp.logic.util.ResourceUtil;
 import com.purkynka.paintpp.ui.stage.popup.PopupStage;
-import javafx.application.Application;
-import javafx.application.HostServices;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
@@ -101,7 +99,7 @@ public class AboutPopupStage extends PopupStage {
         var testRatContainer = new VBox(testRatImageView, testRatName, testRatDescription);
         testRatContainer.setAlignment(Pos.CENTER);
 
-        var container = new HBox(64, projectInfoContainer, teamInfoContainer, testRatContainer);;
+        var container = new HBox(64, projectInfoContainer, teamInfoContainer, testRatContainer);
         container.setPadding(new Insets(0, 32, 0, 32));
 
         return container;

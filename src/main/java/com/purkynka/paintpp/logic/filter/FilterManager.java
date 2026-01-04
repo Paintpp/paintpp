@@ -6,12 +6,10 @@ import com.purkynka.paintpp.logic.image.ImageManager;
 import com.purkynka.paintpp.logic.observable.ObservableArrayList;
 import com.purkynka.paintpp.logic.observable.ObservableValue;
 import com.purkynka.paintpp.ui.element.filterloadingscreen.FilterLoadingScreen;
-import com.purkynka.paintpp.ui.element.sidebar.filterlist.FilterApplyDuration;
 import javafx.application.Platform;
 import javafx.concurrent.Task;
 
 import java.time.Duration;
-import java.util.concurrent.atomic.AtomicLong;
 
 public class FilterManager {
     public static ObservableArrayList<ImageFilter> FILTERS = new ObservableArrayList<>();
@@ -27,27 +25,27 @@ public class FilterManager {
         );
 
         FilterManager.FILTERS.addListener(
-            _ -> {
-                var newImage = new BufferBackedImage(ImageManager.IMAGE_PROVIDER.get().getBufferBackedImage());
+                _ -> {
+                    var newImage = new BufferBackedImage(ImageManager.IMAGE_PROVIDER.get().getBufferBackedImage());
 
-                var task = new Task<FilterApplyTime>() {
-                    @Override
-                    protected FilterApplyTime call() {
-                        return FilterManager.applyFilters(newImage, true);
-                    }
-                };
+                    var task = new Task<FilterApplyTime>() {
+                        @Override
+                        protected FilterApplyTime call() {
+                            return FilterManager.applyFilters(newImage, true);
+                        }
+                    };
 
-                task.setOnScheduled(_ -> FilterLoadingScreen.FILTER_LOADING_SCREEN.show());
-                task.setOnSucceeded(_ -> {
-                    FilterManager.FILTERED_IMAGE.set(newImage);
-                    FilterLoadingScreen.FILTER_LOADING_SCREEN.hide();
-                    LAST_FILTER_APPLY_TIME.set(task.getValue());
-                });
+                    task.setOnScheduled(_ -> FilterLoadingScreen.FILTER_LOADING_SCREEN.show());
+                    task.setOnSucceeded(_ -> {
+                        FilterManager.FILTERED_IMAGE.set(newImage);
+                        FilterLoadingScreen.FILTER_LOADING_SCREEN.hide();
+                        LAST_FILTER_APPLY_TIME.set(task.getValue());
+                    });
 
-                var thread = new Thread(task);
-                thread.setDaemon(true);
-                thread.start();
-            }
+                    var thread = new Thread(task);
+                    thread.setDaemon(true);
+                    thread.start();
+                }
         );
     }
 

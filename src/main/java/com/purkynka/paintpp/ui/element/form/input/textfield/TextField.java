@@ -4,7 +4,6 @@ import com.purkynka.paintpp.logic.observable.ObservableHashSet;
 import com.purkynka.paintpp.logic.observable.ObservableValue;
 import com.purkynka.paintpp.ui.element.form.context.FormContext;
 import com.purkynka.paintpp.ui.element.form.context.FormValueSetter;
-import com.purkynka.paintpp.ui.element.form.input.choicefield.ChoiceField;
 import com.purkynka.paintpp.ui.element.form.input.validator.TextFieldValidator;
 import javafx.beans.property.ReadOnlyDoubleProperty;
 import javafx.css.PseudoClass;
@@ -232,23 +231,23 @@ public abstract class TextField<C, V> extends Pane {
         return this;
     }
 
+    public String getStringValue() {
+        return this.observableStringValue.get();
+    }
+
     public TextField<C, V> setStringValue(String value) {
         this.textField.setText(value);
         return this;
+    }
+
+    public V getValue() {
+        return this.observableValue.get();
     }
 
     public TextField<C, V> setValue(V value) {
         this.textField.setText(value == null ? null : value.toString());
 
         return this;
-    }
-
-    public String getStringValue() {
-        return this.observableStringValue.get();
-    }
-
-    public V getValue() {
-        return this.observableValue.get();
     }
 
     public ObservableValue<String> getObservableStringValue() {

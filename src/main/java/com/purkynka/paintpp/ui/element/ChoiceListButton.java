@@ -1,7 +1,6 @@
 package com.purkynka.paintpp.ui.element;
 
 import atlantafx.base.util.BBCodeParser;
-import javafx.css.PseudoClass;
 import javafx.scene.control.Button;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;

@@ -13,7 +13,8 @@ public class FloatSize {
         this(intSize.width.floatValue(), intSize.height.floatValue());
     }
 
-    public FloatSize() {}
+    public FloatSize() {
+    }
 
     public float totalPixels() {
         return width * height;

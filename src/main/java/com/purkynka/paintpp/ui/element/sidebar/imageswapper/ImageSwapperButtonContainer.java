@@ -1,7 +1,6 @@
 package com.purkynka.paintpp.ui.element.sidebar.imageswapper;
 
 import com.purkynka.paintpp.logic.image.ImageManager;
-import com.purkynka.paintpp.ui.element.sidebar.Sidebar;
 import javafx.css.PseudoClass;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;

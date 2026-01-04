@@ -8,14 +8,12 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 
 public class CheckboxField<C> extends HBox {
+    private final ObservableValue<Boolean> observableValue = new ObservableValue<>();
     private Label fieldLabel;
     private CheckBox checkBox;
-
     private FormContext<C> formContext;
     private ObservableValue<C> formContextValue;
     private FormValueSetter<C, Boolean> formValueSetter;
-
-    private final ObservableValue<Boolean> observableValue = new ObservableValue<>();
 
     public CheckboxField() {
         super(8);

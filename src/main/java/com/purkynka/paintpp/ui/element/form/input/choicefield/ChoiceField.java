@@ -33,28 +33,23 @@ public class ChoiceField<C, E extends Enum<E> & DescriptiveEnum> extends Pane {
     private static final PseudoClass FOCUSED = PseudoClass.getPseudoClass("focused");
     private static final PseudoClass INVALID = PseudoClass.getPseudoClass("invalid");
     private static final PseudoClass VALID = PseudoClass.getPseudoClass("valid");
-
+    private final ArrayList<ChoiceFieldValidator> validators = new ArrayList<>();
+    private final String elementUUID = UUID.randomUUID().toString();
+    private final ObservableValue<E> observableValue = new ObservableValue<>(null);
     private String placeholderText;
-
     private Label choiceField;
     private Label fieldLabel;
     private FontIcon openedIcon;
     private ScrollPane choiceScrollPane;
     private VBox choiceContainer;
     private boolean opened;
-
     private FontIcon errorIcon;
     private Tooltip errorTooltip;
-    private final ArrayList<ChoiceFieldValidator> validators = new ArrayList<>();
     private boolean hasErrors;
-
-    private final String elementUUID = UUID.randomUUID().toString();
     private ObservableValue<C> observableFormValue;
     private ObservableHashSet<String> observableFormErrors;
     private FormValueSetter<C, E> formValueSetter;
-
     private E[] availableValues;
-    private final ObservableValue<E> observableValue = new ObservableValue<>(null);
 
     public ChoiceField(FormContext<C> formContext, Class<E> choicesEnumClass) {
         super();
@@ -83,7 +78,7 @@ public class ChoiceField<C, E extends Enum<E> & DescriptiveEnum> extends Pane {
     private void setupContainer() {
         this.setMinHeight(ChoiceField.CHOICE_FIELD_HEIGHT);
         this.setMaxHeight(ChoiceField.CHOICE_FIELD_HEIGHT);
-        
+
         this.setWidth(256);
         this.getStyleClass().addAll("choice-field");
 
@@ -179,7 +174,9 @@ public class ChoiceField<C, E extends Enum<E> & DescriptiveEnum> extends Pane {
         this.choiceField.setOnMouseClicked(_ -> this.setOpened(!this.opened));
         this.choiceField.setOnKeyPressed(e -> {
             if (!this.choiceField.isFocused()) return;
-            if (e.getCode() != KeyCode.SPACE && e.getCode() != KeyCode.ENTER) { return; }
+            if (e.getCode() != KeyCode.SPACE && e.getCode() != KeyCode.ENTER) {
+                return;
+            }
 
             this.setOpened(!this.opened);
         });

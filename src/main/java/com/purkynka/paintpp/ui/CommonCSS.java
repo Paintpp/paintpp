@@ -1,11 +1,7 @@
 package com.purkynka.paintpp.ui;
 
 import com.purkynka.paintpp.logic.util.ResourceUtil;
-import com.purkynka.paintpp.ui.stage.main.MainStage;
-import javafx.scene.Node;
 import javafx.scene.Scene;
-
-import java.util.Objects;
 
 public class CommonCSS {
     public static final double BORDER_WIDTH = 2;
@@ -29,6 +25,6 @@ public class CommonCSS {
     }
 
     private static String getStyleSheet(String relativePath) {
-        return ResourceUtil.getResource("/css" +  relativePath);
+        return ResourceUtil.getResource("/css" + relativePath);
     }
 }

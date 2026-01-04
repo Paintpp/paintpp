@@ -16,9 +16,8 @@ import java.util.Arrays;
 
 public class FilterAdderPopupStage extends PopupStage {
     private final FormContext<FilterAdderFormValue> formContext = new FormContext<>(new FilterAdderFormValue());
-
-    private ScrollPane filterAdderScrollPane = new ScrollPane();
     private final VBox filterAdderList = new VBox();
+    private final ScrollPane filterAdderScrollPane = new ScrollPane();
 
     public FilterAdderPopupStage() {
         super();
