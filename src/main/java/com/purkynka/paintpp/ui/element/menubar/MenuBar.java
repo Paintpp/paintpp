@@ -31,7 +31,12 @@ public class MenuBar extends ToolBar {
         loadImageButton.setOnAction((_) -> this.onLoadImage());
 
         var saveImageButton = new MenuItem("Save Image", new FontIcon(MaterialDesignF.FILE_DOWNLOAD));
+        saveImageButton.setDisable(true);
         saveImageButton.setOnAction((_) -> this.onSaveImage());
+
+        FilterManager.FILTERED_IMAGE.addUpdateListener(v -> {
+            if (v != null) saveImageButton.setDisable(false);
+        });
 
         fileMenu.getItems().addAll(
                 generateImageButton,
