@@ -63,8 +63,10 @@ public class FilterLoadingScreen extends VBox {
     private void setupLabels() {
         this.applyingFiltersLabel = new Label("Applying filters...");
         this.applyingFiltersLabel.setPadding(new Insets(16, 0, 0, 0));
+        this.applyingFiltersLabel.getStyleClass().add("filter-loading-screen-label");
 
         this.filterIndexProgressLabel = new Label("0 / 8");
+        this.filterIndexProgressLabel.getStyleClass().add("filter-loading-screen-label");
 
         this.filterNameLabel = new Label("Gaussian Blur");
         this.filterNameLabel.getStyleClass().add(Styles.TEXT_SUBTLE);

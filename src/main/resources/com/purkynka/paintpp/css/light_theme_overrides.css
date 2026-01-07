@@ -17,3 +17,7 @@
 .image-swapper-button-description {
     -fx-text-fill: -color-fg-default;
 }
+
+.filter-loading-screen-label {
+    -fx-text-fill: white;
+}
