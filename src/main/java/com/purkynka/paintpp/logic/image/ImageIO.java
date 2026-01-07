@@ -44,7 +44,10 @@ public class ImageIO {
         if (chosenFile == null) return;
 
         var fileExtension = ImageIO.getFileExtension(chosenFile);
-        if (fileExtension == null) fileExtension = "png";
+        if (fileExtension == null) {
+            fileExtension = "png";
+            chosenFile = new File(chosenFile.getAbsolutePath() +  "." + fileExtension);
+        }
 
         var bufferedImage = SwingFXUtils.fromFXImage(image, null);
         var bufferedImageNoAlpha = new BufferedImage(bufferedImage.getWidth(), bufferedImage.getHeight(), BufferedImage.TYPE_INT_RGB);
