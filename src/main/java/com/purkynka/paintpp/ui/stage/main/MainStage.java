@@ -19,9 +19,11 @@ public class MainStage {
         var wrapper = new StackPane(new MainRoot(), new FilterLoadingScreen());
 
         var scene = new Scene(wrapper);
-        CommonCSS.addStylesheetsToScene(scene);
 
         MainStage.MAIN_STAGE.setScene(scene);
+
+        CommonCSS.setTheme(false);
+        CommonCSS.LIGHT_THEME.addUpdateListener(_ -> CommonCSS.addStylesheetsToScene(scene));
     }
 
     public void show() {

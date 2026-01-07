@@ -1,0 +1,19 @@
+.image-swapper-button.original:active {
+    -fx-background-color: -color-border-default, derive(-color-success-muted, -25%);
+}
+
+.image-swapper-button.modified:active {
+    -fx-background-color: -color-border-default, derive(-color-accent-muted, -25%);
+}
+
+.action-bar-button:hover {
+    -fx-background-color: derive(-color-bg-default, -10%);
+}
+
+.action-bar-button:pressed {
+    -fx-background-color: derive(-color-bg-default, -20%);
+}
+
+.image-swapper-button-description {
+    -fx-text-fill: -color-fg-default;
+}
