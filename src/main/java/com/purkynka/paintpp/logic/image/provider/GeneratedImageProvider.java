@@ -28,7 +28,7 @@ public class GeneratedImageProvider implements ImageProvider {
             case Y -> generateY();
             case XY -> generateXY();
             case XY_AVERAGE -> generateXYAverage();
-            case SIN -> generateSin();
+            case COS -> generateCos();
             case MANDELBROT -> generateMandelbrot();
         }
     }
@@ -77,13 +77,13 @@ public class GeneratedImageProvider implements ImageProvider {
         }
     }
 
-    private void generateSin() {
+    private void generateCos() {
         for (var i = 0; i < this.imageSize.totalPixels(); i++) {
             var pixelPosition = BufferUtil.indexToPosition(i, this.imageSize.width);
 
             var xProgress = pixelPosition.x() / this.imageFloatSize.height;
             var yProgress = pixelPosition.y() / this.imageFloatSize.height;
-            var color = new Color((float) Math.sin(xProgress), (float) Math.sin(yProgress), (xProgress + yProgress) / 2f);
+            var color = new Color((float) Math.cos(xProgress), (float) Math.cos(yProgress), (xProgress + yProgress) / 2f);
 
             this.pixelIntBuffer.put(i, color.getRGB());
         }
