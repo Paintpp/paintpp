@@ -1,0 +1,12 @@
+.content-split-pane .split-pane-divider {
+    -fx-opacity: 1;
+    -fx-background-color: -pp-border-color;
+}
+
+.content-split-pane .split-pane-divider:hover {
+    -fx-background-color: -pp-border-color-hover;
+}
+
+.content-split-pane .split-pane-divider:pressed {
+    -fx-background-color: -pp-border-color-active;
+}

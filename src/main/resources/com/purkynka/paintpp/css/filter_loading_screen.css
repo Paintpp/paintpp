@@ -1,0 +1,12 @@
+.filter-loading-screen-container,
+.filter-loading-screen {
+    -fx-background-color: #0000007F;
+}
+
+.filter-loading-screen {
+    -fx-background-radius: 8px;
+}
+
+.filter-loading-screen-icon {
+    -fx-icon-size: 128px;
+}

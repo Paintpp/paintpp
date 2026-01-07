@@ -1,0 +1,15 @@
+.menu-bar-about-button:hover {
+    -fx-background-color: -color-accent-fg;
+}
+
+.menu-bar-about-button:pressed {
+    -fx-background-color: -color-accent-muted;
+}
+
+.menu-bar-exit-button:hover {
+    -fx-background-color: -color-danger-fg;
+}
+
+.menu-bar-exit-button:pressed {
+    -fx-background-color: -color-danger-muted;
+}

@@ -1,0 +1,86 @@
+/*
+    BASE CHOICE FIELD STYLING
+ */
+
+.choice-field-input {
+    -fx-background-color: -color-border-default, -color-bg-default;
+    -fx-background-insets: 0px, 1px;
+    -fx-background-radius: 6px, 5px;
+
+    -fx-cursor: hand;
+}
+
+.choice-field-label {
+    -fx-background-color: -color-bg-default;
+    -fx-text-fill: -color-fg-muted;
+}
+
+.choice-field-opened-icon {
+    -fx-icon-size: 24px;
+}
+
+.choice-field-choice-container {
+    -fx-background-color: -color-border-default, -color-bg-default;
+    -fx-background-insets: 0px, 1px;
+    -fx-background-radius: 6px, 5px;
+}
+
+.choice-field-error-icon {
+    -fx-icon-size: 24px;
+    -fx-icon-color: -color-danger-fg;
+
+    -fx-opacity: 0;
+}
+
+/*
+    OPENED CHOICE FIELD STYLING
+ */
+
+.choice-field:opened .choice-field-opened-icon {
+    -fx-rotate: 180deg;
+}
+
+/*
+    EMPTY CHOICE FIELD STYLING
+ */
+
+.choice-field:empty .choice-field-input {
+    -fx-text-fill: derive(-color-fg-muted, -25%);
+}
+
+/*
+    INVALID CHOICE FIELD STYLING
+ */
+.choice-field:invalid .choice-field-error-icon {
+    -fx-opacity: 1;
+}
+
+.choice-field:invalid .choice-field-label {
+    -fx-text-fill: -color-danger-fg;
+}
+
+.choice-field:invalid .choice-field-input {
+    -fx-background-color: -color-danger-fg, -color-bg-default;
+}
+
+/*
+    VALID CHOICE FIELD STYLING
+ */
+.choice-field:valid .choice-field-label {
+    -fx-text-fill: -color-success-fg;
+}
+
+.choice-field:valid .choice-field-input {
+    -fx-background-color: -color-success-fg, -color-bg-default;
+}
+
+/*
+    FOCUSED CHOICE FIELD STYLING
+ */
+.choice-field:focused .choice-field-input {
+    -fx-background-color: -color-accent-fg, -color-bg-default;
+}
+
+.choice-field:focused .choice-field-label {
+    -fx-text-fill: -color-accent-fg;
+}

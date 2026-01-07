@@ -1,32 +1,41 @@
 package com.purkynka.paintpp.logic.image;
 
-import com.purkynka.paintpp.logic.image.imageprovider.GeneratedImageProvider;
+import com.purkynka.paintpp.ui.element.form.input.choicefield.DescriptiveEnum;
 
-/**
- * Enum for the various generation types used in {@link GeneratedImageProvider}.
- */
-public enum ImageGenerationType {
-    XCoordinate("X Coordinate"),
-    YCoordinate("Y Coordinate"),
-    XYCoordinates("XY Coordinates"),
-    XYCoordinatesAverage("XY Coordinates with Average"),
-    Sin("Sin of Coordinates"),
-    Circle("Circle"),
-    CircleFalloff("Circle with Falloff"),
-    Mandelbrot("Mandelbrot (1000 iterations)");
+public enum ImageGenerationType implements DescriptiveEnum {
+    X("X Position", "R: x"),
+    Y("Y Position", "G: y"),
+    XY("X & Y Position", "R: x, G: y"),
+    XY_AVERAGE("X & Y Position with Average", "R: x, G: y, B: avg(x + y)"),
+    COS("Cos", "R: cos(x), G: cos(y), B: avg(x + y)"),
+    MANDELBROT("Mandelbrot", "Mandelbrot set with 1000 iterations.\nQuite slow to generate!");
 
-    private final String stringForm;
+    private final String name;
+    private final String description;
 
-    /**
-     * Constructs a new {@link ImageGenerationType} represented by the provided {@link String}.
-     * @param stringForm The string representation of the enum value.
-     */
-    ImageGenerationType(String stringForm) {
-        this.stringForm = stringForm;
+    ImageGenerationType(String name, String description) {
+        this.name = name;
+        this.description = this.highlightVariables(description);
+    }
+
+    private String highlightVariables(String text) {
+        var result = text.replaceAll("R", "[color=-color-danger-fg]R[/color]");
+        result = result.replaceAll("G", "[color=-color-success-fg]G[/color]");
+        result = result.replaceAll("B", "[color=-color-accent-fg]B[/color]");
+        result = result.replaceAll("x", "[color=-color-fg-default]x[/color]");
+        result = result.replaceAll("y", "[color=-color-fg-default]y[/color]");
+        result = result.replaceAll("\\d+", "[color=-color-fg-default]$0[/color]");
+
+        return result;
     }
 
     @Override
-    public String toString() {
-        return stringForm;
+    public String getName() {
+        return this.name;
+    }
+
+    @Override
+    public String getDescription() {
+        return this.description;
     }
 }

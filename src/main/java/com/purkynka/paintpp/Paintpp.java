@@ -1,26 +1,19 @@
 package com.purkynka.paintpp;
 
-import com.purkynka.paintpp.logic.configmanager.ConfigManager;
-import com.purkynka.paintpp.ui.popup.help.HelpPopup;
-import com.purkynka.paintpp.ui.primarystage.PrimaryStage;
+import com.purkynka.paintpp.ui.CommonCSS;
+import com.purkynka.paintpp.ui.stage.main.MainStage;
 import javafx.application.Application;
 import javafx.application.HostServices;
-import javafx.application.Platform;
 import javafx.stage.Stage;
 
 public class Paintpp extends Application {
-    public static HostServices hostServices;
+    public static HostServices HOST_SERVICES;
 
     @Override
     public void start(Stage stage) {
-        hostServices = getHostServices();
-        Application.setUserAgentStylesheet(ConfigManager.getTheme().getUserAgentStylesheet());
+        var mainStage = new MainStage(stage);
+        mainStage.show();
 
-        var primaryStage = new PrimaryStage(stage);
-        primaryStage.show();
-
-        ConfigManager.applyFont();
-
-        Platform.runLater(HelpPopup::new);
+        Paintpp.HOST_SERVICES = this.getHostServices();
     }
 }

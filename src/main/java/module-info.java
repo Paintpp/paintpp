@@ -8,6 +8,8 @@ module com.purkynka.paintpp {
     requires java.desktop;
     requires jdk.compiler;
     requires jdk.security.auth;
+    requires devtoolsfx.gui;
+    requires javafx.swing;
 
     exports com.purkynka.paintpp;
 }

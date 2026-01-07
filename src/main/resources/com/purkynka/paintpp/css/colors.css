@@ -1,0 +1,5 @@
+* {
+    -pp-border-color: -color-border-subtle;
+    -pp-border-color-hover: -color-border-default;
+    -pp-border-color-active: -color-accent-emphasis;
+}

@@ -1,0 +1,68 @@
+package com.purkynka.paintpp.ui.element.menubar;
+
+import com.purkynka.paintpp.logic.filter.FilterManager;
+import com.purkynka.paintpp.logic.image.ImageIO;
+import com.purkynka.paintpp.logic.image.ImageManager;
+import com.purkynka.paintpp.logic.image.provider.LoadedImageProvider;
+import com.purkynka.paintpp.ui.stage.imagegenerator.ImageGeneratorPopupStage;
+import javafx.scene.control.MenuButton;
+import javafx.scene.control.MenuItem;
+import javafx.scene.control.SeparatorMenuItem;
+import javafx.scene.control.ToolBar;
+import org.kordamp.ikonli.javafx.FontIcon;
+import org.kordamp.ikonli.materialdesign2.MaterialDesignF;
+
+import java.io.IOException;
+
+public class MenuBar extends ToolBar {
+    public MenuBar() {
+        super();
+
+        var fileMenu = new MenuButton("File", new FontIcon(MaterialDesignF.FILE));
+
+        var generateImageButton = new MenuItem("Generate Image", new FontIcon(MaterialDesignF.FILE_PLUS));
+        generateImageButton.setOnAction((_) -> this.onGenerateImage());
+
+        var loadImageButton = new MenuItem("Load Image", new FontIcon(MaterialDesignF.FILE_UPLOAD));
+        loadImageButton.setOnAction((_) -> this.onLoadImage());
+
+        var saveImageButton = new MenuItem("Save Image", new FontIcon(MaterialDesignF.FILE_DOWNLOAD));
+        saveImageButton.setDisable(true);
+        saveImageButton.setOnAction((_) -> this.onSaveImage());
+
+        FilterManager.FILTERED_IMAGE.addUpdateListener(v -> {
+            if (v != null) saveImageButton.setDisable(false);
+        });
+
+        fileMenu.getItems().addAll(
+                generateImageButton,
+                loadImageButton,
+                new SeparatorMenuItem(),
+                saveImageButton
+        );
+
+        this.getItems().addAll(fileMenu);
+    }
+
+    private void onGenerateImage() {
+        var imageGeneratorPopupStage = new ImageGeneratorPopupStage();
+        imageGeneratorPopupStage.open();
+    }
+
+    private void onLoadImage() {
+        var chosenImagePath = ImageIO.openImageURI();
+        if (chosenImagePath == null) return;
+
+        ImageManager.IMAGE_PROVIDER.set(new LoadedImageProvider(chosenImagePath));
+    }
+
+    private void onSaveImage() {
+        var currentFilteredImage = FilterManager.FILTERED_IMAGE.get();
+
+        try {
+            ImageIO.saveImage(currentFilteredImage.getImage());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+}
